@@ -8,27 +8,17 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            1.	Czy istnieje zatwierdzona lista zasobów w sieci przedsiębiorstwa? Jeśli tak proszę przejść do punktu 2,  jeśli nie patrz punkt 1.1.
-
-&nbsp;&nbsp;<br />
-            &nbsp;&nbsp;
-            <asp:Button ID="Button1" runat="server" Text="Blanl" OnClick="showExplanation1" />
-            <asp:CheckBox ID="CheckBox1" runat="server" Text="Tak" InvokeOnClick="showExplanation1" OnCheckedChanged="showExplanation1" />
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:CheckBox ID="CheckBox2" runat="server" Text="Nie" Click="showExplanation1"  />
-            &nbsp;&nbsp;&nbsp;
-&nbsp;<asp:CheckBox ID="CheckBox3" runat="server" Text="Nie dotyczy" OnClick="showExplanation1"/>
-            &nbsp;&nbsp;&nbsp;
-&nbsp;<asp:CheckBox ID="CheckBox4" runat="server" Text="Potrzebny komentarz" OnCheck="CheckBox4_CheckedChanged"  />
-            <br />
-            <br />
-            <asp:Label ID="Label1" runat="server" Text="1.1.	Należy przeanalizować źródła danych dostępnych w przedsiębiorstwie oraz usługi,      z których ono korzysta, a następnie sporządzić listę, które z nich będą uznawane za zasoby. Następnym krokiem jest zatwierdzenie listy oraz udostępnienie jej zgodnie z polityką bezpieczeństwa w przedsiębiorstwie. " Visible="false"></asp:Label>
-            <br />
-        </div>
-        <br />
-        <br />
-        <br />
+        <p>
+            Lista kontrolna 
+        </p>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ZTA" Width="693px">
+            <Columns>
+                <asp:BoundField DataField="Numer_pytania" HeaderText="Numer" SortExpression="Numer_pytania" />
+                <asp:BoundField DataField="Pytanie" HeaderText="Pytanie" SortExpression="Pytanie" />
+                <asp:CheckBoxField HeaderText="Odpowiedź" />
+            </Columns>
+        </asp:GridView>
+        <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [Numer pytania] AS Numer_pytania, [Pytanie] FROM [Question]"></asp:SqlDataSource>
     </form>
 </body>
 </html>
