@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StartPage.aspx.cs" Inherits="ZTA.WebForm2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StartPage.aspx.cs" Inherits="ZTA.StartPage" %>
 
 
 <!DOCTYPE html>
@@ -15,20 +15,22 @@
 <body>
     <form id="form1" runat="server">
         <p>
-            Witam! Aby rozpoczać proszę się zalogować.</p>
-        <a href="javascript:__doPostBack('LinkButton1','')">G</a>mail - do pomyślenia<br />
-  
-            <div style="height: 183px">
-                <asp:Label ID="Label1" runat="server" Text="E-mail"></asp:Label>
-&nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                <br />
-                <asp:Label ID="Label2" runat="server" Text="Hasło"></asp:Label>
-&nbsp;<asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
-                <br />
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Zaloguj" />
-                <br />
+            Witam! Aby rozpoczać proszę się zalogować.
+        </p>
+        <br />
+
+        <div style="height: 183px">
+            <asp:Label ID="emailLabel" runat="server" Text="E-mail"></asp:Label>
+            <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="passwordLabel" runat="server" Text="Hasło"></asp:Label>
+            <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="TextBox2_TextChanged" type="password"></asp:TextBox>
+            <br />
+            <asp:Button ID="LoginButton" runat="server" OnClick="Login" Text="Zaloguj" />
+            <br />
+            <br />
         </div>
-          
+
     </form>
 </body>
 </html>
