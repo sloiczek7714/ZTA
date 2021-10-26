@@ -22,9 +22,14 @@
         <div style="height: 183px">
             <asp:Label ID="emailLabel" runat="server" Text="E-mail"></asp:Label>
             <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="EmailValidator" runat="server"
+                ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" Display="Dynamic"
+                ErrorMessage="Nieprawidłowy adres" ControlToValidate="emailTextBox"
+                ForeColor="Red"> </asp:RegularExpressionValidator>
             <br />
             <asp:Label ID="passwordLabel" runat="server" Text="Hasło"></asp:Label>
             <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="TextBox2_TextChanged" type="password"></asp:TextBox>
+
             <br />
             <asp:Button ID="LoginButton" runat="server" OnClick="Login" Text="Zaloguj" />
             <br />
