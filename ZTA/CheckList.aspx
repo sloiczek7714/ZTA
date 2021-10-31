@@ -11,49 +11,26 @@
         <p>
             Lista kontrolna 
         </p>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ZTA" Width="693px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+
+
+        <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [Pytanie], [Numer pytania] AS Numer_pytania FROM [Question]" OnSelecting="ZTA_Selecting1"></asp:SqlDataSource>
+        <br />
+        <asp:GridView ID="GridView2" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="Numer_pytania" HeaderText="Numer" SortExpression="Numer_pytania" />
-                <asp:BoundField DataField="Pytanie" HeaderText="Pytanie" SortExpression="Pytanie" />
+                <asp:BoundField HeaderText="Numer" DataField="Numer_pytania" />
+                <asp:BoundField HeaderText="Pytanie" DataField="Pytanie" />
                 <asp:TemplateField HeaderText="Odpowiedź">
-                    <InsertItemTemplate>
-                        <asp:DropDownList                             
-                            id="answerList"                    
-                    OnSelectedIndexChanged="SelectionChange"
-                    runat="server">
-                  <asp:ListItem Selected="Tak" Value="White"> White </asp:ListItem>
-                  <asp:ListItem Value="Nie"> Silver </asp:ListItem>
-                  <asp:ListItem Value="Nie dotyczy"> Dark Gray </asp:ListItem>
-                  <asp:ListItem Value="Potrzebny komentarz"> Khaki </asp:ListItem>                
-                            
-                            </asp:DropDownList>
-                        <asp:CheckBox ID="CheckBox1" runat="server" />
-                        <asp:CheckBoxList ID="CheckBoxList1" runat="server"></asp:CheckBoxList>
-                    </InsertItemTemplate>
+                    <ItemTemplate>
+                        <asp:CheckBoxList ID="CheckBoxList1" runat="server" RepeatColumns="4" RepeatLayout="Table">
+                            <asp:ListItem>Tak</asp:ListItem>
+                            <asp:ListItem>Nie</asp:ListItem>
+                            <asp:ListItem>Nie dotyczy</asp:ListItem>
+                            <asp:ListItem>Potrzebny komentarz</asp:ListItem>
+                        </asp:CheckBoxList>
+                    </ItemTemplate>
                 </asp:TemplateField>
-
-
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [Numer pytania] AS Numer_pytania, [Pytanie] FROM [Question]"></asp:SqlDataSource>
-
-        <asp:TemplateField HeaderText="Odpowiedź">
-                    <InsertItemTemplate>
-                        <asp:DropDownList                             
-                            id="answerList"                    
-                    OnSelectedIndexChanged="SelectionChange"
-                    runat="server">
-                  <asp:ListItem Selected="Tak" Value="White"> White </asp:ListItem>
-                  <asp:ListItem Value="Nie"> Silver </asp:ListItem>
-                  <asp:ListItem Value="Nie dotyczy"> Dark Gray </asp:ListItem>
-                  <asp:ListItem Value="Potrzebny komentarz"> Khaki </asp:ListItem>                
-                            
-                            </asp:DropDownList>
-                        <asp:CheckBox ID="CheckBox1" runat="server" />
-                        <asp:CheckBoxList ID="CheckBoxList1" runat="server"></asp:CheckBoxList>
-                    </InsertItemTemplate>
-                </asp:TemplateField>
-
     </form>
 </body>
 </html>

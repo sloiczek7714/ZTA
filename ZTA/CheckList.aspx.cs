@@ -29,5 +29,16 @@ namespace ZTA
         {
 
         }
+
+        protected void ZTA_Selecting1(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+
+        }
+
+        protected void GridView_RowDataBound(Object sender, GridViewRowEventArgs e)
+        {
+
+            
+        }
     }
 }

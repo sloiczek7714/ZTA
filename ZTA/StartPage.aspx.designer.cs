@@ -42,15 +42,6 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.TextBox emailTextBox;
 
         /// <summary>
-        /// EmailValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailValidator;
-
-        /// <summary>
         /// passwordLabel control.
         /// </summary>
         /// <remarks>
