@@ -1,41 +1,53 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StartPage.aspx.cs" Inherits="ZTA.StartPage" %>
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <style type="text/css">
-        #form1 {
-            height: 394px;
-        }
+    <style>
+    footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    text-align: center;
+    margin-top: -200px;
+    }
+    html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin-bottom: 60px;
+    margin-left: 40px;
+    margin-top: 50px;
+}
     </style>
+    <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <p>
-            Witam! Aby rozpoczać proszę się zalogować.
-        </p>
-        <br />
+    <form id="html" runat="server">
+        <div id="body">
+            Witaj!
 
-        <div style="height: 183px">
-            <asp:Label ID="emailLabel" runat="server" Text="E-mail"></asp:Label>
-            <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox>
-           <%-- <asp:RegularExpressionValidator ID="EmailValidator" runat="server"
-                ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" Display="Dynamic"
-                ErrorMessage="Nieprawidłowy adres" ControlToValidate="emailTextBox"
-                ForeColor="Red"> </asp:RegularExpressionValidator>--%>
-            <br />
-            <asp:Label ID="passwordLabel" runat="server" Text="Hasło"></asp:Label>
-            <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="TextBox2_TextChanged" type="password"></asp:TextBox>
+            <br /> <br />
+            ZTA Migartion App to aplikacja służąca wpomaganiu migracji systemów teleifnormatycznych zgodnie z architekturą Zero Thrust.
 
-            <br />
-            <asp:Button ID="LoginButton" runat="server" OnClick="Login" Text="Zaloguj" />
-            <br />
-            <br />
+            <br /> <br />
+
+            Aby zalogować się kliknij poniższy przycisk. 
         </div>
 
+        <asp:Button runat="server" Text="Zaloguj" OnClick="GoToLoginPage" /> 
+       
     </form>
+    <footer class="border-top footer text-muted text-center">
+        <div id="footer">
+            Copyright &copy; Weronika Buras 2021
+        </div>
+    </footer>
+    
 </body>
 </html>

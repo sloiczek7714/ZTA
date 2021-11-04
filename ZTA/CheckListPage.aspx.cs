@@ -7,16 +7,18 @@ using System.Web.UI.WebControls;
 
 namespace ZTA
 {
-    public partial class StartPage : System.Web.UI.Page
+    public partial class CheckListPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void GoToLoginPage(object sender, EventArgs e)
+
+        protected void ZTA_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
-            Response.Redirect("LoginPage.aspx");
+
         }
+
     }
 }

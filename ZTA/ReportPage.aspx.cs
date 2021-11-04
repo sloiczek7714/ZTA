@@ -7,16 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace ZTA
 {
-    public partial class StartPage : System.Web.UI.Page
+    public partial class ReportPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void GoToLoginPage(object sender, EventArgs e)
-        {
-            Response.Redirect("LoginPage.aspx");
         }
     }
 }
