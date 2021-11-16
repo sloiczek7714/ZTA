@@ -23,61 +23,61 @@ namespace ZTA
 
         protected void EditUser(object sender, EventArgs e)
         {
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
-            Console.WriteLine("test");
-            SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE password = @password and email  = @email", connection);
-            command.Parameters.AddWithValue("password", password);
-            command.Parameters.AddWithValue("email", email);
-            connection.Open();
-            try
-            {
-                int id = (int)command.ExecuteScalar();
-                if (email.Equals("admin"))
-                {
-                    Response.Redirect("AdminPage.aspx");
-                }
+            //SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            //Console.WriteLine("test");
+            //SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE password = @password and email  = @email", connection);
+            //command.Parameters.AddWithValue("password", password);
+            //command.Parameters.AddWithValue("email", email);
+            //connection.Open();
+            //try
+            //{
+            //    int id = (int)command.ExecuteScalar();
+            //    if (email.Equals("admin"))
+            //    {
+            //        Response.Redirect("AdminPage.aspx");
+            //    }
 
-                else
-                {
-                    Response.Redirect("UserPage.aspx");
-                }
-            }
-            catch (NullReferenceException)
-            {
+            //    else
+            //    {
+            //        Response.Redirect("UserPage.aspx");
+            //    }
+            //}
+            //catch (NullReferenceException)
+            //{
 
-                MessageBox.Show("Błędny email lub hasło");
-            }
+            //    MessageBox.Show("Błędny email lub hasło");
+            //}
 
-            connection.Close();
+            //connection.Close();
         }
         protected void DeteleUser(object sender, EventArgs e)
         {
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
-            Console.WriteLine("test");
-            SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE password = @password and email  = @email", connection);
-            command.Parameters.AddWithValue("password", password);
-            command.Parameters.AddWithValue("email", email);
-            connection.Open();
-            try
-            {
-                int id = (int)command.ExecuteScalar();
-                if (email.Equals("admin"))
-                {
-                    Response.Redirect("AdminPage.aspx");
-                }
+            //SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            //Console.WriteLine("test");
+            //SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE password = @password and email  = @email", connection);
+            //command.Parameters.AddWithValue("password", password);
+            //command.Parameters.AddWithValue("email", email);
+            //connection.Open();
+            //try
+            //{
+            //    int id = (int)command.ExecuteScalar();
+            //    if (email.Equals("admin"))
+            //    {
+            //        Response.Redirect("AdminPage.aspx");
+            //    }
 
-                else
-                {
-                    Response.Redirect("UserPage.aspx");
-                }
-            }
-            catch (NullReferenceException)
-            {
+            //    else
+            //    {
+            //        Response.Redirect("UserPage.aspx");
+            //    }
+            //}
+            //catch (NullReferenceException)
+            //{
 
-                MessageBox.Show("Błędny email lub hasło");
-            }
+            //    MessageBox.Show("Błędny email lub hasło");
+            //}
 
-            connection.Close();
+            //connection.Close();
         }
     }
 }
