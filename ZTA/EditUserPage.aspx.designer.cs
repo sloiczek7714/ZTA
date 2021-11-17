@@ -15,48 +15,48 @@ namespace ZTA
     {
 
         /// <summary>
-        /// emailTextBox control.
+        /// editEmailLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailTextBox;
+        protected global::System.Web.UI.WebControls.Label editEmailLabel;
 
         /// <summary>
-        /// NameLabel control.
+        /// editNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NameLabel;
+        protected global::System.Web.UI.WebControls.Label editNameLabel;
 
         /// <summary>
-        /// SurnameLabel control.
+        /// editSurnameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SurnameLabel;
+        protected global::System.Web.UI.WebControls.Label editSurnameLabel;
 
         /// <summary>
-        /// PositionLabel control.
+        /// editPositionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PositionLabel;
+        protected global::System.Web.UI.WebControls.Label editPositionLabel;
 
         /// <summary>
-        /// WorkPlaceLabel control.
+        /// editWorkPlaceLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label WorkPlaceLabel;
+        protected global::System.Web.UI.WebControls.Label editWorkPlaceLabel;
     }
 }

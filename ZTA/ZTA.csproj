@@ -112,6 +112,8 @@
     <Content Include="css\test\material-dashboard.css" />
     <Content Include="Global.asax" />
     <Content Include="ReportPage.aspx" />
+    <Content Include="EditUserPage.aspx" />
+    <Content Include="AddUserPage.aspx" />
     <Content Include="UserPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="CheckListPage.aspx" />
@@ -159,6 +161,20 @@
     </Compile>
     <Compile Include="StartPage.aspx.designer.cs">
       <DependentUpon>StartPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditUserPage.aspx.cs">
+      <DependentUpon>EditUserPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditUserPage.aspx.designer.cs">
+      <DependentUpon>EditUserPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddUserPage.aspx.cs">
+      <DependentUpon>AddUserPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddUserPage.aspx.designer.cs">
+      <DependentUpon>AddUserPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserPage.aspx.cs">
       <DependentUpon>UserPage.aspx</DependentUpon>

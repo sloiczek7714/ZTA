@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserPage.aspx.cs" Inherits="ZTA.UserPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddUserPage.aspx.cs" Inherits="ZTA.AddUserPage" %>
 
 <!DOCTYPE html>
 
@@ -69,15 +69,25 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">Dane użytkownika</h4>
+                                    <h4 class="card-title">Tworzenie użytkownika</h4>
+                                    <p class="card-category">Uzupełnij dane nowego użytkownika</p>
                                 </div>
                                 <div class="card-body">
                                     <form runat="server">
+                                       
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">aders e-mail</label>
-                                                    <asp:Label ID="emailTextBox" runat="server" class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="addEmailTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Hasło</label>
+                                                    <asp:TextBox ID="addPasswordTextBox" runat="server" class="form-control" type="password"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,7 +95,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Imię</label>
-                                                    <asp:Label ID="NameLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="addnameTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +103,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Nazwisko</label>
-                                                    <asp:Label ID="SurnameLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="addSurnameTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,7 +111,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Stanowisko</label>
-                                                    <asp:Label ID="PositionLabel" runat="server"  class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="addPositionTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,10 +119,11 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Miejsce pracy</label>
-                                                     <asp:Label ID="WorkPlaceLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="addWorkPlaceLabel" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
+                                         <asp:Button runat="server" ID="SaveUser" Text="Zapisz" class="btn btn-primary pull-right" OnClick="saveUser"  />
                                     </form>
                                 </div>
                             </div>

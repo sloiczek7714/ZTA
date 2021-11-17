@@ -16,9 +16,9 @@ namespace ZTA
 
         }
 
-        protected void AddUser(object sender, EventArgs e)
+        protected void GoToAddUserPage(object sender, EventArgs e)
         {
-            
+            Response.Redirect("AddUserPage.aspx");
         }
 
         protected void EditUser(object sender, EventArgs e)
@@ -78,6 +78,11 @@ namespace ZTA
             //}
 
             //connection.Close();
+        }
+
+        protected void AddUserButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

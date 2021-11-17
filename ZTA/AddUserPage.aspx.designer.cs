@@ -11,52 +11,70 @@ namespace ZTA
 {
 
 
-    public partial class UserPage
+    public partial class AddUserPage
     {
 
         /// <summary>
-        /// emailTextBox control.
+        /// addEmailTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailTextBox;
+        protected global::System.Web.UI.WebControls.TextBox addEmailTextBox;
 
         /// <summary>
-        /// NameLabel control.
+        /// addPasswordTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NameLabel;
+        protected global::System.Web.UI.WebControls.TextBox addPasswordTextBox;
 
         /// <summary>
-        /// SurnameLabel control.
+        /// addnameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SurnameLabel;
+        protected global::System.Web.UI.WebControls.TextBox addnameTextBox;
 
         /// <summary>
-        /// PositionLabel control.
+        /// addSurnameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PositionLabel;
+        protected global::System.Web.UI.WebControls.TextBox addSurnameTextBox;
 
         /// <summary>
-        /// WorkPlaceLabel control.
+        /// addPositionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label WorkPlaceLabel;
+        protected global::System.Web.UI.WebControls.TextBox addPositionTextBox;
+
+        /// <summary>
+        /// addWorkPlaceLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox addWorkPlaceLabel;
+
+        /// <summary>
+        /// SaveUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveUser;
     }
 }

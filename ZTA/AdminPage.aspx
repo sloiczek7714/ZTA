@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./LoginPage.aspx">
+                        <a class="nav-link" href="./UserPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Profil Uzytkownika</p>
                         </a>
@@ -77,23 +77,25 @@
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title ">Lista użytkowników</h4>
-
-                                </div>                                
+                                </div>                       
                                     
                                                                
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <form runat="server">
-                                            <asp:Button runat="server" ID="AddUserButton" Text="Dodaj nowego użytkownika" class="btn btn-primary pull-right"  />
+                                            <asp:Button runat="server" OnClick="GoToAddUserPage" ID="AddUserButton" Text="Dodaj nowego użytkownika" class="btn btn-primary pull-right"  />
                                             <div class="table-responsive">
-                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [ID], [email] FROM [Users]"></asp:SqlDataSource>
+                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [ID], [Name], [Surname], [Position], [WorkPlace], [email] FROM [Users]"></asp:SqlDataSource>
                                             <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
                                                 <Columns>
-                                                    <asp:BoundField HeaderText="ID" DataField="ID" />
-                                                    <asp:BoundField HeaderText="email" DataField="email" />
+                                                    <asp:BoundField HeaderText="  ID  " DataField="ID" />
+                                                    <asp:BoundField HeaderText="  Imie  " DataField="Name" />
+                                                    <asp:BoundField HeaderText="  Nazwisko  " DataField="Surname" />
+                                                    <asp:BoundField HeaderText="  adres e-mail  " DataField="email" />
+                                                    <asp:BoundField HeaderText="  Stanowisko  " DataField="Position" />
+                                                    <asp:BoundField HeaderText="  Miejsce pracy  " DataField="WorkPlace" />
                                                     <asp:TemplateField HeaderText="Funkcje">
                                                         <ItemTemplate>
-                                                            <asp:Button runat="server" ID="DetailButton" Text="Szczegóły" class="btn btn-primary pull-right" />
                                                             <asp:Button runat="server" ID="EditButton" Text="Edytuj" class="btn btn-primary pull-right" />
                                                             <asp:Button runat="server" ID="DeleteButton" Text="Usuń" class="btn btn-primary pull-right" />
                                                         </ItemTemplate>

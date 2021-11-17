@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserPage.aspx.cs" Inherits="ZTA.UserPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditUserPage.aspx.cs" Inherits="ZTA.UserPage" %>
 
 <!DOCTYPE html>
 
@@ -77,7 +77,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">aders e-mail</label>
-                                                    <asp:Label ID="emailTextBox" runat="server" class="form-control"></asp:Label>
+                                                    <asp:Label ID="editEmailLabel" runat="server" class="form-control"></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Imię</label>
-                                                    <asp:Label ID="NameLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:Label ID="editNameLabel" runat="server" class="form-control"></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Nazwisko</label>
-                                                    <asp:Label ID="SurnameLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:Label ID="editSurnameLabel" runat="server" class="form-control"></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,7 +101,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Stanowisko</label>
-                                                    <asp:Label ID="PositionLabel" runat="server"  class="form-control"></asp:Label>
+                                                    <asp:Label ID="editPositionLabel" runat="server"  class="form-control"></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +109,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Miejsce pracy</label>
-                                                     <asp:Label ID="WorkPlaceLabel" runat="server" class="form-control"></asp:Label>
+                                                     <asp:Label ID="editWorkPlaceLabel" runat="server" class="form-control"></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
