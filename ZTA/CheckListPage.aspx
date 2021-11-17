@@ -45,9 +45,10 @@
                 </ul>
             </div>
         </div>
+
         <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <%--<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                         <a class="navbar-brand" href="javascript:void(0)">ZTA Migration App</a>
@@ -59,104 +60,109 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
                 </div>
-            </nav>
+            </nav>--%>
             <!-- End Navbar -->
+
             <div class="content">
                 <div class="container-fluid">
-                    <div class="table-responsive">
-                    <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Lista czynności</h4>
-                  <p class="card-category">W celu spełnienia założeń NIST sP 800-207 proszę postępowac zgodnie z procedurą.</p>
-                </div>>
-                    <form runat="server">
-                        <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [Pytanie], [Numer pytania] AS Numer_pytania FROM [Question]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                        <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False" class="text-primary">
-                            <Columns>
-                                <asp:BoundField HeaderText="Numer" DataField="Numer_pytania"  />
-                                <asp:BoundField HeaderText="Pytanie" DataField="Pytanie" />
-                                <%--<asp:TemplateField HeaderText="Odpowiedź">
-                                <ItemTemplate>
-                                    <asp:CheckBoxList ID="CheckBoxList" runat="server" RepeatColumns="4" RepeatLayout="Table">
-                                        <asp:ListItem Text="Tak" onclick="MutExChkList(this);"> </asp:ListItem>
-                                        <asp:ListItem Text="Nie" onclick="MutExChkList(this);"></asp:ListItem>
-                                        <asp:ListItem Text="Nie dotyczy" onclick="MutExChkList(this);"></asp:ListItem>
-                                        <asp:ListItem Text="Potrzebny komentarz" onclick="MutExChkList(this);"></asp:ListItem>
-                                    </asp:CheckBoxList>
-                                </ItemTemplate>
-                            </asp:TemplateField> --%>
-                            </Columns>
-                        </asp:GridView>
-                    </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Lista czynności</h4>
+                                    <p class="card-category">W celu spełnienia założeń NIST sP 800-207 proszę postępowac zgodnie z procedurą.</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <form runat="server">
+                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [Pytanie], [Numer pytania] AS Numer_pytania FROM [Question]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                            <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False" >
+                                                <Columns>
+                                                    <asp:BoundField HeaderText="Numer" DataField="Numer_pytania" />
+                                                    <asp:BoundField HeaderText="Pytanie" DataField="Pytanie" />
+                                                    <%--<asp:TemplateField HeaderText="Odpowiedź"><ItemTemplate>
+                                                     <asp:CheckBoxList ID="CheckBoxList" runat="server" RepeatColumns="4" RepeatLayout="Table">
+                                                     <asp:ListItem Text="Tak" onclick="MutExChkList(this);"> </asp:ListItem>
+                                                      <asp:ListItem Text="Nie" onclick="MutExChkList(this);"></asp:ListItem>
+                                                      <asp:ListItem Text="Nie dotyczy" onclick="MutExChkList(this);"></asp:ListItem>
+                                                     <asp:ListItem Text="Potrzebny komentarz" onclick="MutExChkList(this);"></asp:ListItem></asp:CheckBoxList></ItemTemplate></asp:TemplateField> --%>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
-            </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright float-right">
-                        &copy;
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="float-left">
+                            <ul>
+                                <li>
+                                    <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright float-right">
+                            &copy;
            
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
+                            Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
          
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-
-    <div class="fixed-plugin">
-        <div class="dropdown show-dropdown">
-            <a href="#" data-toggle="dropdown">
-                <i class="fa fa-cog fa-2x"></i>
-            </a>
-            <ul class="dropdown-menu">
-                <li class="header-title">Sidebar Filters</li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger active-color">
-                        <div class="badge-colors ml-auto mr-auto">
-                            <span class="badge filter badge-purple active" data-color="purple"></span>
-                            <span class="badge filter badge-azure" data-color="azure"></span>
-                            <span class="badge filter badge-green" data-color="green"></span>
-                            <span class="badge filter badge-warning" data-color="orange"></span>
-                            <span class="badge filter badge-danger" data-color="danger"></span>
                         </div>
-                        <div class="clearfix"></div>
-                    </a>
-                </li>
-                <li class="header-title">Images</li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="">
-                    </a>
-                </li>
-                <li class="active">
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="">
-                    </a>
-                </li>
-            </ul>
+                    </div>
+                </footer>
+            </div>
+        </div>
         </div>
 
+        <div class="fixed-plugin">
+            <div class="dropdown show-dropdown">
+                <a href="#" data-toggle="dropdown">
+                    <i class="fa fa-cog fa-2x"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="header-title">Sidebar Filters</li>
+                    <li class="adjustments-line">
+                        <a href="javascript:void(0)" class="switch-trigger active-color">
+                            <div class="badge-colors ml-auto mr-auto">
+                                <span class="badge filter badge-purple active" data-color="purple"></span>
+                                <span class="badge filter badge-azure" data-color="azure"></span>
+                                <span class="badge filter badge-green" data-color="green"></span>
+                                <span class="badge filter badge-warning" data-color="orange"></span>
+                                <span class="badge filter badge-danger" data-color="danger"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                    <li class="header-title">Images</li>
+                    <li>
+                        <a class="img-holder switch-trigger" href="javascript:void(0)">
+                            <img src="../assets/img/sidebar-1.jpg" alt="">
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="img-holder switch-trigger" href="javascript:void(0)">
+                            <img src="../assets/img/sidebar-2.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="img-holder switch-trigger" href="javascript:void(0)">
+                            <img src="../assets/img/sidebar-3.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="img-holder switch-trigger" href="javascript:void(0)">
+                            <img src="../assets/img/sidebar-4.jpg" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <script src="./assets/js/core/jquery.min.js"></script>
         <script src="./assets/js/core/popper.min.js"></script>
         <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
