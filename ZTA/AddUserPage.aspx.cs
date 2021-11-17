@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace ZTA
 {
@@ -13,56 +16,43 @@ namespace ZTA
         {
 
         }
-        
-            protected void saveUser(object sender, EventArgs e)
+
+        protected void saveUser(object sender, EventArgs e)
         {
+            string email = addEmailTextBox.Text; ;
+            string password = addPasswordTextBox.Text;
+            string name = addNameTextBox.Text; ;
+            string surname = addSurnameTextBox.Text; ;
+            string position = addPositionTextBox.Text;
+            string workPlace = addWorkPlaceTextBox.Text;
 
-        }
-        protected void createUser(object sender, EventArgs e)
-        {
-        //    string email = addEmailTextBox.Text; ;
-        //    string password = passwordTextBox.Text;
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            connection.Open();
+            string insert = "Insert into Users (email, password, Name, Surname, Position, WorkPlace) values( @email, @password, @name, @surname,  @position, @workPlace)";
+            SqlCommand command = new SqlCommand(insert, connection);
+            command.Parameters.AddWithValue("password", password);
+            command.Parameters.AddWithValue("email", email);
+            command.Parameters.AddWithValue("name", name);
+            command.Parameters.AddWithValue("surname", surname);
+            command.Parameters.AddWithValue("position", position);
+            command.Parameters.AddWithValue("workPlace", workPlace);
+            command.ExecuteScalar();
+            try
+            {
+                
+                Response.Redirect("AdminPage.aspx");
+                connection.Close();
 
-        //    if (email.Equals(""))
-        //    {
-        //        MessageBox.Show("Prosze wprowadzić adres e-mail!");
+            }
+            catch (NullReferenceException)
+            {
 
-        //    }
-        //    else if (password.Equals(""))
-        //    {
-        //        MessageBox.Show("Prosze wprowadzić adres hasło!");
-        //    }
-        //    else
-        //    {
-        //        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
-        //        Console.WriteLine("test");
-        //        SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE password = @password and email  = @email", connection);
-        //        command.Parameters.AddWithValue("password", password);
-        //        command.Parameters.AddWithValue("email", email);
-        //        connection.Open();
-        //        try
-        //        {
-        //            int id = (int)command.ExecuteScalar();
-        //            if (email.Equals("admin"))
-        //            {
-        //                Response.Redirect("AdminPage.aspx");
-        //            }
+                MessageBox.Show("Error");
+            }
 
-        //            else
-        //            {
-        //                Response.Redirect("UserPage.aspx");
-        //            }
-        //        }
-        //        catch (NullReferenceException)
-        //        {
-
-        //            MessageBox.Show("Błędny email lub hasło");
-        //        }
-
-        //        connection.Close();
-        //    }
-            Response.Redirect("AdminPage.aspx");
+            connection.Close();
         }
 
     }
+
 }

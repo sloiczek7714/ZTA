@@ -33,13 +33,13 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.TextBox addPasswordTextBox;
 
         /// <summary>
-        /// addnameTextBox control.
+        /// addNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addnameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox addNameTextBox;
 
         /// <summary>
         /// addSurnameTextBox control.
@@ -60,13 +60,13 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.TextBox addPositionTextBox;
 
         /// <summary>
-        /// addWorkPlaceLabel control.
+        /// addWorkPlaceTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addWorkPlaceLabel;
+        protected global::System.Web.UI.WebControls.TextBox addWorkPlaceTextBox;
 
         /// <summary>
         /// SaveUser control.

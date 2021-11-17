@@ -78,7 +78,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">aders e-mail</label>
+                                                    <label class="bmd-label-floating">Adres e-mail</label>
                                                     <asp:TextBox ID="addEmailTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
@@ -95,7 +95,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Imię</label>
-                                                    <asp:TextBox ID="addnameTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="addNameTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,7 +119,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Miejsce pracy</label>
-                                                    <asp:TextBox ID="addWorkPlaceLabel" runat="server" class="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="addWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
