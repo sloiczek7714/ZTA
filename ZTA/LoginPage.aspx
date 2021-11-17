@@ -5,14 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Panel logowania</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <!-- CSS Files -->
     <link href="../css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -24,8 +24,7 @@
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">Creative Tim
-        </a>
+                <a class="simple-text logo-normal">ZTA Migration App</a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
@@ -36,9 +35,9 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./user.html">
+                        <a class="nav-link" href="./LoginPage.aspx">
                             <i class="material-icons">person</i>
-                            <p>Profil Uzytkownika</p>
+                            <p>Logowanie</p>
                         </a>
                     </li>
                 </ul>
@@ -67,7 +66,7 @@
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title">Zaloguj się</h4>
-                                    <p class="card-category">Nowych użytkoników może dodać tylko administrator!</p>
+                                    <p class="card-category">Nowych użytkowników może dodać tylko administrator!</p>
                                 </div>
                                 <div class="card-body">
                                     <form runat="server">
@@ -78,7 +77,6 @@
                                                     <asp:TextBox ID="emailTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -88,7 +86,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                </div>
+                                
                                 <asp:Button ID="LoginButton" runat="server" OnClick="Login" Text="Zaloguj" class="btn btn-primary pull-right" />                               
                                 </form>
                             </div>
@@ -96,24 +94,15 @@
                     </div>
                 </div>
             </div>
-       
+       </div>
         <footer class="footer">
                 <div class="container-fluid">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
-              </li>
-                        </ul>
-                    </nav>
                     <div class="copyright float-right">
-                        &copy;
-           
+                        &copy;           
                         <script>
                             document.write(new Date().getFullYear())
-            </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
-         
+                        </script>
+                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
                     </div>
                 </div>
             </footer>
@@ -142,22 +131,22 @@
                 <li class="header-title">Images</li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="">
+                        <img src="../assets/img/sidebar-1.jpg" alt=""/>
                     </a>
                 </li>
                 <li class="active">
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="">
+                        <img src="../assets/img/sidebar-2.jpg" alt=""/>
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="">
+                        <img src="../assets/img/sidebar-3.jpg" alt=""/>
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="">
+                        <img src="../assets/img/sidebar-4.jpg" alt=""/>
                     </a>
                 </li>
             </ul>
@@ -171,8 +160,6 @@
     <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chartist JS -->
     <script src="../assets/js/plugins/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
