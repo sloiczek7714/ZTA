@@ -11,52 +11,70 @@ namespace ZTA
 {
 
 
-    public partial class UserPage
+    public partial class EditUserPage
     {
 
         /// <summary>
-        /// editEmailLabel control.
+        /// editEmailTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editEmailLabel;
+        protected global::System.Web.UI.WebControls.TextBox editEmailTextBox;
 
         /// <summary>
-        /// editNameLabel control.
+        /// editNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editNameLabel;
+        protected global::System.Web.UI.WebControls.TextBox editNameTextBox;
 
         /// <summary>
-        /// editSurnameLabel control.
+        /// editSurnameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editSurnameLabel;
+        protected global::System.Web.UI.WebControls.TextBox editSurnameTextBox;
 
         /// <summary>
-        /// editPositionLabel control.
+        /// editPositionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editPositionLabel;
+        protected global::System.Web.UI.WebControls.TextBox editPositionTextBox;
 
         /// <summary>
-        /// editWorkPlaceLabel control.
+        /// editWorkPlaceTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editWorkPlaceLabel;
+        protected global::System.Web.UI.WebControls.TextBox editWorkPlaceTextBox;
+
+        /// <summary>
+        /// backButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button backButton;
+
+        /// <summary>
+        /// editUserButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button editUserButton;
     }
 }

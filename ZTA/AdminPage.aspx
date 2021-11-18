@@ -83,12 +83,13 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <form runat="server">
-                                            <asp:Button runat="server" OnClick="GoToAddUserPage" ID="AddUserButton" Text="Dodaj nowego użytkownika" class="btn btn-primary pull-right"  />
+                                            <asp:Button runat="server" OnClick="GoToAddUserPage" ID="AddUserButton" Text="Dodaj nowego użytkownika" class="btn btn-primary pull-left"  /> 
                                             <div class="table-responsive">
                                             <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [ID], [Name], [Surname], [Position], [WorkPlace], [email] FROM [Users]"></asp:SqlDataSource>
-                                            <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
+                                            <br />
+                                                <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
                                                 <Columns>
-                                                    <asp:BoundField HeaderText="  ID  " DataField="ID" />
+                                                    <asp:BoundField HeaderText="  ID  " DataField="ID"/>
                                                     <asp:BoundField HeaderText="  Imie  " DataField="Name" />
                                                     <asp:BoundField HeaderText="  Nazwisko  " DataField="Surname" />
                                                     <asp:BoundField HeaderText="  adres e-mail  " DataField="email" />
@@ -96,12 +97,14 @@
                                                     <asp:BoundField HeaderText="  Miejsce pracy  " DataField="WorkPlace" />
                                                     <asp:TemplateField HeaderText="Funkcje">
                                                         <ItemTemplate>
-                                                            <asp:Button runat="server" ID="EditButton" Text="Edytuj" class="btn btn-primary pull-right" />
-                                                            <asp:Button runat="server" ID="DeleteButton" Text="Usuń" class="btn btn-primary pull-right" />
+                                                            <asp:Button runat="server" ID="DeleteButton" Text="Wybierz" class="btn btn-primary pull-right" CommandName="Select"/>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
+                                                <br />
+                                                <asp:Button runat="server" ID="DeleteButton" Text="Usuń" class="btn btn-primary pull-left" OnClick="DeteleUser" />
+                                                <asp:Button runat="server" ID="EditButton" Text="Edytuj" class="btn btn-primary pull-left" OnClick="EditUser" />
                                                 </div>
                                         </form>
                                     
@@ -113,13 +116,6 @@
                 </div>
                 <footer class="footer">
                     <div class="container-fluid">
-                        <nav class="float-left">
-                            <ul>
-                                <li>
-                                    <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
-                                </li>
-                            </ul>
-                        </nav>
                         <div class="copyright float-right">
                             &copy;
            
@@ -157,22 +153,22 @@
                 <li class="header-title">Images</li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="">
+                        <img src="../assets/img/sidebar-1.jpg" alt=""/>
                     </a>
                 </li>
                 <li class="active">
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="">
+                        <img src="../assets/img/sidebar-2.jpg" alt=""/>
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="">
+                        <img src="../assets/img/sidebar-3.jpg" alt=""/>
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="">
+                        <img src="../assets/img/sidebar-4.jpg" alt=""/>
                     </a>
                 </li>
             </ul>

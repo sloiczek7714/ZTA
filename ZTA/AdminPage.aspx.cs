@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace ZTA
 {
@@ -23,61 +24,43 @@ namespace ZTA
 
         protected void EditUser(object sender, EventArgs e)
         {
-            //SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
-            //Console.WriteLine("test");
-            //SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE password = @password and email  = @email", connection);
-            //command.Parameters.AddWithValue("password", password);
-            //command.Parameters.AddWithValue("email", email);
-            //connection.Open();
-            //try
-            //{
-            //    int id = (int)command.ExecuteScalar();
-            //    if (email.Equals("admin"))
-            //    {
-            //        Response.Redirect("AdminPage.aspx");
-            //    }
-
-            //    else
-            //    {
-            //        Response.Redirect("UserPage.aspx");
-            //    }
-            //}
-            //catch (NullReferenceException)
-            //{
-
-            //    MessageBox.Show("Błędny email lub hasło");
-            //}
-
-            //connection.Close();
+            if (GridView.SelectedRow != null)
+            {
+                Server.Transfer("~/EditUserPage.aspx");
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+                       
         }
         protected void DeteleUser(object sender, EventArgs e)
         {
-            //SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
-            //Console.WriteLine("test");
-            //SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE password = @password and email  = @email", connection);
-            //command.Parameters.AddWithValue("password", password);
-            //command.Parameters.AddWithValue("email", email);
-            //connection.Open();
-            //try
-            //{
-            //    int id = (int)command.ExecuteScalar();
-            //    if (email.Equals("admin"))
-            //    {
-            //        Response.Redirect("AdminPage.aspx");
-            //    }
+            GridView gridView = (GridView)this.Page.FindControl("GridView");
+            GridViewRow selectedRow = gridView.SelectedRow;
+            string email = selectedRow.Cells[3].Text;
+            string ID = selectedRow.Cells[0].Text;
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            connection.Open();
+            string insert = "Delete from Users where ID = @ID and email = @email";
+            SqlCommand command = new SqlCommand(insert, connection);
+            command.Parameters.AddWithValue("email", email);
+            command.Parameters.AddWithValue("ID", ID);           
+            command.ExecuteScalar();
+            try
+            {
 
-            //    else
-            //    {
-            //        Response.Redirect("UserPage.aspx");
-            //    }
-            //}
-            //catch (NullReferenceException)
-            //{
+                Response.Redirect("AdminPage.aspx");
+                connection.Close();
 
-            //    MessageBox.Show("Błędny email lub hasło");
-            //}
+            }
+            catch (NullReferenceException)
+            {
 
-            //connection.Close();
+                MessageBox.Show("Error");
+            }
+
+            connection.Close();
         }
 
         protected void AddUserButton_Click(object sender, EventArgs e)

@@ -123,7 +123,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         <asp:Button runat="server" ID="SaveUser" Text="Zapisz" class="btn btn-primary pull-right" OnClick="saveUser"  />
+                                         <asp:Button runat="server" ID="SaveUser" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveUser"  />
                                     </form>
                                 </div>
                             </div>

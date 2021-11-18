@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditUserPage.aspx.cs" Inherits="ZTA.UserPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditUserPage.aspx.cs" Inherits="ZTA.EditUserPage" %>
 
 <!DOCTYPE html>
 
@@ -77,7 +77,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">aders e-mail</label>
-                                                    <asp:Label ID="editEmailLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="editEmailTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Imię</label>
-                                                    <asp:Label ID="editNameLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="editNameTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Nazwisko</label>
-                                                    <asp:Label ID="editSurnameLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="editSurnameTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,7 +101,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Stanowisko</label>
-                                                    <asp:Label ID="editPositionLabel" runat="server"  class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="editPositionTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,11 +109,15 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Miejsce pracy</label>
-                                                     <asp:Label ID="editWorkPlaceLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:TextBox ID="editWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
+                                        <asp:Button runat="server" ID="backButton" OnClick="GoToUserPage" class="btn btn-primary pull-left" Text="Zapisz zmiany" />
+
+                                        <asp:Button runat="server" ID="editUserButton" OnClick="SaveUser" class="btn btn-primary pull-left" Text="Anuluj" />
                                     </form>
+                                    <a href="EditUserPage.aspx.cs">EditUserPage.aspx.cs</a>
                                 </div>
                             </div>
                         </div>
