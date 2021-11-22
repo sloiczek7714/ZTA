@@ -49,6 +49,12 @@
                             <p>Lista użytkowników</p>
                         </a>
                     </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link" href="./ReportPage.aspx">
+                            <i class="material-icons">content_paste</i>
+                            <p>Raport</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -126,9 +132,9 @@
          
                         </div>
                     </div>
-                </footer>
-            </div>
-        </div>
+                </footer>   
+    </div>
+    </div>
     </div>
 
     <div class="fixed-plugin">

@@ -26,6 +26,10 @@ namespace ZTA
         {
             if (GridView.SelectedRow != null)
             {
+                GridView gridView = (GridView)this.Page.FindControl("GridView");
+                GridViewRow selectedRow = gridView.SelectedRow;
+                string ID = selectedRow.Cells[0].Text;
+                Session["ID"] = ID;
                 Server.Transfer("~/EditUserPage.aspx");
             }
             else

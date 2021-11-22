@@ -64,7 +64,7 @@
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
-                    <!-- your content here -->
+                    Miejsce na pobranie procedury w pdfie?
                 </div>
             </div>
             <footer class="footer">

@@ -39,8 +39,14 @@
                     </li>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./CheckListPage.aspx">
-                            <i class="material-icons">person</i>
+                            <i class="material-icons">content_paste</i>
                             <p>Procedura</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link" href="./ReportPage.aspx">
+                            <i class="material-icons">content_paste</i>
+                            <p>Raport<p>
                         </a>
                     </li>
                     <!-- your sidebar here -->

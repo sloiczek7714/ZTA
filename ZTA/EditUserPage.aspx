@@ -109,10 +109,12 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Miejsce pracy</label>
-                                                    <asp:TextBox ID="editWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                     <asp:TextBox ID="editWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
+
                                                 </div>
                                             </div>
                                         </div>
+
                                         <asp:Button runat="server" ID="backButton" OnClick="GoToUserPage" class="btn btn-primary pull-left" Text="Zapisz zmiany" />
 
                                         <asp:Button runat="server" ID="editUserButton" OnClick="SaveUser" class="btn btn-primary pull-left" Text="Anuluj" />
