@@ -15,13 +15,22 @@ namespace ZTA
     {
 
         /// <summary>
-        /// emailTextBox control.
+        /// logoutButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailTextBox;
+        protected global::System.Web.UI.WebControls.ImageButton logoutButton;
+
+        /// <summary>
+        /// EmailLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EmailLabel;
 
         /// <summary>
         /// NameLabel control.
@@ -58,5 +67,23 @@ namespace ZTA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label WorkPlaceLabel;
+
+        /// <summary>
+        /// SystemNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SystemNameLabel;
+
+        /// <summary>
+        /// RoleLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RoleLabel;
     }
 }

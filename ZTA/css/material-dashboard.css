@@ -1123,6 +1123,8 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+    top: 10922px;
+    left: -2934775px;
 }
 
 .col {
@@ -17499,6 +17501,8 @@ label {
 
 .card .card-body .form-group {
   margin: 8px 0 0;
+    top: -6px;
+    left: 1px;
 }
 
 .card .card-header {

@@ -1257,6 +1257,10 @@ pre code {
   order: 12;
 }
 
+.margin-left {
+    margin-left: 10%;
+}
+
 .offset-1 {
   margin-left: 8.333333%;
 }

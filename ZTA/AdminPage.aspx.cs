@@ -14,7 +14,15 @@ namespace ZTA
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ID"] != null)
+            {
+                string ID = Session["ID"].ToString();
+            }
 
+            else
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
         }
 
         protected void GoToAddUserPage(object sender, EventArgs e)
@@ -22,6 +30,11 @@ namespace ZTA
             Response.Redirect("AddUserPage.aspx");
         }
 
+        protected void logout(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Session.Abandon();
+        }
         protected void EditUser(object sender, EventArgs e)
         {
             if (GridView.SelectedRow != null)
@@ -46,7 +59,7 @@ namespace ZTA
             string ID = selectedRow.Cells[0].Text;
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
             connection.Open();
-            string insert = "Delete from Users where ID = @ID and email = @email";
+            string insert = "Delete from Users where ID = @ID and Email = @email";
             SqlCommand command = new SqlCommand(insert, connection);
             command.Parameters.AddWithValue("email", email);
             command.Parameters.AddWithValue("ID", ID);           

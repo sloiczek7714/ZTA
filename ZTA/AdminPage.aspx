@@ -45,13 +45,13 @@
                     </li>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./AdminPage.aspx">
-                            <i class="material-icons">persons</i>
+                            <i class="material-icons">list</i>
                             <p>Lista użytkowników</p>
                         </a>
                     </li>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./ReportPage.aspx">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">description</i>
                             <p>Raport</p>
                         </a>
                     </li>
@@ -91,16 +91,18 @@
                                         <form runat="server">
                                             <asp:Button runat="server" OnClick="GoToAddUserPage" ID="AddUserButton" Text="Dodaj nowego użytkownika" class="btn btn-primary pull-left"  /> 
                                             <div class="table-responsive">
-                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [ID], [Name], [Surname], [Position], [WorkPlace], [email] FROM [Users]"></asp:SqlDataSource>
+                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [ID], [Name], [Surname], [Position], [WorkPlace], [Email], [Role], [SystemName] FROM [Users]"></asp:SqlDataSource>
                                             <br />
                                                 <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="  ID  " DataField="ID"/>
                                                     <asp:BoundField HeaderText="  Imie  " DataField="Name" />
                                                     <asp:BoundField HeaderText="  Nazwisko  " DataField="Surname" />
-                                                    <asp:BoundField HeaderText="  adres e-mail  " DataField="email" />
+                                                    <asp:BoundField HeaderText="  adres e-mail  " DataField="Email" />
                                                     <asp:BoundField HeaderText="  Stanowisko  " DataField="Position" />
                                                     <asp:BoundField HeaderText="  Miejsce pracy  " DataField="WorkPlace" />
+                                                    <asp:BoundField HeaderText="  Rola  " DataField="Role" />
+                                                    <asp:BoundField HeaderText="  Nazwa sytemu  " DataField="SystemName" />
                                                     <asp:TemplateField HeaderText="Funkcje">
                                                         <ItemTemplate>
                                                             <asp:Button runat="server" ID="DeleteButton" Text="Wybierz" class="btn btn-primary pull-right" CommandName="Select"/>

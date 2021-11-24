@@ -89,6 +89,7 @@
     <Content Include="assets\img\faces\card-profile2-square.jpg" />
     <Content Include="assets\img\faces\marc.jpg" />
     <Content Include="assets\img\favicon.png" />
+    <Content Include="assets\img\logout.png" />
     <Content Include="assets\img\mask.png" />
     <Content Include="assets\img\new_logo.png" />
     <Content Include="assets\img\sidebar-1.jpg" />

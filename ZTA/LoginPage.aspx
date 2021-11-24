@@ -82,7 +82,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Hasło</label>
-                                                    <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="TextBox2_TextChanged" type="password" class="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="showPassword" type="password" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>

@@ -45,8 +45,9 @@
                     </li>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./ReportPage.aspx">
-                            <i class="material-icons">content_paste</i>
-                            <p>Raport<p>
+                            <i class="material-icons">description</i>
+                            <p>
+                                Raport<p>
                         </a>
                     </li>
                     <!-- your sidebar here -->
@@ -66,6 +67,13 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+                        <form class="navbar-form" runat="server">
+                            <div class="navbar-form">
+                                <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" ImageUrl="~/assets/img/logout.png" />
+                            </div>
+                        <%--</form>--%>
+                    </div>
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -78,12 +86,12 @@
                                     <h4 class="card-title">Dane użytkownika</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form runat="server">
+                                    <%--<form runat="server"--%>>
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">aders e-mail</label>
-                                                    <asp:Label ID="emailTextBox" runat="server" class="form-control"></asp:Label>
+                                                    <asp:Label ID="EmailLabel" runat="server" class="form-control"></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,7 +115,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Stanowisko</label>
-                                                    <asp:Label ID="PositionLabel" runat="server"  class="form-control"></asp:Label>
+                                                    <asp:Label ID="PositionLabel" runat="server" class="form-control"></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +123,23 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Miejsce pracy</label>
-                                                     <asp:Label ID="WorkPlaceLabel" runat="server" class="form-control"></asp:Label>
+                                                    <asp:Label ID="WorkPlaceLabel" runat="server" class="form-control"></asp:Label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Nazwa systemu</label>
+                                                    <asp:Label ID="SystemNameLabel" runat="server" class="form-control"></asp:Label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Rola</label>
+                                                    <asp:Label ID="RoleLabel" runat="server" class="form-control"></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,20 +152,11 @@
             </div>
             <footer class="footer">
                 <div class="container-fluid">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
-                            </li>
-                        </ul>
-                    </nav>
                     <div class="copyright float-right">
-                        &copy;
-           
+                        &copy;           
                         <script>
                             document.write(new Date().getFullYear()) </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
-         
+                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
                     </div>
                 </div>
             </footer>
@@ -170,7 +185,7 @@
                 <li class="header-title">Images</li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="">
+                        <img src="../assets/img/sidebar-1.jpg" alt="" />
                     </a>
                 </li>
                 <li class="active">
@@ -185,12 +200,12 @@
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="">
+                        <img src="../assets/img/sidebar-4.jpg" alt="" />
                     </a>
                 </li>
             </ul>
         </div>
-
+        <
         <script src="./assets/js/core/jquery.min.js"></script>
         <script src="./assets/js/core/popper.min.js"></script>
         <script src="./assets/js/core/bootstrap-material-design.min.js"></script>

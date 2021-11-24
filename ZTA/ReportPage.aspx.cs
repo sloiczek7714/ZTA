@@ -11,7 +11,20 @@ namespace ZTA
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ID"] != null)
+            {
+                string ID = Session["ID"].ToString();
+            }
 
+            else
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+        }
+        protected void logout(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Session.Abandon();
         }
     }
 }
