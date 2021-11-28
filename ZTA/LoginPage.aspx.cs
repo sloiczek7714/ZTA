@@ -16,15 +16,10 @@ namespace ZTA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void TextBox2_TextChanged(object sender, EventArgs e)
+        protected void showPassword(object sender, EventArgs e)
         {
 
         }
@@ -46,21 +41,25 @@ namespace ZTA
             {
                 SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
                 Console.WriteLine("test");
-                SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE password = @password and email  = @email", connection);
+                SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE Password = @password and Email  = @email", connection);
                 command.Parameters.AddWithValue("password", password);
                 command.Parameters.AddWithValue("email", email);
                 connection.Open();
                 try
                 {
                     int id = (int)command.ExecuteScalar();
+                    Session["ID"] = id;
                     if (email.Equals("admin"))
                     {
                         Response.Redirect("AdminPage.aspx");
+                        Session.RemoveAll();
                     }
 
-                    else
+                    else 
                     {
+                        
                         Response.Redirect("UserPage.aspx");
+                        Session.RemoveAll();
                     }
                 }
                 catch (NullReferenceException)

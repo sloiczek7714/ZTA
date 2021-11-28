@@ -51,6 +51,15 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.TextBox editPositionTextBox;
 
         /// <summary>
+        /// RoleList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList RoleList;
+
+        /// <summary>
         /// editWorkPlaceTextBox control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace ZTA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox editWorkPlaceTextBox;
+
+        /// <summary>
+        /// editSystemNameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox editSystemNameTextBox;
 
         /// <summary>
         /// backButton control.

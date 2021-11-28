@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- Material Kit CSS -->
-    <link href="/css/material-dashboard.css" rel="stylesheet" />
+    <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
     <div class="wrapper ">
@@ -105,19 +105,39 @@
                                                 </div>
                                             </div>
                                         </div>
+                                         <div class="row">
+                                            <div class="col-md-6xl">
+                                               <div class="form-group">
+                                                    <label class="bmd-label-floating ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rola</label> 
+                                                    <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
+                                                        <asp:ListItem Selected="True" Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
+                                                        <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
+                                                        <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Miejsce pracy</label>
-                                                    <asp:TextBox ID="editWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                     <asp:TextBox ID="editWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
-                                        <asp:Button runat="server" ID="backButton" OnClick="GoToUserPage" class="btn btn-primary pull-left" Text="Zapisz zmiany" />
+                                         <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Nazwa systemu</label>
+                                                     <asp:TextBox ID="editSystemNameTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         
 
-                                        <asp:Button runat="server" ID="editUserButton" OnClick="SaveUser" class="btn btn-primary pull-left" Text="Anuluj" />
+                                        <asp:Button runat="server" ID="backButton" OnClick="GoToUserPage" class="btn btn-primary pull-left" Text="Anuluj" />
+                                        <asp:Button runat="server" ID="editUserButton" OnClick="SaveUser" class="btn btn-primary pull-left" Text="Zapisz zmiany" />
                                     </form>
-                                    <a href="EditUserPage.aspx.cs">EditUserPage.aspx.cs</a>
                                 </div>
                             </div>
                         </div>

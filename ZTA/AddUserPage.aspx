@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- Material Kit CSS -->
-    <link href="/css/material-dashboard.css" rel="stylesheet" />
+    <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
     <div class="wrapper ">
@@ -74,7 +74,6 @@
                                 </div>
                                 <div class="card-body">
                                     <form runat="server">
-                                       
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -116,6 +115,18 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-md-6xl">
+                                               <div class="form-group">
+                                                    <label class="bmd-label-floating ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rola</label> 
+                                                    <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
+                                                        <asp:ListItem Selected="True" Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
+                                                        <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
+                                                        <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbspAdministrator</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Miejsce pracy</label>
@@ -123,7 +134,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         <asp:Button runat="server" ID="SaveUser" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveUser"  />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Nazwa systemu</label>
+                                                    <asp:TextBox ID="addSystemNameTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <asp:Button runat="server" ID="SaveUser" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveUser" />
                                     </form>
                                 </div>
                             </div>

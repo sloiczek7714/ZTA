@@ -12,11 +12,30 @@ namespace ZTA
 {
     public partial class AddUserPage : System.Web.UI.Page
     {
+        string role = "Pracownik";
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ID"] != null)
+            {
+                string ID = Session["ID"].ToString();
+            }
 
+            else
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
         }
 
+        protected void selectRole(object sender, EventArgs e)
+        {
+            role = RoleList.SelectedValue.ToString();
+        }
+        protected void logout(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.Redirect("LoginPage.aspx");
+        }
         protected void saveUser(object sender, EventArgs e)
         {
             string email = addEmailTextBox.Text; ;
@@ -25,10 +44,11 @@ namespace ZTA
             string surname = addSurnameTextBox.Text; ;
             string position = addPositionTextBox.Text;
             string workPlace = addWorkPlaceTextBox.Text;
+            string systemName = addSystemNameTextBox.Text;
 
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
             connection.Open();
-            string insert = "Insert into Users (email, password, Name, Surname, Position, WorkPlace) values( @email, @password, @name, @surname,  @position, @workPlace)";
+            string insert = "Insert into Users (Email, Password, Name, Surname, Position, WorkPlace, Role, SystemName) values( @email, @password, @name, @surname,  @position, @workPlace, @role, @systemName)";
             SqlCommand command = new SqlCommand(insert, connection);
             command.Parameters.AddWithValue("password", password);
             command.Parameters.AddWithValue("email", email);
@@ -36,6 +56,8 @@ namespace ZTA
             command.Parameters.AddWithValue("surname", surname);
             command.Parameters.AddWithValue("position", position);
             command.Parameters.AddWithValue("workPlace", workPlace);
+            command.Parameters.AddWithValue("role", role);
+            command.Parameters.AddWithValue("systemName", systemName);
             command.ExecuteScalar();
             try
             {

@@ -14,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <!-- CSS Files -->
-    <link href="../css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../demo/demo.css" rel="stylesheet" />
+    <link href="assets/demo/demo.css" rel="stylesheet" />
 
 </head>
 
@@ -48,13 +48,15 @@
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:void(0)">User Profile</a>
+                        <a class="navbar-brand" href="javascript:void(0)">ZTA Migration App</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>                    </button>
+                        <span class="navbar-toggler-icon icon-bar"></span>                   
+
+                    </button>
 
                 </div>
             </nav>
@@ -65,15 +67,14 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">Zaloguj się</h4>
-                                    <p class="card-category">Nowych użytkowników może dodać tylko administrator!</p>
+                                    <h4 class="card-title">Zaloguj się</h4>                                    
                                 </div>
                                 <div class="card-body">
                                     <form runat="server">
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">aders e-mail</label>
+                                                    <label class="bmd-label-floating">adres e-mail</label>
                                                     <asp:TextBox ID="emailTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
@@ -82,11 +83,10 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Hasło</label>
-                                                    <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="TextBox2_TextChanged" type="password" class="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="showPassword" type="password" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
-                                        </div>
-                                
+                                        </div>                                
                                 <asp:Button ID="LoginButton" runat="server" OnClick="Login" Text="Zaloguj" class="btn btn-primary pull-right" />                               
                                 </form>
                             </div>
