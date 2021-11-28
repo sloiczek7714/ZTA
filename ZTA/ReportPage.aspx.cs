@@ -25,6 +25,7 @@ namespace ZTA
         {
             Session.RemoveAll();
             Session.Abandon();
+            Response.Redirect("LoginPage.aspx");
         }
     }
 }

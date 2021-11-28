@@ -26,6 +26,7 @@ namespace ZTA
         {
             Session.RemoveAll();
             Session.Abandon();
+            Response.Redirect("LoginPage.aspx");
         }
         protected void ZTA_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {

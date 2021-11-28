@@ -1257,10 +1257,6 @@ pre code {
   order: 12;
 }
 
-.margin-left {
-    margin-left: 10%;
-}
-
 .offset-1 {
   margin-left: 8.333333%;
 }
@@ -4287,12 +4283,15 @@ tbody.collapse.show {
 
 .nav-tabs .nav-item {
   margin-bottom: -1px;
+  margin-right: 10px;
+l
 }
 
 .nav-tabs .nav-link {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
+  margin-right: 10px;
 }
 
 .nav-tabs .nav-link:hover,
