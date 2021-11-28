@@ -34,6 +34,7 @@ namespace ZTA
         {
             Session.RemoveAll();
             Session.Abandon();
+            Response.Redirect("LoginPage.aspx");
         }
         protected void EditUser(object sender, EventArgs e)
         {

@@ -29,8 +29,8 @@ namespace ZTA
                     SurnameLabel.Text = DataReader.GetValue(4).ToString();
                     PositionLabel.Text = DataReader.GetValue(5).ToString();
                     WorkPlaceLabel.Text = DataReader.GetValue(6).ToString();
-                    RoleLabel.Text = DataReader.GetValue(7).ToString();
-                    SystemNameLabel.Text = DataReader.GetValue(8).ToString();
+                    RoleLabel.Text = DataReader.GetValue(8).ToString();
+                    SystemNameLabel.Text = DataReader.GetValue(7).ToString();
                 }
 
             }
@@ -43,6 +43,7 @@ namespace ZTA
         {
             Session.RemoveAll();
             Session.Abandon();
+            Response.Redirect("LoginPage.aspx");
         }
         protected void Edit(object sender, EventArgs e)
         {

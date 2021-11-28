@@ -37,7 +37,7 @@ namespace ZTA
                     editSurnameTextBox.Text = DataReader.GetValue(4).ToString();
                     editPositionTextBox.Text = DataReader.GetValue(5).ToString();
                     editWorkPlaceTextBox.Text = DataReader.GetValue(6).ToString();
-                    //RoleList.SelectedValue = DataReader.GetValue(7).ToString();
+                    //RoleList.SelectedValue = DataReader.GetValue(8).ToString();
                     editSystemNameTextBox.Text = DataReader.GetValue(7).ToString();
                 }
             }
@@ -52,6 +52,7 @@ namespace ZTA
         {
             Session.RemoveAll();
             Session.Abandon();
+            Response.Redirect("LoginPage.aspx");
         }
         protected void SaveUser(object sender, EventArgs e)
         {
