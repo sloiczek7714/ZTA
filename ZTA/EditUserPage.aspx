@@ -132,8 +132,7 @@
                                                      <asp:TextBox ID="editSystemNameTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
-                                        </div>
-                                         
+                                        </div>                                      
 
                                         <asp:Button runat="server" ID="backButton" OnClick="GoToUserPage" class="btn btn-primary pull-left" Text="Anuluj" />
                                         <asp:Button runat="server" ID="editUserButton" OnClick="SaveUser" class="btn btn-primary pull-left" Text="Zapisz zmiany" />

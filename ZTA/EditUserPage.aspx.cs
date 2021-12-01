@@ -22,25 +22,27 @@ namespace ZTA
         {
             if (Session["ID"] != null)
             {
-
-                string ID = Session["ID"].ToString();
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
-                connection.Open();
-                string insert = "Select * FROM Users where ID = @ID";
-                SqlCommand command = new SqlCommand(insert, connection);
-                command.Parameters.AddWithValue("ID", ID);
-                SqlDataReader DataReader = command.ExecuteReader();
-                if (DataReader.Read())
+                if (!Page.IsPostBack)
                 {
-                    editEmailTextBox.Text = DataReader.GetValue(1).ToString();
-                    editNameTextBox.Text = DataReader.GetValue(2).ToString();
-                    editSurnameTextBox.Text = DataReader.GetValue(4).ToString();
-                    editPositionTextBox.Text = DataReader.GetValue(5).ToString();
-                    editWorkPlaceTextBox.Text = DataReader.GetValue(6).ToString();
-                    //RoleList.SelectedValue = DataReader.GetValue(8).ToString();
-                    editSystemNameTextBox.Text = DataReader.GetValue(7).ToString();
+                    string ID = Session["ID"].ToString();
+                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                    connection.Open();
+                    string insert = "Select * FROM Users where ID = @ID";
+                    SqlCommand command = new SqlCommand(insert, connection);
+                    command.Parameters.AddWithValue("ID", ID);
+                    SqlDataReader DataReader = command.ExecuteReader();
+                    if (DataReader.Read())
+                    {
+                        editEmailTextBox.Text = DataReader.GetValue(1).ToString();
+                        editNameTextBox.Text = DataReader.GetValue(2).ToString();
+                        editSurnameTextBox.Text = DataReader.GetValue(4).ToString();
+                        editPositionTextBox.Text = DataReader.GetValue(5).ToString();
+                        editWorkPlaceTextBox.Text = DataReader.GetValue(6).ToString();
+                        //RoleList.SelectedValue = DataReader.GetValue(8).ToString();
+                        editSystemNameTextBox.Text = DataReader.GetValue(7).ToString();
+                    }
                 }
-            }
+             }
             else
             {
                 Response.Redirect("LoginPage.aspx");
