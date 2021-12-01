@@ -16,7 +16,7 @@ namespace ZTA
             if (Session["ID"] != null)
             {
                 string ID = Session["ID"].ToString();
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                 connection.Open();
                 string insert = "Select * FROM Users where ID = @ID";
                 SqlCommand command = new SqlCommand(insert, connection);

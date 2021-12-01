@@ -24,7 +24,7 @@ namespace ZTA
             {
 
                 string ID = Session["ID"].ToString();
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                 connection.Open();
                 string insert = "Select * FROM Users where ID = @ID";
                 SqlCommand command = new SqlCommand(insert, connection);
@@ -64,7 +64,7 @@ namespace ZTA
             string workPlace = editWorkPlaceTextBox.Text;
             string systemName = editSystemNameTextBox.Text;
             role = RoleList.SelectedValue.ToString();
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
             string update = "Update Users SET Email=@email, Name=@name, Surname=@surname, Position=@position,  WorkPlace=@workPlace, Role=@role, SystemName=@systemName where ID=@ID";
             SqlCommand command = new SqlCommand(update, connection);

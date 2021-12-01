@@ -58,7 +58,7 @@ namespace ZTA
             GridViewRow selectedRow = gridView.SelectedRow;
             string email = selectedRow.Cells[3].Text;
             string ID = selectedRow.Cells[0].Text;
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
             string insert = "Delete from Users where ID = @ID and Email = @email";
             SqlCommand command = new SqlCommand(insert, connection);

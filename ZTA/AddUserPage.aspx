@@ -121,7 +121,7 @@
                                                     <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
                                                         <asp:ListItem Selected="True" Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
                                                         <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
-                                                        <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbspAdministrator</asp:ListItem>
+                                                        <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>

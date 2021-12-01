@@ -46,7 +46,7 @@ namespace ZTA
             string workPlace = addWorkPlaceTextBox.Text;
             string systemName = addSystemNameTextBox.Text;
 
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
             string insert = "Insert into Users (Email, Password, Name, Surname, Position, WorkPlace, Role, SystemName) values( @email, @password, @name, @surname,  @position, @workPlace, @role, @systemName)";
             SqlCommand command = new SqlCommand(insert, connection);
