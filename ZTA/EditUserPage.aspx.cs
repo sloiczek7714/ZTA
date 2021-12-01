@@ -24,7 +24,8 @@ namespace ZTA
             {
                 if (!Page.IsPostBack)
                 {
-                    string ID = Session["ID"].ToString();
+                    string ID = Session["IDEditUser"].ToString();
+                    
                     SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                     connection.Open();
                     string insert = "Select * FROM Users where ID = @ID";
@@ -34,11 +35,11 @@ namespace ZTA
                     if (DataReader.Read())
                     {
                         editEmailTextBox.Text = DataReader.GetValue(1).ToString();
-                        editNameTextBox.Text = DataReader.GetValue(2).ToString();
+                        editNameTextBox.Text = DataReader.GetValue(3).ToString();
                         editSurnameTextBox.Text = DataReader.GetValue(4).ToString();
                         editPositionTextBox.Text = DataReader.GetValue(5).ToString();
                         editWorkPlaceTextBox.Text = DataReader.GetValue(6).ToString();
-                        //RoleList.SelectedValue = DataReader.GetValue(8).ToString();
+                        RoleList.SelectedValue = DataReader.GetValue(8).ToString();
                         editSystemNameTextBox.Text = DataReader.GetValue(7).ToString();
                     }
                 }
@@ -58,7 +59,7 @@ namespace ZTA
         }
         protected void SaveUser(object sender, EventArgs e)
         {
-            string ID = Session["ID"].ToString();
+            string ID = Session["IDEditUser"].ToString();
             string email = editEmailTextBox.Text;
             string name = editNameTextBox.Text; ;
             string surname = editSurnameTextBox.Text; ;

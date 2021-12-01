@@ -25,7 +25,7 @@ namespace ZTA
                 if (DataReader.Read())
                 {
                     EmailLabel.Text = DataReader.GetValue(1).ToString();
-                    NameLabel.Text = DataReader.GetValue(2).ToString();
+                    NameLabel.Text = DataReader.GetValue(3).ToString();
                     SurnameLabel.Text = DataReader.GetValue(4).ToString();
                     PositionLabel.Text = DataReader.GetValue(5).ToString();
                     WorkPlaceLabel.Text = DataReader.GetValue(6).ToString();

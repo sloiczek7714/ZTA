@@ -17,6 +17,12 @@ namespace ZTA
             if (Session["ID"] != null)
             {
                 string ID = Session["ID"].ToString();
+                if (Helper.DoesUserHasPermission(ID, "Administrator"))
+                {
+
+                }
+
+                else Response.Redirect("ErrorPage.aspx");
             }
 
             else
@@ -43,7 +49,7 @@ namespace ZTA
                 GridView gridView = (GridView)this.Page.FindControl("GridView");
                 GridViewRow selectedRow = gridView.SelectedRow;
                 string ID = selectedRow.Cells[0].Text;
-                Session["ID"] = ID;
+                Session["IDEditUser"] = ID;
                 Server.Transfer("~/EditUserPage.aspx");
             }
             else

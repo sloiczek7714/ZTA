@@ -92,26 +92,23 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div class="table-responsive">
-                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT [Pytanie], [Numer pytania] AS Numer_pytania FROM [Question]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Procedure]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
                                                 <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
                                                     <Columns>
-                                                        <asp:BoundField HeaderText="Numer" DataField="Numer_pytania" />
-                                                        <asp:BoundField HeaderText="Pytanie" DataField="Pytanie" />
+                                                        <asp:BoundField HeaderText="Numer" DataField="Number" />
+                                                        <asp:BoundField HeaderText="Czynność" DataField="Activity" />
                                                         <asp:TemplateField HeaderText="Komentarz">
                                                             <ItemTemplate>
+                                                                <asp:TextBox ID="dateTextBox" runat="server"></asp:TextBox>
+                                                                <asp:ImageButton ID="imgButton" runat="server" ImageUrl="~/assets/img/faces/card-profile1-square.jpg" />
                                                                 <asp:TextBox HeaderText="Komentarz" runat="server"></asp:TextBox>
-                                                                <asp:scriptmanager id="ScriptManager1" runat="server" xmlns:asp="#unknown"></asp:scriptmanager>
-                                                                <asp:TextBox ID="dtpTransDate" runat="server" Width="90px"></asp:TextBox>
-                                                                <ajaxToolkit:CalendarExtender ID="dtpTransDate_CalendarExtender" runat="server"
-                                                                    Enabled="True" Format="dd/MM/yyyy" TargetControlID="dtpTransDate">
-                                                                </ajaxToolkit:CalendarExtender>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
                                                 </asp:GridView>
                                             </div>
                                         </div>
-                                    </div>
+                                     </div>
                                 </div>
                             </div>
                         </form>
@@ -187,9 +184,7 @@
     <script src="./assets/js/plugins/bootstrap-notify.js"></script>
     <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
     <script src="./assets/demo/demo.js"></script>
-    <script>
-        $(document).ready(function () {
-            $().ready(function () {
+    <script>(function () {
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');

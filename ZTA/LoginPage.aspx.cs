@@ -35,7 +35,7 @@ namespace ZTA
             }
             else if (password.Equals(""))
             {
-                MessageBox.Show("Prosze wprowadzić adres hasło!");
+                MessageBox.Show("Prosze wprowadzić hasło!");
             }
             else
             {

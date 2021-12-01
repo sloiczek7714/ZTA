@@ -15,9 +15,16 @@ namespace ZTA
         string role = "Pracownik";
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Session["ID"] != null)
             {
                 string ID = Session["ID"].ToString();
+                if (Helper.DoesUserHasPermission(ID, "Administrator"))
+                {
+
+                }
+
+                else Response.Redirect("ErrorPage.aspx");
             }
 
             else

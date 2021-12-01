@@ -32,6 +32,15 @@ namespace ZTA
         {
 
         }
+        protected void img_Click(object sender, ImageClickEventArgs e)
+        {
+            Cal1.Visible = true;
+        }
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBox1.Text = Calendar1.SelectedDate.ToShortDateString();
+            Calendar1.Visible = false;
+        }
 
     }
 }

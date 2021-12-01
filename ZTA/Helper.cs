@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Data.Entity;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace ZTA
 {
@@ -106,19 +108,23 @@ namespace ZTA
         //    return _context.Users.FirstOrDefault(x => x.ID == Int32.Parse(TempData.Peek("UserID").ToString()));
         //}
 
-        //public static bool DoesUserHasPermission(DbContext _context, User user, string viewName)
-        //{
-        //    if (user.Permissions != null && user.Permissions.Any(x => x.ViewName == viewName))
-        //    {
-        //        return true; 
-        //    }
+        public static bool DoesUserHasPermission(string Id, string role)
+        {
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+            connection.Open();
+            string insert = "Select Role FROM Users where ID = @ID";
+            SqlCommand command = new SqlCommand(insert, connection);
+            command.Parameters.AddWithValue("ID", Id);
+            string userRole = command.ExecuteScalar().ToString();
+            Console.WriteLine(role);
+            Console.WriteLine(userRole);
+            if (userRole.Equals(role))
+            {
+                return true;
+            }
 
-        //    if (user.Group != null && user.Permissions != null && user.Group.Permissions.Any(x => x.Permission.ViewName == viewName))
-        //    {
-        //        return true;
-        //    }
-
-        //    return false;
-        //}
+            else 
+            return false;
+        }
     }
 }
