@@ -49,18 +49,10 @@ namespace ZTA
                 {
                     int id = (int)command.ExecuteScalar();
                     Session["ID"] = id;
-                    if (email.Equals("admin"))
-                    {
-                        Response.Redirect("AdminPage.aspx");
-                        Session.RemoveAll();
-                    }
-
-                    else 
-                    {
-                        
+                                            
                         Response.Redirect("UserPage.aspx");
                         Session.RemoveAll();
-                    }
+                    
                 }
                 catch (NullReferenceException)
                 {

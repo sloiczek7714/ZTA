@@ -75,6 +75,9 @@
                                 <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" ImageUrl="~/assets/img/logout.png" />
                             </div>
                             <%--</form>--%>
+                            <div class="nav-item">
+                                <asp:ImageButton ID="userButton" Visible="false" runat="server" OnClick="GoToAdminPage" ImageUrl="~/assets/img/list.png" />
+                            </div>
                     </div>
                 </div>
             </nav>

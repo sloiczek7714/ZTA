@@ -33,6 +33,11 @@ namespace ZTA
                     SystemNameLabel.Text = DataReader.GetValue(7).ToString();
                 }
 
+                if(Helper.DoesUserHasPermission(ID, "Administrator"))
+                {
+                    userButton.Visible = true;
+                }
+
             }
             else
             {
@@ -51,7 +56,12 @@ namespace ZTA
         }
         protected void GoToCheckListPage(object sender, EventArgs e)
         {
-            Response.Redirect("CheckListPage.aspx");
+            Response.Redirect("ListOfProcedures.aspx");
+        }
+
+        protected void GoToAdminPage(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminPage.aspx");
         }
 
         protected void GoToReportPage(object sender, EventArgs e)
