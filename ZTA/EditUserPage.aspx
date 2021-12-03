@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./CheckListPage.aspx">
+                        <a class="nav-link" href="./ListOfProceduresPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Procedura</p>
                         </a>

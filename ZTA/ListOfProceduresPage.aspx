@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CheckListPage.aspx.cs" Inherits="ZTA.CheckListPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListOfProceduresPage.aspx.cs" Inherits="ZTA.ListOfProcedures" %>
 
 <!DOCTYPE html>
 
@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./CheckListPage.aspx">
+                        <a class="nav-link" href="./ListOfProceduresPage.aspx">
                             <i class="material-icons">content_paste</i>
                             <p>Procedura</p>
                         </a>
@@ -83,30 +83,36 @@
                                     <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" class="material-icons" ImageUrl="~/assets/img/logout.png" />
                                 </div>
                             </div>
+
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header card-header-primary">
-                                        <h4 class="card-title ">Lista czynności</h4>
-                                        <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
+                                        <h4 class="card-title ">Lista procedur użytkownika</h4>
+                                    </div>
+                                    <div class="col-md-5">
+                                         <asp:Button runat="server" ID="newProcedureButton" Text="Nowa procedura" class="btn btn-primary pull-left" OnClick="goToNewProcedure" />
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div class="table-responsive">
                                                 <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Procedure]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
+                                                <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Numer" DataField="Number" />
                                                         <asp:BoundField HeaderText="Czynność" DataField="Activity" />
                                                         <asp:TemplateField HeaderText="Komentarz">
                                                             <ItemTemplate>
-                                                                <asp:TextBox ID="dateTextBox" runat="server"></asp:TextBox>
-                                                                <asp:ImageButton ID="imgButton" runat="server" ImageUrl="~/assets/img/faces/card-profile1-square.jpg" />
-                                                                <asp:TextBox HeaderText="Komentarz" runat="server"></asp:TextBox>
+                                                                <asp:TextBox HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
                                                             </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Data i godzina zakończenia">
+                                                            <ItemTemplate>
+                                                                 <asp:TextBox ID="dateTextBox" placeholder="dd/mm/yyyy hh:mm" runat="server" class="form-control" ></asp:TextBox>
+                                                            </ItemTemplate>                                                                                                                                 
                                                         </asp:TemplateField>
                                                     </Columns>
                                                 </asp:GridView>
-                                            </div>
+                                              </div>
                                         </div>
                                      </div>
                                 </div>

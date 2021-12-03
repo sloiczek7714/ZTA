@@ -11,7 +11,7 @@ namespace ZTA
 {
 
 
-    public partial class CheckListPage
+    public partial class NewProcedure
     {
 
         /// <summary>
@@ -24,6 +24,15 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.ImageButton logoutButton;
 
         /// <summary>
+        /// SystemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SystemName;
+
+        /// <summary>
         /// ZTA control.
         /// </summary>
         /// <remarks>
@@ -33,12 +42,21 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.SqlDataSource ZTA;
 
         /// <summary>
-        /// GridView control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+
+        /// <summary>
+        /// saveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button saveButton;
     }
 }

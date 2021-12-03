@@ -7,10 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace ZTA
 {
-    public partial class CheckListPage : System.Web.UI.Page
+    public partial class NewProcedure : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Session["ID"] != null)
             {
                 string ID = Session["ID"].ToString();
@@ -28,19 +30,14 @@ namespace ZTA
             Session.Abandon();
             Response.Redirect("LoginPage.aspx");
         }
+        protected void saveProcedure(object sender, EventArgs e)
+        {
+           
+        }
         protected void ZTA_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
 
         }
-        protected void img_Click(object sender, ImageClickEventArgs e)
-        {
-            Cal1.Visible = true;
-        }
-        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
-        {
-            TextBox1.Text = Calendar1.SelectedDate.ToShortDateString();
-            Calendar1.Visible = false;
-        }
-
+       
     }
 }
