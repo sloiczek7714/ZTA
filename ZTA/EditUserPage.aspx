@@ -129,7 +129,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Nazwa systemu</label>
-                                                     <asp:TextBox ID="editSystemNameTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                     <asp:TextBox ID="editBossTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>                                      

@@ -51,11 +51,11 @@ namespace ZTA
             string surname = addSurnameTextBox.Text; ;
             string position = addPositionTextBox.Text;
             string workPlace = addWorkPlaceTextBox.Text;
-            string systemName = addSystemNameTextBox.Text;
+            string bossID = addSystemNameTextBox.Text;
 
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string insert = "Insert into Users (Email, Password, Name, Surname, Position, WorkPlace, Role, SystemName) values( @email, @password, @name, @surname,  @position, @workPlace, @role, @systemName)";
+            string insert = "Insert into Users (Email, Password, Name, Surname, Position, WorkPlace, Role, Boss_ID) values( @email, @password, @name, @surname,  @position, @workPlace, @role, @bossID)";
             SqlCommand command = new SqlCommand(insert, connection);
             command.Parameters.AddWithValue("password", password);
             command.Parameters.AddWithValue("email", email);
@@ -64,7 +64,7 @@ namespace ZTA
             command.Parameters.AddWithValue("position", position);
             command.Parameters.AddWithValue("workPlace", workPlace);
             command.Parameters.AddWithValue("role", role);
-            command.Parameters.AddWithValue("systemName", systemName);
+            command.Parameters.AddWithValue("bossID", bossID);
             command.ExecuteScalar();
             try
             {

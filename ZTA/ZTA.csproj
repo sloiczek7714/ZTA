@@ -273,6 +273,7 @@
     <Content Include="assets\img\faces\avatar.jpg" />
     <Content Include="assets\img\faces\card-profile1-square.jpg" />
     <Content Include="assets\img\faces\card-profile2-square.jpg" />
+    <Content Include="assets\img\list.png" />
     <Content Include="assets\img\faces\marc.jpg" />
     <Content Include="assets\img\favicon.png" />
     <Content Include="assets\img\logout.png" />

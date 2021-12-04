@@ -48,12 +48,12 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                    <li class="nav-item active ">
+                    <%--<li class="nav-item active ">
                         <a class="nav-link" href="./AdminPage.aspx">
                             <i class="material-icons">list</i>
                             <p>Lista użytkowników</p>
                         </a>
-                    </li>
+                    </li>--%>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./ReportPage.aspx">
                             <i class="material-icons">description</i>

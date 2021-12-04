@@ -18,7 +18,7 @@ namespace ZTA
                 string ID = Session["ID"].ToString();
                 SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                 connection.Open();
-                string insert = "Select * FROM Users where ID = @ID";
+                string insert = "Select * FROM Users where User_ID = @ID";
                 SqlCommand command = new SqlCommand(insert, connection);
                 command.Parameters.AddWithValue("ID", ID);
                 SqlDataReader DataReader = command.ExecuteReader();
@@ -29,8 +29,8 @@ namespace ZTA
                     SurnameLabel.Text = DataReader.GetValue(4).ToString();
                     PositionLabel.Text = DataReader.GetValue(5).ToString();
                     WorkPlaceLabel.Text = DataReader.GetValue(6).ToString();
-                    RoleLabel.Text = DataReader.GetValue(8).ToString();
-                    SystemNameLabel.Text = DataReader.GetValue(7).ToString();
+                    RoleLabel.Text = DataReader.GetValue(7).ToString();
+                    BossIDLabel.Text = DataReader.GetValue(8).ToString();
                 }
 
                 if(Helper.DoesUserHasPermission(ID, "Administrator"))

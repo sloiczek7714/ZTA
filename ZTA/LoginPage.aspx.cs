@@ -41,7 +41,7 @@ namespace ZTA
             {
                 SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                 Console.WriteLine("test");
-                SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE Password = @password and Email  = @email", connection);
+                SqlCommand command = new SqlCommand("SELECT User_ID FROM Users WHERE Password = @password and Email  = @email", connection);
                 command.Parameters.AddWithValue("password", password);
                 command.Parameters.AddWithValue("email", email);
                 connection.Open();

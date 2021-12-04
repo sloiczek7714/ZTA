@@ -30,7 +30,7 @@ namespace ZTA
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton userButton;
+        protected global::System.Web.UI.WebControls.Button userButton;
 
         /// <summary>
         /// EmailLabel control.
@@ -78,13 +78,13 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.Label WorkPlaceLabel;
 
         /// <summary>
-        /// SystemNameLabel control.
+        /// BossIDLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SystemNameLabel;
+        protected global::System.Web.UI.WebControls.Label BossIDLabel;
 
         /// <summary>
         /// RoleLabel control.

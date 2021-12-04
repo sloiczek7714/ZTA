@@ -28,7 +28,7 @@ namespace ZTA
                     
                     SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                     connection.Open();
-                    string insert = "Select * FROM Users where ID = @ID";
+                    string insert = "Select * FROM Users where User_ID = @ID";
                     SqlCommand command = new SqlCommand(insert, connection);
                     command.Parameters.AddWithValue("ID", ID);
                     SqlDataReader DataReader = command.ExecuteReader();
@@ -40,7 +40,7 @@ namespace ZTA
                         editPositionTextBox.Text = DataReader.GetValue(5).ToString();
                         editWorkPlaceTextBox.Text = DataReader.GetValue(6).ToString();
                         RoleList.SelectedValue = DataReader.GetValue(8).ToString();
-                        editSystemNameTextBox.Text = DataReader.GetValue(7).ToString();
+                        editBossTextBox.Text = DataReader.GetValue(7).ToString();
                     }
                 }
              }
@@ -65,7 +65,7 @@ namespace ZTA
             string surname = editSurnameTextBox.Text; ;
             string position = editPositionTextBox.Text;
             string workPlace = editWorkPlaceTextBox.Text;
-            string systemName = editSystemNameTextBox.Text;
+            string systemName = editBossTextBox.Text;
             role = RoleList.SelectedValue.ToString();
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();

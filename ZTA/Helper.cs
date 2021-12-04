@@ -112,13 +112,13 @@ namespace ZTA
         {
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string insert = "Select Role FROM Users where ID = @ID";
+            string insert = "Select Role FROM Users where User_ID = @ID";
             SqlCommand command = new SqlCommand(insert, connection);
             command.Parameters.AddWithValue("ID", Id);
             string userRole = command.ExecuteScalar().ToString();
             Console.WriteLine(role);
             Console.WriteLine(userRole);
-            if (userRole.Equals(role))
+            if (userRole.TrimEnd(' ').Equals(role.ToString()))
             {
                 return true;
             }

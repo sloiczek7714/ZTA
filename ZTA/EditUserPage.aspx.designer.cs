@@ -69,13 +69,13 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.TextBox editWorkPlaceTextBox;
 
         /// <summary>
-        /// editSystemNameTextBox control.
+        /// editBossTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox editSystemNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox editBossTextBox;
 
         /// <summary>
         /// backButton control.

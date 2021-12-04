@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./LoginPage.aspx">
+                        <a class="nav-link" href="./UserPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Profil Uzytkownika</p>
                         </a>
@@ -40,12 +40,12 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                    <li class="nav-item active ">
+                   <%-- <li class="nav-item active ">
                         <a class="nav-link" href="./AdminPage.aspx">
                             <i class="material-icons">list</i>
                             <p>Lista użytkowników</p>
                         </a>
-                    </li>
+                    </li>--%>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./ReportPage.aspx">
                             <i class="material-icons">description</i>
@@ -76,7 +76,7 @@
                             </div>
                             <%--</form>--%>
                             <div class="nav-item">
-                                <asp:ImageButton ID="userButton" Visible="false" runat="server" OnClick="GoToAdminPage" ImageUrl="~/assets/img/list.png" />
+                                <asp:Button ID="userButton" Visible="true" runat="server" OnClick="GoToAdminPage" Text="Pokaż listę uzytkowników" class="btn btn-primary pull-right" Style="background-image:url('~/assets/img/list.png');" />
                             </div>
                     </div>
                 </div>
@@ -135,8 +135,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="bmd-label-floating">Nazwa systemu</label>
-                                                <asp:Label ID="SystemNameLabel" runat="server" class="form-control"></asp:Label>
+                                                <label class="bmd-label-floating">Kierownik</label>
+                                                <asp:Label ID="BossIDLabel" runat="server" class="form-control"></asp:Label>
                                             </div>
                                         </div>
                                     </div>
@@ -366,6 +366,7 @@
                         $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
 
                         setTimeout(function () {
+                            <a href="NewProcedurePage.aspx.designer.cs">NewProcedurePage.aspx.designer.cs</a>
                             $('body').addClass('sidebar-mini');
 
                             md.misc.sidebar_mini_active = true;
