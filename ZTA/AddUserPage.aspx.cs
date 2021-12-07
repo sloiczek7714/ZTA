@@ -51,7 +51,7 @@ namespace ZTA
             string surname = addSurnameTextBox.Text; ;
             string position = addPositionTextBox.Text;
             string workPlace = addWorkPlaceTextBox.Text;
-            string bossID = addSystemNameTextBox.Text;
+            string bossID = addBossIDTextBox.Text;
 
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();

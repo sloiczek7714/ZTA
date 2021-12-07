@@ -137,8 +137,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Nazwa systemu</label>
-                                                    <asp:TextBox ID="addSystemNameTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                    <label class="bmd-label-floating">Kierownik</label>
+                                                    <asp:TextBox ID="addBossIDTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>

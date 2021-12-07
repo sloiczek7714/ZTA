@@ -128,7 +128,7 @@
                                          <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Nazwa systemu</label>
+                                                    <label class="bmd-label-floating">Kierownik</label>
                                                      <asp:TextBox ID="editBossTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>

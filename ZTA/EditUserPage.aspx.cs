@@ -39,8 +39,8 @@ namespace ZTA
                         editSurnameTextBox.Text = DataReader.GetValue(4).ToString();
                         editPositionTextBox.Text = DataReader.GetValue(5).ToString();
                         editWorkPlaceTextBox.Text = DataReader.GetValue(6).ToString();
-                        RoleList.SelectedValue = DataReader.GetValue(8).ToString();
-                        editBossTextBox.Text = DataReader.GetValue(7).ToString();
+                        RoleList.SelectedValue = DataReader.GetValue(7).ToString();
+                        editBossTextBox.Text = DataReader.GetValue(8).ToString();
                     }
                 }
              }
@@ -65,11 +65,11 @@ namespace ZTA
             string surname = editSurnameTextBox.Text; ;
             string position = editPositionTextBox.Text;
             string workPlace = editWorkPlaceTextBox.Text;
-            string systemName = editBossTextBox.Text;
+            string bossID = editBossTextBox.Text;
             role = RoleList.SelectedValue.ToString();
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string update = "Update Users SET Email=@email, Name=@name, Surname=@surname, Position=@position,  WorkPlace=@workPlace, Role=@role, SystemName=@systemName where ID=@ID";
+            string update = "Update Users SET Email=@email, Name=@name, Surname=@surname, Position=@position,  WorkPlace=@workPlace, Role=@role, Boss_ID=@bossID where User_ID=@ID";
             SqlCommand command = new SqlCommand(update, connection);
             command.Parameters.AddWithValue("email", email);
             command.Parameters.AddWithValue("ID", ID);
@@ -78,7 +78,7 @@ namespace ZTA
             command.Parameters.AddWithValue("position", position);
             command.Parameters.AddWithValue("workPlace", workPlace);
             command.Parameters.AddWithValue("role", role);
-            command.Parameters.AddWithValue("systemName", systemName);
+            command.Parameters.AddWithValue("bossID", bossID);
             command.ExecuteScalar();
             try
             {

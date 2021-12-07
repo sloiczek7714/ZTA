@@ -580,6 +580,7 @@
     <Content Include="assets\scss\material-dashboard\_variables.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\ZtaMigrationApp - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ZtaMigrationApp - Web Deploy1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
