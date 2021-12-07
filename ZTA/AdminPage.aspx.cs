@@ -66,10 +66,10 @@ namespace ZTA
             string ID = selectedRow.Cells[0].Text;
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string insert = "Delete from Users where User_ID = @ID and Email = @email";
-            SqlCommand command = new SqlCommand(insert, connection);
+            string delete = "Delete from Users where User_ID = @ID and Email = @email";
+            SqlCommand command = new SqlCommand(delete, connection);
             command.Parameters.AddWithValue("email", email);
-            command.Parameters.AddWithValue("ID", ID);           
+            command.Parameters.AddWithValue("ID", ID);
             command.ExecuteScalar();
             try
             {

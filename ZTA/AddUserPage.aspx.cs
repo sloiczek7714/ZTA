@@ -55,7 +55,9 @@ namespace ZTA
 
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string insert = "Insert into Users (Email, Password, Name, Surname, Position, WorkPlace, Role, Boss_ID) values( @email, @password, @name, @surname,  @position, @workPlace, @role, @bossID)";
+            string insert = "Insert into Users (Email, Password, Name, Surname, Position, WorkPlace, Role) values( @email, @password, @name, @surname,  @position, @workPlace, @role)";
+            string select = "Select User_ID From Users WHERE Email=@email AND Role=@role";
+            SqlCommand cmd = new SqlCommand(select,connection);
             SqlCommand command = new SqlCommand(insert, connection);
             command.Parameters.AddWithValue("password", password);
             command.Parameters.AddWithValue("email", email);
@@ -64,8 +66,18 @@ namespace ZTA
             command.Parameters.AddWithValue("position", position);
             command.Parameters.AddWithValue("workPlace", workPlace);
             command.Parameters.AddWithValue("role", role);
-            command.Parameters.AddWithValue("bossID", bossID);
+            cmd.Parameters.AddWithValue("email", email);
+            cmd.Parameters.AddWithValue("role", role);
             command.ExecuteScalar();
+            int user_ID = (int) cmd.ExecuteScalar();
+            if (!String.IsNullOrEmpty(bossID))
+                {
+                string insertBoss = "Insert into Users_Boss (User_ID, Boss_ID) values(@ID, @bossID)";
+                SqlCommand commandBoss = new SqlCommand(insertBoss, connection);
+                commandBoss.Parameters.AddWithValue("ID", user_ID);
+                commandBoss.Parameters.AddWithValue("bossID", bossID);
+                commandBoss.ExecuteScalar();
+            }
             try
             {
                 

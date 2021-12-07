@@ -28,19 +28,19 @@ namespace ZTA
                     
                     SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                     connection.Open();
-                    string insert = "Select * FROM Users where User_ID = @ID";
+                    string insert = "SELECT Users.User_ID, Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role, Users_Boss.Boss_ID FROM Users  LEFT JOIN Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID = @ID";
                     SqlCommand command = new SqlCommand(insert, connection);
                     command.Parameters.AddWithValue("ID", ID);
                     SqlDataReader DataReader = command.ExecuteReader();
                     if (DataReader.Read())
                     {
-                        editEmailTextBox.Text = DataReader.GetValue(1).ToString();
-                        editNameTextBox.Text = DataReader.GetValue(3).ToString();
-                        editSurnameTextBox.Text = DataReader.GetValue(4).ToString();
-                        editPositionTextBox.Text = DataReader.GetValue(5).ToString();
-                        editWorkPlaceTextBox.Text = DataReader.GetValue(6).ToString();
-                        RoleList.SelectedValue = DataReader.GetValue(7).ToString();
-                        editBossTextBox.Text = DataReader.GetValue(8).ToString();
+                        editNameTextBox.Text = DataReader.GetValue(1).ToString();
+                        editSurnameTextBox.Text = DataReader.GetValue(2).ToString();
+                        editPositionTextBox.Text = DataReader.GetValue(3).ToString();
+                        editWorkPlaceTextBox.Text = DataReader.GetValue(4).ToString();
+                        editEmailTextBox.Text = DataReader.GetValue(5).ToString();
+                        RoleList.SelectedValue = DataReader.GetValue(6).ToString();
+                        editBossTextBox.Text = DataReader.GetValue(7).ToString();
                     }
                 }
              }
@@ -66,11 +66,20 @@ namespace ZTA
             string position = editPositionTextBox.Text;
             string workPlace = editWorkPlaceTextBox.Text;
             string bossID = editBossTextBox.Text;
+            string updateBoss = "";
             role = RoleList.SelectedValue.ToString();
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string update = "Update Users SET Email=@email, Name=@name, Surname=@surname, Position=@position,  WorkPlace=@workPlace, Role=@role, Boss_ID=@bossID where User_ID=@ID";
+            string update = "Update Users SET Users.Email=@email, Users.Name=@name, Users.Surname=@surname, Users.Position=@position,  Users.WorkPlace=@workPlace, Users.Role=@role From Users LEFT join Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID=@ID";
+            if ( editBossTextBox.Text !="" )
+                { 
+                updateBoss = "Insert into Users_Boss (User_ID, Boss_ID) values(@ID, @bossID)";
+            }
+            else {
+                updateBoss = "Update Users_Boss Set Users_Boss.Boss_ID = @bossID WHERE Users_Boss.User_ID=@ID "; 
+            }
             SqlCommand command = new SqlCommand(update, connection);
+            SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
             command.Parameters.AddWithValue("email", email);
             command.Parameters.AddWithValue("ID", ID);
             command.Parameters.AddWithValue("name", name);
@@ -78,8 +87,10 @@ namespace ZTA
             command.Parameters.AddWithValue("position", position);
             command.Parameters.AddWithValue("workPlace", workPlace);
             command.Parameters.AddWithValue("role", role);
-            command.Parameters.AddWithValue("bossID", bossID);
+            commandBoss.Parameters.AddWithValue("ID", ID);
+            commandBoss.Parameters.AddWithValue("bossID", bossID);
             command.ExecuteScalar();
+            commandBoss.ExecuteScalar();
             try
             {
 
