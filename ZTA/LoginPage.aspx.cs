@@ -35,13 +35,13 @@ namespace ZTA
             }
             else if (password.Equals(""))
             {
-                MessageBox.Show("Prosze wprowadzić adres hasło!");
+                MessageBox.Show("Prosze wprowadzić hasło!");
             }
             else
             {
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                 Console.WriteLine("test");
-                SqlCommand command = new SqlCommand("SELECT ID FROM Users WHERE Password = @password and Email  = @email", connection);
+                SqlCommand command = new SqlCommand("SELECT User_ID FROM Users WHERE Password = @password and Email  = @email", connection);
                 command.Parameters.AddWithValue("password", password);
                 command.Parameters.AddWithValue("email", email);
                 connection.Open();
@@ -49,18 +49,10 @@ namespace ZTA
                 {
                     int id = (int)command.ExecuteScalar();
                     Session["ID"] = id;
-                    if (email.Equals("admin"))
-                    {
-                        Response.Redirect("AdminPage.aspx");
-                        Session.RemoveAll();
-                    }
-
-                    else 
-                    {
-                        
+                                            
                         Response.Redirect("UserPage.aspx");
                         Session.RemoveAll();
-                    }
+                    
                 }
                 catch (NullReferenceException)
                 {

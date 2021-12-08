@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./CheckListPage.aspx">
+                        <a class="nav-link" href="./ListOfProceduresPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Procedura</p>
                         </a>
@@ -110,7 +110,7 @@
                                                <div class="form-group">
                                                     <label class="bmd-label-floating ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rola</label> 
                                                     <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
-                                                        <asp:ListItem Selected="True" Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
+                                                        <asp:ListItem Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
                                                         <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
                                                         <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</asp:ListItem>
                                                     </asp:DropDownList>
@@ -128,12 +128,12 @@
                                          <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Nazwa systemu</label>
-                                                     <asp:TextBox ID="editSystemNameTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                    <asp:Label ID="editBossLabel" class="bmd-label-floating" runat="server" Text="Kierownik"></asp:Label>
+                                                    <asp:DropDownList ID="EditDropDownBossList" runat="server" class="form-control"  BackColor="White" ForeColor="Black"> 
+                                                    </asp:DropDownList>
                                                 </div>
                                             </div>
-                                        </div>
-                                         
+                                        </div>                                
 
                                         <asp:Button runat="server" ID="backButton" OnClick="GoToUserPage" class="btn btn-primary pull-left" Text="Anuluj" />
                                         <asp:Button runat="server" ID="editUserButton" OnClick="SaveUser" class="btn btn-primary pull-left" Text="Zapisz zmiany" />

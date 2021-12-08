@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserPage.aspx.cs" Inherits="ZTA.UserPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewProcedurePage.aspx.cs" Inherits="ZTA.NewProcedure" %>
 
 <!DOCTYPE html>
 
@@ -6,19 +6,21 @@
 <head runat="server">
 
     <title>ZTA Migration App</title>
+    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- Material Kit CSS -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="black" data-image="./assets/img/sidebar-2.jpg">
             <div class="logo">
-                <a class="simple-text logo-normal">Menu
-                </a>
+                <a class="simple-text logo-normal">Menu</a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
@@ -29,7 +31,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./UserPage.aspx">
+                        <a class="nav-link" href="./LoginPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Profil Uzytkownika</p>
                         </a>
@@ -40,22 +42,22 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                   <%-- <li class="nav-item active ">
+                    <li class="nav-item active ">
                         <a class="nav-link" href="./AdminPage.aspx">
                             <i class="material-icons">list</i>
                             <p>Lista użytkowników</p>
                         </a>
-                    </li>--%>
+                    </li>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./ReportPage.aspx">
                             <i class="material-icons">description</i>
-                            <p>Raport<p>
+                            <p>Raport</p>
                         </a>
                     </li>
-                    <!-- your sidebar here -->
                 </ul>
             </div>
         </div>
+
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -69,89 +71,52 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end">
-                        <form class="navbar-form" runat="server">
-                            <div class="nav-item">
-                                <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" ImageUrl="~/assets/img/logout.png" />
-                            </div>
-                            <%--</form>--%>
-                            <div class="nav-item">
-                                <asp:Button ID="userButton" Visible="true" runat="server" OnClick="GoToAdminPage" Text="Pokaż listę uzytkowników" class="btn btn-primary pull-right" Style="background-image:url('~/assets/img/list.png');" />
-                            </div>
-                    </div>
                 </div>
             </nav>
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <h4 class="card-title">Dane użytkownika</h4>
-                                </div>
-                                <div class="card-body">
-                                    <%--<form runat="server"--%>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">aders e-mail</label>
-                                                <asp:Label ID="EmailLabel" runat="server" class="form-control"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Imię</label>
-                                                <asp:Label ID="NameLabel" runat="server" class="form-control"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Nazwisko</label>
-                                                <asp:Label ID="SurnameLabel" runat="server" class="form-control"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Stanowisko</label>
-                                                <asp:Label ID="PositionLabel" runat="server" class="form-control"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Miejsce pracy</label>
-                                                <asp:Label ID="WorkPlaceLabel" runat="server" class="form-control"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Kierownik</label>
-                                                <asp:Label ID="BossIDLabel" runat="server" class="form-control"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Rola</label>
-                                                <asp:Label ID="RoleLabel" runat="server" class="form-control"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </form>
+                        <form runat="server">
+                            <div class="nav-item">
+                                <div class="nav-link">
+                                    <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" class="material-icons" ImageUrl="~/assets/img/logout.png" />
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title ">Lista czynności</h4>
+                                        <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <div class="table-responsive">
+                                                <asp:TextBox ID="SystemName" placeholder="Nazwa systemu" runat="server" class="form-control" ></asp:TextBox>
+                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Procedure]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                                <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Numer" DataField="Number" />
+                                                        <asp:BoundField HeaderText="Czynność" DataField="Activity" />
+                                                        <asp:TemplateField HeaderText="Komentarz">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Data i godzina zakończenia">
+                                                            <ItemTemplate>
+                                                                 <asp:TextBox ID="dateTextBox" placeholder="dd/mm/yyyy hh:mm" runat="server" class="form-control" ></asp:TextBox>
+                                                            </ItemTemplate>                                                                                                                                 
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                                <asp:Button runat="server" ID="saveButton" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveProcedure" />
+                                            </div>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -168,6 +133,7 @@
             </footer>
         </div>
     </div>
+
 
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
@@ -212,7 +178,6 @@
             </ul>
         </div>
     </div>
-
     <script src="./assets/js/core/jquery.min.js"></script>
     <script src="./assets/js/core/popper.min.js"></script>
     <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
@@ -224,9 +189,7 @@
     <script src="./assets/js/plugins/bootstrap-notify.js"></script>
     <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
     <script src="./assets/demo/demo.js"></script>
-    <script>
-        $(document).ready(function () {
-            $().ready(function () {
+    <script>(function () {
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -366,7 +329,6 @@
                         $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
 
                         setTimeout(function () {
-                            <a href="NewProcedurePage.aspx.designer.cs">NewProcedurePage.aspx.designer.cs</a>
                             $('body').addClass('sidebar-mini');
 
                             md.misc.sidebar_mini_active = true;

@@ -17,6 +17,12 @@ namespace ZTA
             if (Session["ID"] != null)
             {
                 string ID = Session["ID"].ToString();
+                if (Helper.DoesUserHasPermission(ID, "Administrator"))
+                {
+
+                }
+
+                else Response.Redirect("ErrorPage.aspx");
             }
 
             else
@@ -43,7 +49,7 @@ namespace ZTA
                 GridView gridView = (GridView)this.Page.FindControl("GridView");
                 GridViewRow selectedRow = gridView.SelectedRow;
                 string ID = selectedRow.Cells[0].Text;
-                Session["ID"] = ID;
+                Session["IDEditUser"] = ID;
                 Server.Transfer("~/EditUserPage.aspx");
             }
             else
@@ -58,12 +64,12 @@ namespace ZTA
             GridViewRow selectedRow = gridView.SelectedRow;
             string email = selectedRow.Cells[3].Text;
             string ID = selectedRow.Cells[0].Text;
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string insert = "Delete from Users where ID = @ID and Email = @email";
-            SqlCommand command = new SqlCommand(insert, connection);
+            string delete = "Delete from Users where User_ID = @ID and Email = @email";
+            SqlCommand command = new SqlCommand(delete, connection);
             command.Parameters.AddWithValue("email", email);
-            command.Parameters.AddWithValue("ID", ID);           
+            command.Parameters.AddWithValue("ID", ID);
             command.ExecuteScalar();
             try
             {

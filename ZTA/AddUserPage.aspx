@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./CheckListPage.aspx">
+                        <a class="nav-link" href="./ListOfProceduresPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Procedura</p>
                         </a>
@@ -121,7 +121,7 @@
                                                     <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
                                                         <asp:ListItem Selected="True" Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
                                                         <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
-                                                        <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbspAdministrator</asp:ListItem>
+                                                        <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -137,8 +137,9 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Nazwa systemu</label>
-                                                    <asp:TextBox ID="addSystemNameTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                    <asp:Label ID="BossLabel" class="bmd-label-floating" runat="server" Text="Kierownik"></asp:Label>
+                                                    <asp:DropDownList ID="DropDownBossList" runat="server" class="dropdown-item" > 
+                                                    </asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
@@ -152,20 +153,11 @@
             </div>
             <footer class="footer">
                 <div class="container-fluid">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
-                            </li>
-                        </ul>
-                    </nav>
                     <div class="copyright float-right">
-                        &copy;
-           
+                        &copy;           
                         <script>
                             document.write(new Date().getFullYear()) </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
-         
+                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
                     </div>
                 </div>
             </footer>

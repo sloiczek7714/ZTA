@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CheckListPage.aspx.cs" Inherits="ZTA.CheckListPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ErrorPage.aspx.cs" Inherits="ZTA.ErrorPage" %>
 
 <!DOCTYPE html>
 
@@ -7,25 +7,31 @@
 
     <title>ZTA Migration App</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <!-- Material Kit CSS -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="black" data-image="./assets/img/sidebar-2.jpg">
+            <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+  -->
             <div class="logo">
-                <a class="simple-text logo-normal">Menu</a>
+                <a class="simple-text logo-normal">Menu
+        </a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item active  ">
-                        <a class="nav-link" href="./StartPage.aspx">
+                        <a class="nav-link" href="javascript:void(0)">
                             <i class="material-icons">dashboard</i>
                             <p>Strona główna</p>
                         </a>
@@ -33,31 +39,13 @@
                     <li class="nav-item active ">
                         <a class="nav-link" href="./LoginPage.aspx">
                             <i class="material-icons">person</i>
-                            <p>Profil Uzytkownika</p>
+                            <p>Logowanie<p>
                         </a>
                     </li>
-                    <li class="nav-item active ">
-                        <a class="nav-link" href="./CheckListPage.aspx">
-                            <i class="material-icons">content_paste</i>
-                            <p>Procedura</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active ">
-                        <a class="nav-link" href="./AdminPage.aspx">
-                            <i class="material-icons">list</i>
-                            <p>Lista użytkowników</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active ">
-                        <a class="nav-link" href="./ReportPage.aspx">
-                            <i class="material-icons">description</i>
-                            <p>Raport</p>
-                        </a>
-                    </li>
+                    <!-- your sidebar here -->
                 </ul>
             </div>
         </div>
-
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -70,64 +58,39 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
-                    </button>
+                    </button>                    
                 </div>
             </nav>
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <form runat="server">
-                                <div class="nav-item">
-                                    <div class="nav-link">
-                                    <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" class="material-icons" ImageUrl="~/assets/img/logout.png" />
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header card-header-primary">
-                                        <h4 class="card-title ">Lista czynności</h4>
-                                        <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <div class="table-responsive">
-                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTAConnectionString %>" SelectCommand="SELECT [Pytanie], [Numer pytania] AS Numer_pytania FROM [Question]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="Numer" DataField="Numer_pytania" />
-                                                        <asp:BoundField HeaderText="Pytanie" DataField="Pytanie" />
-                                                        <%--<asp:TemplateField HeaderText="Odpowiedź"><ItemTemplate>
-                                                     <asp:CheckBoxList ID="CheckBoxList" runat="server" RepeatColumns="4" RepeatLayout="Table">
-                                                     <asp:ListItem Text="Tak" onclick="MutExChkList(this);"> </asp:ListItem>
-                                                      <asp:ListItem Text="Nie" onclick="MutExChkList(this);"></asp:ListItem>
-                                                      <asp:ListItem Text="Nie dotyczy" onclick="MutExChkList(this);"></asp:ListItem>
-                                                     <asp:ListItem Text="Potrzebny komentarz" onclick="MutExChkList(this);"></asp:ListItem></asp:CheckBoxList></ItemTemplate></asp:TemplateField> --%>
-                                                    </Columns>
-                                                </asp:GridView>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <h1>
+                          ERORR!!!!!!!!!!!!!!!!!!!!
+                    </h1>
                 </div>
             </div>
             <footer class="footer">
                 <div class="container-fluid">
+                    <nav class="float-left">
+                        <ul>
+                            <li>
+                                <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
+              </li>
+                        </ul>
+                    </nav>
                     <div class="copyright float-right">
-                        &copy;           
+                        &copy;
+           
                         <script>
                             document.write(new Date().getFullYear())
-                        </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
+            </script>
+                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
+         
                     </div>
                 </div>
             </footer>
         </div>
     </div>
-
 
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
@@ -151,27 +114,27 @@
                 <li class="header-title">Images</li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="" />
+                        <img src="../assets/img/sidebar-1.jpg" alt="">
                     </a>
                 </li>
                 <li class="active">
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="" />
+                        <img src="../assets/img/sidebar-2.jpg" alt="">
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="" />
+                        <img src="../assets/img/sidebar-3.jpg" alt="">
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="" />
+                        <img src="../assets/img/sidebar-4.jpg" alt="">
                     </a>
                 </li>
             </ul>
         </div>
-    </div>
+
     <script src="./assets/js/core/jquery.min.js"></script>
     <script src="./assets/js/core/popper.min.js"></script>
     <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
@@ -344,6 +307,6 @@
                 });
             });
         });
-    </script>
+  </script>
 </body>
 </html>

@@ -78,13 +78,22 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.TextBox addWorkPlaceTextBox;
 
         /// <summary>
-        /// addSystemNameTextBox control.
+        /// BossLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addSystemNameTextBox;
+        protected global::System.Web.UI.WebControls.Label BossLabel;
+
+        /// <summary>
+        /// DropDownBossList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownBossList;
 
         /// <summary>
         /// SaveUser control.

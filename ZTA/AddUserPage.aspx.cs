@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -12,12 +13,28 @@ namespace ZTA
 {
     public partial class AddUserPage : System.Web.UI.Page
     {
-        string role = "Pracownik";
+        public string role;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Session["ID"] != null)
             {
                 string ID = Session["ID"].ToString();
+                if (Helper.DoesUserHasPermission(ID, "Administrator"))
+                {
+                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                    connection.Open();
+                    SqlCommand com = new SqlCommand("SELECT * from Users  WHERE Role='Kierownik'", connection);
+                    SqlDataAdapter da = new SqlDataAdapter(com);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);  
+                    DropDownBossList.DataTextField = ds.Tables[0].Columns["Email"].ToString();
+                    DropDownBossList.DataSource = ds.Tables[0]; 
+                    DropDownBossList.DataBind(); 
+                }
+
+                else Response.Redirect("ErrorPage.aspx");
             }
 
             else
@@ -28,7 +45,19 @@ namespace ZTA
 
         protected void selectRole(object sender, EventArgs e)
         {
-            role = RoleList.SelectedValue.ToString();
+          role = RoleList.SelectedValue.ToString();
+            if (role != "Pracownik")
+            {
+                DropDownBossList.Visible = false;
+                BossLabel.Visible = false;
+
+            }
+            else
+            {
+                DropDownBossList.Visible = true;
+                BossLabel.Visible = true;
+            }
+           
         }
         protected void logout(object sender, EventArgs e)
         {
@@ -44,12 +73,16 @@ namespace ZTA
             string surname = addSurnameTextBox.Text; ;
             string position = addPositionTextBox.Text;
             string workPlace = addWorkPlaceTextBox.Text;
-            string systemName = addSystemNameTextBox.Text;
-
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTAConnectionString"].ConnectionString);
+            string bossEmail = DropDownBossList.Text;
+            role = RoleList.Text;
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string insert = "Insert into Users (Email, Password, Name, Surname, Position, WorkPlace, Role, SystemName) values( @email, @password, @name, @surname,  @position, @workPlace, @role, @systemName)";
+            string insert = "Insert into Users (Email, Password, Name, Surname, Position, WorkPlace, Role) values( @email, @password, @name, @surname,  @position, @workPlace, @role)";
+            string select = "Select User_ID From Users WHERE Email=@email AND Role=@role";
+            string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
+            SqlCommand cmd = new SqlCommand(select,connection);
             SqlCommand command = new SqlCommand(insert, connection);
+            SqlCommand commandSelectBoss = new SqlCommand(selectBossID, connection);
             command.Parameters.AddWithValue("password", password);
             command.Parameters.AddWithValue("email", email);
             command.Parameters.AddWithValue("name", name);
@@ -57,8 +90,20 @@ namespace ZTA
             command.Parameters.AddWithValue("position", position);
             command.Parameters.AddWithValue("workPlace", workPlace);
             command.Parameters.AddWithValue("role", role);
-            command.Parameters.AddWithValue("systemName", systemName);
+            cmd.Parameters.AddWithValue("email", email);
+            cmd.Parameters.AddWithValue("role", role);
+            commandSelectBoss.Parameters.AddWithValue("bossEmail", bossEmail);            
             command.ExecuteScalar();
+            int user_ID = (int) cmd.ExecuteScalar();
+            if (!String.IsNullOrEmpty(bossEmail) && role.Equals("Pracownik"))
+                {
+                int bossID = (int) commandSelectBoss.ExecuteScalar();
+                string insertBoss = "Insert into Users_Boss (User_ID, Boss_ID) values(@ID, @bossID)";
+                SqlCommand commandBoss = new SqlCommand(insertBoss, connection);
+                commandBoss.Parameters.AddWithValue("ID", user_ID);
+                commandBoss.Parameters.AddWithValue("bossID", bossID);
+                commandBoss.ExecuteScalar();
+            }
             try
             {
                 

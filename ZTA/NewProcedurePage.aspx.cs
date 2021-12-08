@@ -7,10 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace ZTA
 {
-    public partial class CheckListPage : System.Web.UI.Page
+    public partial class NewProcedure : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Session["ID"] != null)
             {
                 string ID = Session["ID"].ToString();
@@ -28,10 +30,14 @@ namespace ZTA
             Session.Abandon();
             Response.Redirect("LoginPage.aspx");
         }
+        protected void saveProcedure(object sender, EventArgs e)
+        {
+           
+        }
         protected void ZTA_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
 
         }
-
+       
     }
 }
