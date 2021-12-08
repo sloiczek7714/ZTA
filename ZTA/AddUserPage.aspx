@@ -137,8 +137,9 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Kierownik</label>
-                                                    <asp:TextBox ID="addBossIDTextBox" runat="server" class="form-control"></asp:TextBox>
+                                                    <asp:Label ID="BossLabel" class="bmd-label-floating" runat="server" Text="Kierownik"></asp:Label>
+                                                    <asp:DropDownList ID="DropDownBossList" runat="server" class="dropdown-item" > 
+                                                    </asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
@@ -152,20 +153,11 @@
             </div>
             <footer class="footer">
                 <div class="container-fluid">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
-                            </li>
-                        </ul>
-                    </nav>
                     <div class="copyright float-right">
-                        &copy;
-           
+                        &copy;           
                         <script>
                             document.write(new Date().getFullYear()) </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
-         
+                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
                     </div>
                 </div>
             </footer>

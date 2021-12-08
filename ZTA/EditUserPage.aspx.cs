@@ -13,25 +13,39 @@ namespace ZTA
 {
     public partial class EditUserPage : System.Web.UI.Page
     {
-        string role;
+        public string role;
         protected void selectRole(object sender, EventArgs e)
         {
             role = RoleList.SelectedValue.ToString();
+            if (role != "Pracownik")
+            {
+                EditDropDownBossList.Visible = false;
+                editBossLabel.Visible = false;
+            }
+            else
+            {
+                EditDropDownBossList.Visible = true;
+                editBossLabel.Visible = true;
+            }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["ID"] != null)
             {
+                string UserID = Session["ID"].ToString();
                 if (!Page.IsPostBack)
                 {
                     string ID = Session["IDEditUser"].ToString();
-                    
+
+                    if (Helper.DoesUserHasPermission(UserID, "Administrator"))
+                    { 
                     SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                     connection.Open();
                     string insert = "SELECT Users.User_ID, Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role, Users_Boss.Boss_ID FROM Users  LEFT JOIN Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID = @ID";
                     SqlCommand command = new SqlCommand(insert, connection);
                     command.Parameters.AddWithValue("ID", ID);
                     SqlDataReader DataReader = command.ExecuteReader();
+                    
                     if (DataReader.Read())
                     {
                         editNameTextBox.Text = DataReader.GetValue(1).ToString();
@@ -40,10 +54,22 @@ namespace ZTA
                         editWorkPlaceTextBox.Text = DataReader.GetValue(4).ToString();
                         editEmailTextBox.Text = DataReader.GetValue(5).ToString();
                         RoleList.SelectedValue = DataReader.GetValue(6).ToString();
-                        editBossTextBox.Text = DataReader.GetValue(7).ToString();
+                        Session["tempBoss"] = DataReader.GetValue(7).ToString();
+                        DataReader.Close();
+
+                     }
+                        SqlCommand com = new SqlCommand("SELECT * from Users  WHERE Role='Kierownik'", connection);
+                        SqlDataAdapter da = new SqlDataAdapter(com);
+                        DataSet ds = new DataSet();
+                        da.Fill(ds);
+                        EditDropDownBossList.DataTextField = ds.Tables[0].Columns["Email"].ToString();
+                        EditDropDownBossList.DataSource = ds.Tables[0];
+                        EditDropDownBossList.DataBind();
+                         
+                        
                     }
                 }
-             }
+            }
             else
             {
                 Response.Redirect("LoginPage.aspx");
@@ -65,32 +91,58 @@ namespace ZTA
             string surname = editSurnameTextBox.Text; ;
             string position = editPositionTextBox.Text;
             string workPlace = editWorkPlaceTextBox.Text;
-            string bossID = editBossTextBox.Text;
-            string updateBoss = "";
-            role = RoleList.SelectedValue.ToString();
+            string bossEmail = EditDropDownBossList.Text;
+            string updateBoss="";
+            role = RoleList.Text;
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
             string update = "Update Users SET Users.Email=@email, Users.Name=@name, Users.Surname=@surname, Users.Position=@position,  Users.WorkPlace=@workPlace, Users.Role=@role From Users LEFT join Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID=@ID";
-            if ( editBossTextBox.Text !="" )
-                { 
-                updateBoss = "Insert into Users_Boss (User_ID, Boss_ID) values(@ID, @bossID)";
-            }
-            else {
-                updateBoss = "Update Users_Boss Set Users_Boss.Boss_ID = @bossID WHERE Users_Boss.User_ID=@ID "; 
-            }
             SqlCommand command = new SqlCommand(update, connection);
-            SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
+            
+        ;
+            if (String.IsNullOrEmpty(Session["tempBoss"].ToString()))
+            {
+                updateBoss = "Insert into Users_Boss (User_ID, Boss_ID) values(@ID, @bossID)";
+                string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
+                SqlCommand commandSelectBoss = new SqlCommand(selectBossID, connection);
+                commandSelectBoss.Parameters.AddWithValue("bossEmail", bossEmail);
+                int user_ID = (int)commandSelectBoss.ExecuteScalar();
+                SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
+                commandBoss.Parameters.AddWithValue("bossID", user_ID);
+                commandBoss.Parameters.AddWithValue("ID", ID);
+                commandBoss.ExecuteScalar();
+
+            }
+            else if (String.IsNullOrEmpty(bossEmail) || (role != "Pracownik"))
+            {
+                updateBoss = "Delete Users_Boss WHERE User_ID = @ID";
+                SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
+                commandBoss.Parameters.AddWithValue("ID", ID);
+                commandBoss.ExecuteScalar();
+            }
+            else if (!String.IsNullOrEmpty(bossEmail))
+            {
+                updateBoss = "Update Users_Boss Set Users_Boss.Boss_ID = @bossID WHERE Users_Boss.User_ID=@ID ";
+                string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
+                SqlCommand commandSelectBoss = new SqlCommand(selectBossID, connection);
+                commandSelectBoss.Parameters.AddWithValue("bossEmail", bossEmail);
+                int user_ID = (int)commandSelectBoss.ExecuteScalar();
+                SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
+                commandBoss.Parameters.AddWithValue("bossID", user_ID);
+                commandBoss.Parameters.AddWithValue("ID", ID);
+                commandBoss.ExecuteScalar();
+            }
+            
+
             command.Parameters.AddWithValue("email", email);
             command.Parameters.AddWithValue("ID", ID);
             command.Parameters.AddWithValue("name", name);
             command.Parameters.AddWithValue("surname", surname);
             command.Parameters.AddWithValue("position", position);
             command.Parameters.AddWithValue("workPlace", workPlace);
-            command.Parameters.AddWithValue("role", role);
-            commandBoss.Parameters.AddWithValue("ID", ID);
-            commandBoss.Parameters.AddWithValue("bossID", bossID);
+            command.Parameters.AddWithValue("role", role);            
             command.ExecuteScalar();
-            commandBoss.ExecuteScalar();
+            
             try
             {
 
