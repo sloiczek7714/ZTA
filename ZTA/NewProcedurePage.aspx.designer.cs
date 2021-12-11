@@ -42,13 +42,22 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.SqlDataSource ZTA;
 
         /// <summary>
-        /// GridView1 control.
+        /// procedureGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView procedureGridView;
+
+        /// <summary>
+        /// overallComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox overallComment;
 
         /// <summary>
         /// saveButton control.
@@ -58,5 +67,14 @@ namespace ZTA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button saveButton;
+
+        /// <summary>
+        /// endButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button endButton;
     }
 }

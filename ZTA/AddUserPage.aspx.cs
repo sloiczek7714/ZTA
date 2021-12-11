@@ -67,10 +67,10 @@ namespace ZTA
         }
         protected void saveUser(object sender, EventArgs e)
         {
-            string email = addEmailTextBox.Text; ;
-            string password = addPasswordTextBox.Text;
-            string name = addNameTextBox.Text; ;
-            string surname = addSurnameTextBox.Text; ;
+            string email = addEmailTextBox.Text;             
+            string name = addNameTextBox.Text;
+            string password = Helper.HashPassword(addPasswordTextBox.Text, email);
+            string surname = addSurnameTextBox.Text; 
             string position = addPositionTextBox.Text;
             string workPlace = addWorkPlaceTextBox.Text;
             string bossEmail = DropDownBossList.Text;

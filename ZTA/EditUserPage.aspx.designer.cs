@@ -33,6 +33,15 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.TextBox editNameTextBox;
 
         /// <summary>
+        /// editPasswordTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox editPasswordTextBox;
+
+        /// <summary>
         /// editSurnameTextBox control.
         /// </summary>
         /// <remarks>

@@ -95,21 +95,17 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div class="table-responsive">
-                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Procedure]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
                                                 <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
                                                     <Columns>
-                                                        <asp:BoundField HeaderText="Numer" DataField="Number" />
-                                                        <asp:BoundField HeaderText="Czynność" DataField="Activity" />
-                                                        <asp:TemplateField HeaderText="Komentarz">
-                                                            <ItemTemplate>
-                                                                <asp:TextBox HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
-                                                            </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Data i godzina zakończenia">
-                                                            <ItemTemplate>
-                                                                 <asp:TextBox ID="dateTextBox" placeholder="dd/mm/yyyy hh:mm" runat="server" class="form-control" ></asp:TextBox>
-                                                            </ItemTemplate>                                                                                                                                 
-                                                        </asp:TemplateField>
+                                                        <asp:BoundField HeaderText="Numer" DataField="Form_ID" />
+                                                        <asp:BoundField HeaderText="Nazwa systemu" DataField="System_Name" />
+                                                        <asp:BoundField HeaderText="Data rozpoczecia" DataField="Begin_Date" />
+                                                        <asp:BoundField HeaderText="Data zakończenia" DataField="End_Date" />
+                                                        <asp:BoundField HeaderText="Komentarz" DataField="Comment" />
+                                                        <asp:BoundField HeaderText="Imię pracownika" DataField="Name" />
+                                                        <asp:BoundField HeaderText="Nazwisko pracownika" DataField="Surname" />
+                                                        <asp:BoundField HeaderText="Numer kierownika" DataField="Kierownik" />
                                                     </Columns>
                                                 </asp:GridView>
                                               </div>
