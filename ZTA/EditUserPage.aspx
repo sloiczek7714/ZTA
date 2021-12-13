@@ -88,6 +88,14 @@
                                                     <asp:TextBox ID="editNameTextBox" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
+                                        </div> 
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Hasło</label>
+                                                    <asp:TextBox ID="editPasswordTextBox" runat="server" Type="password" class="form-control"></asp:TextBox>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">

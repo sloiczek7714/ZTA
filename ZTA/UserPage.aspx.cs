@@ -16,6 +16,15 @@ namespace ZTA
             if (Session["ID"] != null)
             {
                 string ID = Session["ID"].ToString();
+                if (Helper.DoesUserHasPermission(ID, "Administrator"))
+                {
+                    userButton.Visible = true;
+                }
+                else
+                {
+                    userButton.Visible = false;
+                }
+                
                 SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                 connection.Open();
                 string insert = "SELECT Users.User_ID, Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role, Users_Boss.Boss_ID FROM Users  LEFT JOIN Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID = @ID";
@@ -56,6 +65,7 @@ namespace ZTA
         }
         protected void GoToCheckListPage(object sender, EventArgs e)
         {
+            Session["ID"] = ID;
             Response.Redirect("ListOfProcedures.aspx");
         }
 

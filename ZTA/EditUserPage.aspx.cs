@@ -41,7 +41,7 @@ namespace ZTA
                     { 
                     SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                     connection.Open();
-                    string insert = "SELECT Users.User_ID, Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role, Users_Boss.Boss_ID FROM Users  LEFT JOIN Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID = @ID";
+                    string insert = "SELECT Users.User_ID,  Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role, Users_Boss.Boss_ID, Users.Password FROM Users  LEFT JOIN Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID = @ID";
                     SqlCommand command = new SqlCommand(insert, connection);
                     command.Parameters.AddWithValue("ID", ID);
                     SqlDataReader DataReader = command.ExecuteReader();
@@ -49,6 +49,7 @@ namespace ZTA
                     if (DataReader.Read())
                     {
                         editNameTextBox.Text = DataReader.GetValue(1).ToString();
+                        editPasswordTextBox.Text = DataReader.GetValue(8).ToString();
                         editSurnameTextBox.Text = DataReader.GetValue(2).ToString();
                         editPositionTextBox.Text = DataReader.GetValue(3).ToString();
                         editWorkPlaceTextBox.Text = DataReader.GetValue(4).ToString();
@@ -92,11 +93,12 @@ namespace ZTA
             string position = editPositionTextBox.Text;
             string workPlace = editWorkPlaceTextBox.Text;
             string bossEmail = EditDropDownBossList.Text;
+            string password = Helper.HashPassword(editPasswordTextBox.Text, email);
             string updateBoss="";
             role = RoleList.Text;
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            string update = "Update Users SET Users.Email=@email, Users.Name=@name, Users.Surname=@surname, Users.Position=@position,  Users.WorkPlace=@workPlace, Users.Role=@role From Users LEFT join Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID=@ID";
+            string update = "Update Users SET Users.Email=@email, Users.Name=@name, Users.Password=@password, Users.Surname=@surname, Users.Position=@position,  Users.WorkPlace=@workPlace, Users.Role=@role From Users LEFT join Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID=@ID";
             SqlCommand command = new SqlCommand(update, connection);
             
         ;
@@ -141,6 +143,7 @@ namespace ZTA
             command.Parameters.AddWithValue("position", position);
             command.Parameters.AddWithValue("workPlace", workPlace);
             command.Parameters.AddWithValue("role", role);            
+            command.Parameters.AddWithValue("password", password);            
             command.ExecuteScalar();
             
             try

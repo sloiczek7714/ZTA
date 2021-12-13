@@ -40,8 +40,9 @@ namespace ZTA
             else
             {
                 SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
-                Console.WriteLine("test");
+                
                 SqlCommand command = new SqlCommand("SELECT User_ID FROM Users WHERE Password = @password and Email  = @email", connection);
+                password = Helper.HashPassword(password, email);
                 command.Parameters.AddWithValue("password", password);
                 command.Parameters.AddWithValue("email", email);
                 connection.Open();
@@ -49,9 +50,9 @@ namespace ZTA
                 {
                     int id = (int)command.ExecuteScalar();
                     Session["ID"] = id;
-                                            
+                                           
                         Response.Redirect("UserPage.aspx");
-                        Session.RemoveAll();
+                        //Session.RemoveAll();
                     
                 }
                 catch (NullReferenceException)

@@ -42,12 +42,12 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                    <li class="nav-item active ">
+                    <%--<li class="nav-item active ">
                         <a class="nav-link" href="./AdminPage.aspx">
                             <i class="material-icons">list</i>
                             <p>Lista użytkowników</p>
                         </a>
-                    </li>
+                    </li>--%>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./ReportPage.aspx">
                             <i class="material-icons">description</i>
@@ -92,15 +92,15 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div class="table-responsive">
-                                                <asp:TextBox ID="SystemName" placeholder="Nazwa systemu" runat="server" class="form-control" ></asp:TextBox>
-                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Procedure]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
+                                                <asp:TextBox ID="SystemName" placeholder="Wpisz nazwę systemu"  runat="server" class="form-control" ></asp:TextBox><br /> <br />
+                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
                                                     <Columns>
-                                                        <asp:BoundField HeaderText="Numer" DataField="Number" />
+                                                        <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
                                                         <asp:BoundField HeaderText="Czynność" DataField="Activity" />
                                                         <asp:TemplateField HeaderText="Komentarz">
                                                             <ItemTemplate>
-                                                                <asp:TextBox HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
+                                                                <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
                                                             </ItemTemplate>
                                                             </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Data i godzina zakończenia">
@@ -110,7 +110,9 @@
                                                         </asp:TemplateField>
                                                     </Columns>
                                                 </asp:GridView>
+                                                <asp:TextBox runat="server" ID="overallComment" placeholder="Komentarz do całej procedury" CssClass="form-control" />
                                                 <asp:Button runat="server" ID="saveButton" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveProcedure" />
+                                                <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
                                             </div>
                                         </div>
                                      </div>
