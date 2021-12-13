@@ -106,8 +106,17 @@
                                                         <asp:BoundField HeaderText="Imię pracownika" DataField="Name" />
                                                         <asp:BoundField HeaderText="Nazwisko pracownika" DataField="Surname" />
                                                         <asp:BoundField HeaderText="Numer kierownika" DataField="Kierownik" />
+                                                        <asp:TemplateField HeaderText="Funkcje">
+                                                            <ItemTemplate>
+                                                                <asp:Button runat="server" ID="selectButton" Text="Wybierz" class="btn btn-primary pull-right" CommandName="Select" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
                                                     </Columns>
                                                 </asp:GridView>
+                                                <br />
+                                                <asp:Button runat="server" ID="raportButton" Text="Pokaż raport" class="btn btn-primary pull-right" onClick="showRaport" />            
+                                                <asp:Button runat="server" ID="editButton" Text="Edytuj" class="btn btn-primary pull-right" onClick="editProcedure" />            
+                                                <asp:Button runat="server" ID="deleteButton" Text="Usuń" class="btn btn-primary pull-right" onClick="deleteProcedure" />            
                                               </div>
                                         </div>
                                      </div>
