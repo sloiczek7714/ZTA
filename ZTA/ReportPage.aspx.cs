@@ -32,7 +32,7 @@ namespace ZTA
                 //{
                 try
                 {
-                    ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', Answer.Answer_Date as 'Data' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID left join Users on Users.User_ID = Form.User_ID WHERE Form.Form_ID = @formID";
+                    ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', CONVERT(Answer.Answer_Date ,'MM/dd/yyyy hh:mm')as 'Data' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID left join Users on Users.User_ID = Form.User_ID WHERE Form.Form_ID = @formID";
                 }
                 catch
                 {

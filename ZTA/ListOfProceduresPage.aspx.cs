@@ -15,9 +15,9 @@ namespace ZTA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            //if (!Page.IsPostBack)
 
-            {
+            //{
                 if (Session["ID"] != null)
                 {
                     string ID = Session["ID"].ToString();
@@ -27,7 +27,7 @@ namespace ZTA
                         try
                         {
 
-                            ZTA.SelectCommand = "SELECT Form.Form_ID,Form.System_Name,Form.Begin_Date ,Form.End_Date,Form.Comment,Form.User_ID ,Users.Name as 'Name' ,Users.Surname as 'Surname', Users_Boss.Boss_ID as 'Kierownik' FROM [dbo].[Form] left join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID = Users.User_ID ";
+                            ZTA.SelectCommand = "SELECT Form.Form_ID,Form.System_Name,FORMAT(Form.Begin_Date,'MM/dd/yyyy hh:mm') as 'Begin_Date' ,FORMAT(Form.End_Date,'MM/dd/yyyy hh:mm') as 'End_Date' ,Form.Comment,Form.User_ID ,Users.Name as 'Name' ,Users.Surname as 'Surname', Users_Boss.Boss_ID as 'Kierownik' FROM [dbo].[Form] left join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID = Users.User_ID ";
 
                         }
                         catch
@@ -42,7 +42,7 @@ namespace ZTA
                         try
                         {
 
-                            ZTA.SelectCommand = "SELECT Form.Form_ID,Form.System_Name,Form.Begin_Date ,Form.End_Date,Form.Comment,Form.User_ID ,Users.Name as 'Name',Users.Surname as 'Surname', Users_Boss.Boss_ID as 'Kierownik' FROM [dbo].[Form] left join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID = Users.User_ID where Users_Boss.Boss_ID =@ID ";
+                            ZTA.SelectCommand = "SELECT Form.Form_ID,Form.System_Name, FORMAT(Form.Begin_Date,,'MM/dd/yyyy hh:mm') as 'Begin_Date', FORMAT (Form.End_Date, ,'MM/dd/yyyy hh:mm') as 'End_Date' ,Form.Comment,Form.User_ID ,Users.Name as 'Name',Users.Surname as 'Surname', Users_Boss.Boss_ID as 'Kierownik' FROM [dbo].[Form] left join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID = Users.User_ID where Users_Boss.Boss_ID =@ID ";
                         }
                         catch
                         {
@@ -55,7 +55,7 @@ namespace ZTA
                     {
                         try
                         {
-                            ZTA.SelectCommand = "SELECT Form.Form_ID,Form.System_Name,Form.Begin_Date ,Form.End_Date,Form.Comment,Form.User_ID ,Users.Name as 'Name' ,Users.Surname as 'Surname' , Users_Boss.Boss_ID as 'Kierownik' FROM [dbo].[Form] left join Users on Users.User_ID = Form.User_ID  left join Users_Boss on Users_Boss.User_ID = Users.User_ID where Users.User_ID =@ID";
+                            ZTA.SelectCommand = "SELECT Form.Form_ID,Form.System_Name,FORMAT(Form.Begin_Date ,'MM/dd/yyyy hh:mm')as 'Begin_Date' ,FORMAT(Form.End_Date ,'MM/dd/yyyy hh:mm') as 'End_Date',Form.Comment,Form.User_ID ,Users.Name as 'Name' ,Users.Surname as 'Surname' , Users_Boss.Boss_ID as 'Kierownik' FROM [dbo].[Form] left join Users on Users.User_ID = Form.User_ID  left join Users_Boss on Users_Boss.User_ID = Users.User_ID where Users.User_ID =@ID";
                         }
                         catch
                         {
@@ -63,7 +63,7 @@ namespace ZTA
                             TextBox textBox = new TextBox();
                             textBox.Text = "Nie masz zadnych proecedur";
                         }
-                    }
+                    //}
                 }
 
                 else
@@ -87,6 +87,7 @@ namespace ZTA
         }
         protected void ZTA_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
+            
 
         }
 
@@ -139,7 +140,7 @@ namespace ZTA
                 GridViewRow selectedRow = gridView.SelectedRow;
                 string formID = selectedRow.Cells[0].Text;
                 Session["formID"] = formID;
-                Server.Transfer("~/ReportrPage.aspx");
+                Server.Transfer("~/EditProcedurePage.aspx");
             }
             else
             {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewProcedurePage.aspx.cs" Inherits="ZTA.NewProcedure" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditProcedurePage.aspx.cs" Inherits="ZTA.EditProcedure" %>
 
 <!DOCTYPE html>
 
@@ -92,12 +92,12 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div class="table-responsive">
-                                                <asp:TextBox ID="SystemName" placeholder="Wpisz nazwę systemu"  runat="server" class="form-control" ></asp:TextBox><br /> <br />
-                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                                <asp:Label ID="SystemNameLabel" placeholder="Wpisz nazwę systemu"  runat="server" class="form-control" ></asp:Label><br /> <br />
+                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>"  OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
                                                 <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
                                                     <Columns>
-                                                        <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
-                                                        <asp:BoundField HeaderText="Czynność" DataField="Activity" />
+                                                        <asp:BoundField HeaderText="Numer" DataField="Numer_czynnosci"/>
+                                                        <asp:BoundField HeaderText="Czynność" DataField="Czynnosc" />
                                                         <asp:TemplateField HeaderText="Komentarz">
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
@@ -110,7 +110,7 @@
                                                         </asp:TemplateField>
                                                     </Columns>
                                                 </asp:GridView>
-                                                <asp:TextBox runat="server" ID="overallComment" placeholder="Komentarz do całej procedury" CssClass="form-control" />
+                                                <asp:TextBox runat="server" ID="editOverallComment" placeholder="Komentarz do całej procedury" CssClass="form-control" />
                                                 <asp:Button runat="server" ID="saveButton" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveProcedure" />
                                                 <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
                                             </div>
