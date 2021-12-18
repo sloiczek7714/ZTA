@@ -32,7 +32,40 @@ namespace ZTA
                 //{
                 try
                 {
-                    ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', CONVERT(Answer.Answer_Date ,'MM/dd/yyyy hh:mm')as 'Data' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID left join Users on Users.User_ID = Form.User_ID WHERE Form.Form_ID = @formID";
+                    ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', Format(Answer.Answer_Date ,'MM/dd/yyyy hh:mm') as 'AData' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID left join Users on Users.User_ID = Form.User_ID WHERE Form.Form_ID = @formID";
+
+                }
+
+                catch
+                {
+
+                }
+                try
+                {
+                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                    connection.Open();
+                    SqlCommand select = new SqlCommand("SELECT Form.System_Name,FORMAT(Form.Begin_Date ,'MM/dd/yyyy hh:mm')as 'Begin_Date' ,FORMAT(Form.End_Date ,'MM/dd/yyyy hh:mm') as 'End_Date', Form.Comment, Users.Name as 'Name', Users.Surname as 'Surname', Form.User_ID, Users_Boss.Boss_ID FROM Form join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID=Users.User_ID WHERE Form.Form_ID = @formID", connection);
+                    select.Parameters.AddWithValue("formID", formID);
+                    var reader = select.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        systemNamelabel.Text = "Nazwa systemu: " + reader[0].ToString();
+                        beginDatelabel.Text = "Data rozpoczęcia: " + reader[1].ToString();
+                        endDatelabel.Text = "Data zakończenia: " + reader[2].ToString();
+                        employelabel.Text = "Imię i nazwisko pracownika: " + reader[4].ToString() + reader[5].ToString() + "ID:" + reader[6].ToString();
+                        string boss = reader[7].ToString();
+                        if (boss != "")
+                        {
+                            SqlCommand selectBoss = new SqlCommand("Select Users.Name, Users.Surname From Users WHERE User_ID=@bossID", connection);
+                            selectBoss.Parameters.AddWithValue("bossID", boss);
+                          //  var DataReade = selectBoss.ExecuteNonQuery().ToString();
+                            //bosslabel.Text = "Imię i nazwisko kierownika: " + bossNameSurname + "ID:" + boss;
+                        }
+                        commentlabel.Text = "Komentarz:" + reader[3].ToString();
+                    }
+                    reader.Close();
+
+
                 }
                 catch
                 {

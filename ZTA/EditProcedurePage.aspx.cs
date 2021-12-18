@@ -125,7 +125,7 @@ namespace ZTA
             command.Parameters.AddWithValue("formID", formID);
             command.Parameters.AddWithValue("end_date", end_Date);
             command.ExecuteScalar();
-            Response.Redirect("ListOfProceduresPage");
+            Response.Redirect("ListOfProceduresPage.aspx");
         }
         protected void ZTA_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {

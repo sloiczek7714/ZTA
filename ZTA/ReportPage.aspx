@@ -82,7 +82,37 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <form runat="server">
-                                            <asp:Button ID="generateRaportButton" runat="server" OnClick="pdrCreate" Text="Generuj raport" class="btn btn-primary pull-left" />
+                                            <asp:Label ID="systemNamelabel" runat="server" CssClass="navbar-brand" ></asp:Label>
+                                                <asp:Label ID="beginDatelabel" runat="server"  CssClass="navbar-brand"></asp:Label>
+                                                <asp:Label ID="endDatelabel" runat="server"  CssClass="navbar-brand" ></asp:Label> <br />
+                                                <asp:Label ID="bosslabel" runat="server"  CssClass="navbar-brand" ></asp:Label>
+                                                <asp:Label ID="employelabel" runat="server"  CssClass="navbar-brand"></asp:Label>
+                                                <asp:Label ID="commentlabel" runat="server"  CssClass="navbar-brand"></asp:Label>
+                                            <br /><script>
+
+                                            $('#download').click(function () {
+    var obj = $(this);
+    Utils.disableButton(obj);
+    $.get("/MineFace/GetPrintoutFileName")
+        .done(function (data) {
+            var opt = {
+                margin: 1,
+                filename: data,
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 5 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(document.getElementById('element-to-print')).save();
+        })
+        .fail(function (data) {
+            console.log(data);
+            Utils.showErrorModal(data);
+        }).always(function () {
+            Utils.enableButton(obj);
+            $('#download-button-spinner').attr('hidden', true);
+        });
+});</script> <br/> <br /><br />
+                                            <asp:Button ID="generateRaportButton" runat="server" OnClick="pdrCreate" Text="Generuj raport" class="btn btn-primary pull-left" />                                               
                                             <div class="table-responsive">
                                                   <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>"></asp:SqlDataSource>
                                                 <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
@@ -90,8 +120,7 @@
                                                         <asp:BoundField HeaderText="Numer" DataField="Numer_czynnosci" />
                                                         <asp:BoundField HeaderText="Czynność" DataField="Czynnosc" />
                                                         <asp:BoundField HeaderText="Komenatrz" DataField="Komentarz" />
-                                                        <asp:BoundField HeaderText="Data zakończenia" DataField="Data" />
-
+                                                        <asp:BoundField HeaderText="Data zakończenia" DataField="AData" />
                                                     </Columns>
                                                 </asp:GridView>
                                                 <br />
