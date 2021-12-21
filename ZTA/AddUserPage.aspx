@@ -6,14 +6,11 @@
 <head runat="server">
 
     <title>ZTA Migration App</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- Material Kit CSS -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
@@ -43,12 +40,10 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                    <!-- your sidebar here -->
                 </ul>
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
@@ -60,9 +55,12 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                <form runat="server">
+                    <div class="nav-item">
+                        <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
+                    </div>
                 </div>
             </nav>
-            <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -73,77 +71,76 @@
                                     <p class="card-category">Uzupełnij dane nowego użytkownika</p>
                                 </div>
                                 <div class="card-body">
-                                    <form runat="server">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Adres e-mail</label>
-                                                    <asp:TextBox ID="addEmailTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Adres e-mail</label>
+                                                <asp:TextBox ID="addEmailTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Hasło</label>
-                                                    <asp:TextBox ID="addPasswordTextBox" runat="server" class="form-control" type="password"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Hasło</label>
+                                                <asp:TextBox ID="addPasswordTextBox" runat="server" class="form-control" type="password"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Imię</label>
-                                                    <asp:TextBox ID="addNameTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Imię</label>
+                                                <asp:TextBox ID="addNameTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Nazwisko</label>
-                                                    <asp:TextBox ID="addSurnameTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Nazwisko</label>
+                                                <asp:TextBox ID="addSurnameTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Stanowisko</label>
-                                                    <asp:TextBox ID="addPositionTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Stanowisko</label>
+                                                <asp:TextBox ID="addPositionTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6xl">
-                                               <div class="form-group">
-                                                    <label class="bmd-label-floating ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rola</label> 
-                                                    <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
-                                                        <asp:ListItem Selected="True" Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
-                                                        <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
-                                                        <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6xl">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rola</label>
+                                                <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
+                                                    <asp:ListItem Selected="True" Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
+                                                    <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
+                                                    <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Miejsce pracy</label>
-                                                    <asp:TextBox ID="addWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Miejsce pracy</label>
+                                                <asp:TextBox ID="addWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <asp:Label ID="BossLabel" class="bmd-label-floating" runat="server" Text="Kierownik"></asp:Label>
-                                                    <asp:DropDownList ID="DropDownBossList" runat="server" class="dropdown-item" > 
-                                                    </asp:DropDownList>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <asp:Label ID="BossLabel" class="bmd-label-floating" runat="server" Text="Kierownik"></asp:Label>
+                                                <asp:DropDownList ID="DropDownBossList" runat="server" class="dropdown-item">
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
-                                        <asp:Button runat="server" ID="SaveUser" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveUser" />
+                                    </div>
+                                    <asp:Button runat="server" ID="SaveUser" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveUser" />
                                     </form>
                                 </div>
                             </div>
@@ -163,7 +160,6 @@
             </footer>
         </div>
     </div>
-
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -186,34 +182,32 @@
                 <li class="header-title">Images</li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="">
+                        <img src="../assets/img/sidebar-1.jpg" alt="" />
                     </a>
                 </li>
                 <li class="active">
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="">
+                        <img src="../assets/img/sidebar-2.jpg" alt="" />
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="">
+                        <img src="../assets/img/sidebar-3.jpg" alt="" />
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="">
+                        <img src="../assets/img/sidebar-4.jpg" alt="" />
                     </a>
                 </li>
             </ul>
         </div>
-
         <script src="./assets/js/core/jquery.min.js"></script>
         <script src="./assets/js/core/popper.min.js"></script>
         <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
         <script src="https://unpkg.com/default-passive-events"></script>
         <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
         <script src="./assets/js/plugins/chartist.min.js"></script>
         <script src="./assets/js/plugins/bootstrap-notify.js"></script>
         <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
@@ -232,7 +226,6 @@
                     window_width = $(window).width();
 
                     $('.fixed-plugin a').click(function (event) {
-                        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                         if ($(this).hasClass('switch-trigger')) {
                             if (event.stopPropagation) {
                                 event.stopPropagation();
@@ -365,13 +358,10 @@
                                 md.misc.sidebar_mini_active = true;
                             }, 300);
                         }
-
-                        // we simulate the window Resize so the charts will get updated in realtime.
                         var simulateWindowResize = setInterval(function () {
                             window.dispatchEvent(new Event('resize'));
                         }, 180);
 
-                        // we stop the simulation of Window Resize after the animations are completed
                         setTimeout(function () {
                             clearInterval(simulateWindowResize);
                         }, 1000);
@@ -380,5 +370,6 @@
                 });
             });
         </script>
+    </div>
 </body>
 </html>

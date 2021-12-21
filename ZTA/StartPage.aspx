@@ -63,6 +63,12 @@
                         </div>
                         <br />
                         <div class="card-body">
+                       <h4>Opis aplikacji:</h4> 
+                            Umożliwia wykonywanie procedury migracji systemów zgodnie z NIST SP 800-207 przez użytkownika, a także dostarczyć informacji w przypadku trudności. 
+                            Umożliwia również monitorowanie postępów użytkownika poprzez zapisywanie dat wykonania każdej czynności. 
+                            ZTA Migration App zapewnia działań użytkownika wykonującego  
+                            procedurę poprzez innego użytkownika posiadającego odpowiednie uprawienia. 
+                        <br /><br />
                         Dyplomantka: Weronika Buras <br />
                         Promotor: dr inż. Krzysztof Jerzy Liderman<br />
                         Uczelnia: Wojskowa Akademia Techniczna <br />
@@ -79,7 +85,7 @@
                     <nav class="float-left">
                         <ul>
                             <li>
-                                <a href="https://www.creative-tim.com">Szablon strony zaczerpnięty z Creative Tim</a>
+                                <a href="https://www.creative-tim.com/product/material-dashboard-dark">Szablon strony zaczerpnięty z Creative Tim</a>
                             </li>
                         </ul>
                     </nav>

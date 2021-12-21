@@ -4,16 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-
     <title>ZTA Migration App</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- Material Kit CSS -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
@@ -42,24 +38,10 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                    <%--<li class="nav-item active ">
-                        <a class="nav-link" href="./AdminPage.aspx">
-                            <i class="material-icons">list</i>
-                            <p>Lista użytkowników</p>
-                        </a>
-                    </li>--%>
-                    <li class="nav-item active ">
-                        <a class="nav-link" href="./ReportPage.aspx">
-                            <i class="material-icons">description</i>
-                            <p>Raport</p>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
-
         <div class="main-panel">
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
@@ -71,53 +53,53 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                    <form class="navbar-form" runat="server">
+                        <div class="nav-item">
+                            <asp:ImageButton ID="ImageButton1" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
+                        </div>
                 </div>
             </nav>
-            <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <form runat="server">
-                            <div class="nav-item">
-                                <div class="nav-link">
-                                    <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" class="material-icons" ImageUrl="~/assets/img/logout.png" />
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Lista czynności</h4>
+                                    <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header card-header-primary">
-                                        <h4 class="card-title ">Lista czynności</h4>
-                                        <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
-                                    </div>
-                                    <div class="card-body">
+                                <div class="card-body">
+                                    <div class="table-responsive">
                                         <div class="table-responsive">
-                                            <div class="table-responsive">
-                                                <asp:TextBox ID="SystemName" placeholder="Wpisz nazwę systemu"  runat="server" class="form-control" ></asp:TextBox><br /> <br />
-                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
-                                                        <asp:BoundField HeaderText="Czynność" DataField="Activity" />
-                                                        <asp:TemplateField HeaderText="Komentarz">
-                                                            <ItemTemplate>
-                                                                <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
-                                                            </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Data i godzina zakończenia">
-                                                            <ItemTemplate>
-                                                                 <asp:TextBox ID="dateTextBox" placeholder="mm/dd/yyyy hh:mm" runat="server" class="form-control" ></asp:TextBox>
-                                                            </ItemTemplate>                                                                                                                                 
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                </asp:GridView>
-                                                <asp:TextBox runat="server" ID="overallComment" placeholder="Komentarz do całej procedury" CssClass="form-control" />
-                                                <asp:Button runat="server" ID="saveButton" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveProcedure" />
-                                                <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
-                                            </div>
+                                            <asp:TextBox ID="SystemName" placeholder="Wpisz nazwę systemu" runat="server" class="form-control"></asp:TextBox><br />
+                                            <br />
+                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                            <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
+                                                <Columns>
+                                                    <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
+                                                    <asp:BoundField HeaderText="Czynność" DataField="Activity" />
+                                                    <asp:TemplateField HeaderText="Komentarz">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Data i godzina zakończenia">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="dateTextBox" placeholder="mm/dd/yyyy hh:mm" runat="server" class="form-control"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                            <br />
+                                            <asp:TextBox runat="server" ID="overallComment" placeholder="Komentarz do całej procedury" CssClass="form-control" />
+                                            <br />
+                                            <asp:Button runat="server" ID="saveButton" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveProcedure" />
+                                            <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
                                         </div>
-                                     </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -135,8 +117,6 @@
             </footer>
         </div>
     </div>
-
-
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -186,12 +166,13 @@
     <script src="https://unpkg.com/default-passive-events"></script>
     <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <script src="./assets/js/plugins/chartist.min.js"></script>
     <script src="./assets/js/plugins/bootstrap-notify.js"></script>
     <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
     <script src="./assets/demo/demo.js"></script>
-    <script>(function () {
+    <script>
+        $(document).ready(function () {
+            $().ready(function () {
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -203,7 +184,6 @@
                 window_width = $(window).width();
 
                 $('.fixed-plugin a').click(function (event) {
-                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                     if ($(this).hasClass('switch-trigger')) {
                         if (event.stopPropagation) {
                             event.stopPropagation();
@@ -337,12 +317,10 @@
                         }, 300);
                     }
 
-                    // we simulate the window Resize so the charts will get updated in realtime.
                     var simulateWindowResize = setInterval(function () {
                         window.dispatchEvent(new Event('resize'));
                     }, 180);
 
-                    // we stop the simulation of Window Resize after the animations are completed
                     setTimeout(function () {
                         clearInterval(simulateWindowResize);
                     }, 1000);

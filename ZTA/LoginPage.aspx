@@ -5,20 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"/>
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Panel logowania</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
-    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
     <link href="assets/demo/demo.css" rel="stylesheet" />
 
 </head>
-
 <body class="dark-edition">
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
@@ -43,7 +40,6 @@
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
@@ -53,20 +49,17 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>                   
-
+                        <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
-
                 </div>
             </nav>
-            <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">Zaloguj się</h4>                                    
+                                    <h4 class="card-title">Zaloguj się</h4>
                                 </div>
                                 <div class="card-body">
                                     <form runat="server">
@@ -85,16 +78,16 @@
                                                     <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="showPassword" type="password" class="form-control"></asp:TextBox>
                                                 </div>
                                             </div>
-                                        </div>                                
-                                <asp:Button ID="LoginButton" runat="server" OnClick="Login" Text="Zaloguj" class="btn btn-primary pull-right" />                               
-                                </form>
+                                        </div>
+                                        <asp:Button ID="LoginButton" runat="server" OnClick="Login" Text="Zaloguj" class="btn btn-primary pull-right" />
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-       </div>
-        <footer class="footer">
+            <footer class="footer">
                 <div class="container-fluid">
                     <div class="copyright float-right">
                         &copy;           
@@ -107,7 +100,6 @@
             </footer>
         </div>
     </div>
-
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -130,42 +122,36 @@
                 <li class="header-title">Images</li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt=""/>
+                        <img src="../assets/img/sidebar-1.jpg" alt="" />
                     </a>
                 </li>
                 <li class="active">
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt=""/>
+                        <img src="../assets/img/sidebar-2.jpg" alt="" />
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt=""/>
+                        <img src="../assets/img/sidebar-3.jpg" alt="" />
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt=""/>
+                        <img src="../assets/img/sidebar-4.jpg" alt="" />
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-    <!--   Core JS Files   -->
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
     <script src="https://unpkg.com/default-passive-events"></script>
     <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Chartist JS -->
     <script src="../assets/js/plugins/chartist.min.js"></script>
-    <!--  Notifications Plugin    -->
     <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="../assets/demo/demo.js"></script>
     <script>
         $(document).ready(function () {
@@ -181,7 +167,6 @@
                 window_width = $(window).width();
 
                 $('.fixed-plugin a').click(function (event) {
-                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                     if ($(this).hasClass('switch-trigger')) {
                         if (event.stopPropagation) {
                             event.stopPropagation();
@@ -315,12 +300,10 @@
                         }, 300);
                     }
 
-                    // we simulate the window Resize so the charts will get updated in realtime.
                     var simulateWindowResize = setInterval(function () {
                         window.dispatchEvent(new Event('resize'));
                     }, 180);
 
-                    // we stop the simulation of Window Resize after the animations are completed
                     setTimeout(function () {
                         clearInterval(simulateWindowResize);
                     }, 1000);
@@ -328,7 +311,7 @@
                 });
             });
         });
-  </script>
+    </script>
 </body>
 
 </html>

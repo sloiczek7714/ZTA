@@ -4,16 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-
     <title>ZTA Migration App</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- Material Kit CSS -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
@@ -43,12 +39,10 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                    <!-- your sidebar here -->
                 </ul>
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
@@ -60,9 +54,13 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                
+                <form runat="server">
+                    <div class="nav-item">
+                        <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
+                    </div>
                 </div>
             </nav>
-            <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -72,79 +70,77 @@
                                     <h4 class="card-title">Dane użytkownika</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form runat="server">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">aders e-mail</label>
-                                                    <asp:TextBox ID="editEmailTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">aders e-mail</label>
+                                                <asp:TextBox ID="editEmailTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Imię</label>
-                                                    <asp:TextBox ID="editNameTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Hasło</label>
-                                                    <asp:TextBox ID="editPasswordTextBox" runat="server" Type="password" class="form-control"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Imię</label>
+                                                <asp:TextBox ID="editNameTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Nazwisko</label>
-                                                    <asp:TextBox ID="editSurnameTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Hasło</label>
+                                                <asp:TextBox ID="editPasswordTextBox" runat="server" Type="password" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Stanowisko</label>
-                                                    <asp:TextBox ID="editPositionTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Nazwisko</label>
+                                                <asp:TextBox ID="editSurnameTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                         <div class="row">
-                                            <div class="col-md-6xl">
-                                               <div class="form-group">
-                                                    <label class="bmd-label-floating ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rola</label> 
-                                                    <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
-                                                        <asp:ListItem Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
-                                                        <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
-                                                        <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Stanowisko</label>
+                                                <asp:TextBox ID="editPositionTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Miejsce pracy</label>
-                                                     <asp:TextBox ID="editWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6xl">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rola</label>
+                                                <asp:DropDownList ID="RoleList" AutoPostBack="true" OnSelectedIndexChanged="selectRole" class="form-control margin-left" runat="server">
+                                                    <asp:ListItem Value="Pracownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pracownik</asp:ListItem>
+                                                    <asp:ListItem Value="Kierownik" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kierownik</asp:ListItem>
+                                                    <asp:ListItem Value="Administrator" class="dropdown-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
-                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <asp:Label ID="editBossLabel" class="bmd-label-floating" runat="server" Text="Kierownik"></asp:Label>
-                                                    <asp:DropDownList ID="EditDropDownBossList" runat="server" class="form-control"  BackColor="White" ForeColor="Black"> 
-                                                    </asp:DropDownList>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Miejsce pracy</label>
+                                                <asp:TextBox ID="editWorkPlaceTextBox" runat="server" class="form-control"></asp:TextBox>
                                             </div>
-                                        </div>                                
-
-                                        <asp:Button runat="server" ID="backButton" OnClick="GoToUserPage" class="btn btn-primary pull-left" Text="Anuluj" />
-                                        <asp:Button runat="server" ID="editUserButton" OnClick="SaveUser" class="btn btn-primary pull-left" Text="Zapisz zmiany" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <asp:Label ID="editBossLabel" class="bmd-label-floating" runat="server" Text="Kierownik"></asp:Label>
+                                                <asp:DropDownList ID="EditDropDownBossList" runat="server" class="form-control" BackColor="White" ForeColor="Black">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <asp:Button runat="server" ID="backButton" OnClick="GoToUserPage" class="btn btn-primary pull-left" Text="Anuluj" />
+                                    <asp:Button runat="server" ID="editUserButton" OnClick="SaveUser" class="btn btn-primary pull-left" Text="Zapisz zmiany" />
                                     </form>
                                 </div>
                             </div>
@@ -154,26 +150,16 @@
             </div>
             <footer class="footer">
                 <div class="container-fluid">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <%--<a href="https://www.creative-tim.com"> Creative Tim</a>--%>
-                            </li>
-                        </ul>
-                    </nav>
                     <div class="copyright float-right">
-                        &copy;
-           
+                        &copy;           
                         <script>
                             document.write(new Date().getFullYear()) </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
-         
+                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
                     </div>
                 </div>
             </footer>
         </div>
     </div>
-
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -196,22 +182,22 @@
                 <li class="header-title">Images</li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="">
+                        <img src="../assets/img/sidebar-1.jpg" alt="" />
                     </a>
                 </li>
                 <li class="active">
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="">
+                        <img src="../assets/img/sidebar-2.jpg" alt="" />
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="">
+                        <img src="../assets/img/sidebar-3.jpg" alt="" />
                     </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="">
+                        <img src="../assets/img/sidebar-4.jpg" alt="" />
                     </a>
                 </li>
             </ul>
@@ -223,7 +209,6 @@
         <script src="https://unpkg.com/default-passive-events"></script>
         <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
         <script src="./assets/js/plugins/chartist.min.js"></script>
         <script src="./assets/js/plugins/bootstrap-notify.js"></script>
         <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
@@ -242,7 +227,6 @@
                     window_width = $(window).width();
 
                     $('.fixed-plugin a').click(function (event) {
-                        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                         if ($(this).hasClass('switch-trigger')) {
                             if (event.stopPropagation) {
                                 event.stopPropagation();
@@ -376,12 +360,10 @@
                             }, 300);
                         }
 
-                        // we simulate the window Resize so the charts will get updated in realtime.
                         var simulateWindowResize = setInterval(function () {
                             window.dispatchEvent(new Event('resize'));
                         }, 180);
 
-                        // we stop the simulation of Window Resize after the animations are completed
                         setTimeout(function () {
                             clearInterval(simulateWindowResize);
                         }, 1000);
@@ -390,5 +372,6 @@
                 });
             });
         </script>
+    </div>
 </body>
 </html>
