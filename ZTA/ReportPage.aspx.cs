@@ -19,7 +19,11 @@ namespace ZTA
 {
     public partial class ReportPage : System.Web.UI.Page
     {
-
+        public int a;
+        public int b;
+        string bossID;
+        public int restActivities { get { return a; } set { } }
+        public int endedActivities { get { return b; } set { } }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,22 +31,23 @@ namespace ZTA
             {
                 string ID = Session["ID"].ToString();
                 string formID = Session["formID"].ToString();
+                a = 5;
+                b = 21;
+                
                 ZTA.SelectParameters.Add("formID", formID);
-                //if (Helper.DoesUserHasPermission(ID, "Administrator"))
-                //{
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+
                 try
                 {
                     ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', Format(Answer.Answer_Date ,'MM/dd/yyyy hh:mm') as 'AData' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID left join Users on Users.User_ID = Form.User_ID WHERE Form.Form_ID = @formID";
-
                 }
 
                 catch
                 {
-
+                    Response.Redirect("ErrorPage.aspx");
                 }
                 try
-                {
-                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                {                   
                     connection.Open();
                     SqlCommand select = new SqlCommand("SELECT Form.System_Name,FORMAT(Form.Begin_Date ,'MM/dd/yyyy hh:mm')as 'Begin_Date' ,FORMAT(Form.End_Date ,'MM/dd/yyyy hh:mm') as 'End_Date', Form.Comment, Users.Name as 'Name', Users.Surname as 'Surname', Form.User_ID, Users_Boss.Boss_ID FROM Form join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID=Users.User_ID WHERE Form.Form_ID = @formID", connection);
                     select.Parameters.AddWithValue("formID", formID);
@@ -53,18 +58,22 @@ namespace ZTA
                         beginDatelabel.Text = "Data rozpoczęcia: " + reader[1].ToString();
                         endDatelabel.Text = "Data zakończenia: " + reader[2].ToString();
                         employelabel.Text = "Imię i nazwisko pracownika: " + reader[4].ToString() + reader[5].ToString() + "ID:" + reader[6].ToString();
-                        string boss = reader[7].ToString();
-                        if (boss != "")
-                        {
-                            SqlCommand selectBoss = new SqlCommand("Select Users.Name, Users.Surname From Users WHERE User_ID=@bossID", connection);
-                            selectBoss.Parameters.AddWithValue("bossID", boss);
-                          //  var DataReade = selectBoss.ExecuteNonQuery().ToString();
-                            //bosslabel.Text = "Imię i nazwisko kierownika: " + bossNameSurname + "ID:" + boss;
-                        }
-                        commentlabel.Text = "Komentarz:" + reader[3].ToString();
+                        bossID = reader[7].ToString();
+                       
+                        commentlabel.Text = "Komentarz: " + reader[3].ToString();
                     }
                     reader.Close();
-
+                    if (!String.IsNullOrEmpty(bossID))
+                    {
+                        SqlCommand selectBoss = new SqlCommand("Select Users.Name, Users.Surname From Users WHERE Users.User_ID=@bossID", connection);
+                        selectBoss.Parameters.AddWithValue("bossID", bossID);
+                        var DataReader = selectBoss.ExecuteReader();
+                        while (DataReader.Read())
+                        {
+                            bosslabel.Text = "Imię i nazwisko kierownika: " + DataReader[0].ToString()+ DataReader[1].ToString() + "ID: " + bossID;
+                            DataReader.Close();
+                        }
+                    }
 
                 }
                 catch
@@ -72,33 +81,21 @@ namespace ZTA
                     TextBox textBox = new TextBox();
                     textBox.Text = "Nie masz zadnych proecedur";
                 }
-                //}
 
-                //else if (Helper.DoesUserHasPermission(ID, "Kierownik"))
-                //{
-                //    try
-                //    {
-                //        ZTA.SelectCommand = "SELECT Form.Form_ID,Form.System_Name,Form.Begin_Date ,Form.End_Date,Form.Comment,Form.User_ID ,Users.Name as 'Name',Users.Surname as 'Surname', Users_Boss.Boss_ID as 'Kierownik' FROM [dbo].[Form] left join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID = Users.User_ID where Users_Boss.Boss_ID =@ID ";
-                //    }
-                //    catch
-                //    {
-                //        TextBox textBox = new TextBox();
-                //        textBox.Text = "Nie masz zadnych proecedur";
-                //    }
-                //}
+                try
+                {
+                    SqlCommand select = new SqlCommand(" SELECT sum(case when Answer_Date is null then 0 else 1 end) FROM[dbo].[Answer]  where Answer.Form_ID=@formID", connection);
+                    select.Parameters.AddWithValue("formID", formID);
+                    string i = select.ExecuteScalar().ToString();
+                    b = Int32.Parse(i);
+                    a = 21 - b;
 
-                //else if (Helper.DoesUserHasPermission(ID, "Pracownik"))
-                //{
-                //    try
-                //    {
-                //        ZTA.SelectCommand = "SELECT Form.Form_ID,Form.System_Name,Form.Begin_Date ,Form.End_Date,Form.Comment,Form.User_ID ,Users.Name as 'Name' ,Users.Surname as 'Surname' , Users_Boss.Boss_ID as 'Kierownik' FROM [dbo].[Form] left join Users on Users.User_ID = Form.User_ID  left join Users_Boss on Users_Boss.User_ID = Users.User_ID where Users.User_ID =@ID";
-                //    }
-                //    catch
-                //    {
-                //        TextBox textBox = new TextBox();
-                //        textBox.Text = "Nie masz zadnych proecedur";
-                //    }
-                //}
+                }
+                catch
+                {
+                    Response.Redirect("ErrorPage.aspx");
+                }
+               
             }
 
             else
@@ -154,8 +151,8 @@ namespace ZTA
                 using (HtmlTextWriter hw = new HtmlTextWriter(sw))
                 {
                     //To Export all pages
-                    GridView1.AllowPaging = false;
-                    GridView1.RenderControl(hw);
+                    reportGridView.AllowPaging = false;
+                    reportGridView.RenderControl(hw);
                     StringReader sr = new StringReader(sw.ToString());
                     Document pdfDoc = new Document(PageSize.A2, 10f, 10f, 10f, 0f);
                     HTMLWorker htmlparser = new HTMLWorker(pdfDoc);

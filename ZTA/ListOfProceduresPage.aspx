@@ -47,13 +47,13 @@
                             <i class="material-icons">list</i>
                             <p>Lista użytkowników</p>
                         </a>
-                    </li>--%>
+                    </li>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./ReportPage.aspx">
                             <i class="material-icons">description</i>
                             <p>Raport</p>
                         </a>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
         </div>
@@ -92,9 +92,40 @@
                                     <div class="col-md-5">
                                          <asp:Button runat="server" ID="newProcedureButton" Text="Nowa procedura" class="btn btn-primary pull-left" OnClick="goToNewProcedure" />
                                     </div>
+
+
+                                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                        <script type="text/javascript">
+                                            google.charts.load('current', { 'packages': ['corechart'] });
+                                            google.charts.setOnLoadCallback(drawChart);
+
+                                            function drawChart() {
+
+                                                var data = google.visualization.arrayToDataTable([
+                                                    ['Task', 'Hours per Day'],
+                                                    ['Pozostałe procedury', <%=restProcedures  %>],
+                                                    ['Ukończone procedury', <%=endedProcedures  %>]
+                                                ]);
+
+                                                var options = {
+                                                    title: 'Zstawienie ukończonych i trwających procedur',
+                                                    backgroundColor: { fill: 'transparent' }
+                                                    
+                                                    
+                                                };
+
+                                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                                                chart.draw(data, options);
+                                            }
+                                        </script>
+
+
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div class="table-responsive">
+
                                                 <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
                                                 <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
                                                     <Columns>
