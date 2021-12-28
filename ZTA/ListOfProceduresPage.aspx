@@ -6,14 +6,11 @@
 <head runat="server">
 
     <title>ZTA Migration App</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- Material Kit CSS -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
@@ -31,7 +28,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./LoginPage.aspx">
+                        <a class="nav-link" href="./UserPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Profil Uzytkownika</p>
                         </a>
@@ -42,24 +39,10 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                  <%--  <li class="nav-item active ">
-                        <a class="nav-link" href="./AdminPage.aspx">
-                            <i class="material-icons">list</i>
-                            <p>Lista użytkowników</p>
-                        </a>
-                    </li>--%>
-                    <li class="nav-item active ">
-                        <a class="nav-link" href="./ReportPage.aspx">
-                            <i class="material-icons">description</i>
-                            <p>Raport</p>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
-
         <div class="main-panel">
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
@@ -71,48 +54,80 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                    <form class="navbar-form" runat="server">
+                        <div class="nav-item">
+                            <asp:ImageButton ID="ImageButton1" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
+                        </div>
                 </div>
             </nav>
-            <!-- End Navbar -->
             <div class="content">
+                <div class="col-md-5">
+                    <asp:Button runat="server" ID="newProcedureButton" Text="Nowa procedura" class="btn btn-primary pull-left" OnClick="goToNewProcedure" />
+                </div> <br/> <br /><br />
                 <div class="container-fluid">
                     <div class="row">
-                        <form runat="server">
-                            <div class="nav-item">
-                                <div class="nav-link">
-                                    <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" class="material-icons" ImageUrl="~/assets/img/logout.png" />
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Lista procedur użytkownika</h4>
                                 </div>
-                            </div>
+                                <div id="piechart" style="width: 900px; height: 500px;"></div>
+                                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                <script type="text/javascript">
+                                    google.charts.load('current', { 'packages': ['corechart'] });
+                                    google.charts.setOnLoadCallback(drawChart);
 
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header card-header-primary">
-                                        <h4 class="card-title ">Lista procedur użytkownika</h4>
-                                    </div>
-                                    <div class="col-md-5">
-                                         <asp:Button runat="server" ID="newProcedureButton" Text="Nowa procedura" class="btn btn-primary pull-left" OnClick="goToNewProcedure" />
-                                    </div>
-                                    <div class="card-body">
+                                    function drawChart() {
+
+                                        var data = google.visualization.arrayToDataTable([
+                                            ['Procedury', 'Ilość procedur'],
+                                            ['Pozostałe procedury', <%=restProcedures  %>],
+                                            ['Ukończone procedury', <%=endedProcedures  %>]
+                                        ]);
+
+                                        var options = {
+                                            title: 'Zstawienie ukończonych i trwających procedur',
+                                            backgroundColor: { fill: 'transparent' },
+                                            legendTextStyle: { color: 'white' },
+                                            titleTextStyle: { color: 'white' }
+                                        };
+
+                                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                                        chart.draw(data, options);
+                                    }
+                                </script>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
                                         <div class="table-responsive">
-                                            <div class="table-responsive">
-                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="Numer" DataField="Form_ID" />
-                                                        <asp:BoundField HeaderText="Nazwa systemu" DataField="System_Name" />
-                                                        <asp:BoundField HeaderText="Data rozpoczecia" DataField="Begin_Date" />
-                                                        <asp:BoundField HeaderText="Data zakończenia" DataField="End_Date" />
-                                                        <asp:BoundField HeaderText="Komentarz" DataField="Comment" />
-                                                        <asp:BoundField HeaderText="Imię pracownika" DataField="Name" />
-                                                        <asp:BoundField HeaderText="Nazwisko pracownika" DataField="Surname" />
-                                                        <asp:BoundField HeaderText="Numer kierownika" DataField="Kierownik" />
-                                                    </Columns>
-                                                </asp:GridView>
-                                              </div>
+                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                            <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
+                                                <Columns>
+                                                    <asp:BoundField HeaderText="Numer" DataField="Form_ID" />
+                                                    <asp:BoundField HeaderText="Nazwa systemu" DataField="System_Name" />
+                                                    <asp:BoundField HeaderText="Data rozpoczecia" DataField="Begin_Date" />
+                                                    <asp:BoundField HeaderText="Data zakończenia" DataField="End_Date" />
+                                                    <asp:BoundField HeaderText="Komentarz" DataField="Comment" />
+                                                    <asp:BoundField HeaderText="Imię pracownika" DataField="Name" />
+                                                    <asp:BoundField HeaderText="Nazwisko pracownika" DataField="Surname" />
+                                                    <asp:BoundField HeaderText="Numer kierownika" DataField="Kierownik" />
+                                                    <asp:TemplateField HeaderText="Funkcje">
+                                                        <ItemTemplate>
+                                                            <asp:Button runat="server" ID="selectButton" Text="Wybierz" class="btn btn-primary pull-right" CommandName="Select" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                            <br />
+                                            <asp:Button runat="server" ID="raportButton" Text="Pokaż raport" class="btn btn-primary pull-left" OnClick="showRaport" />
+                                            <asp:Button runat="server" ID="editButton" Text="Edytuj" class="btn btn-primary pull-left" OnClick="editProcedure" />
+                                            <asp:Button runat="server" ID="deleteButton" Text="Usuń" class="btn btn-primary pull-left" OnClick="deleteProcedure" />
                                         </div>
-                                     </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -130,8 +145,6 @@
             </footer>
         </div>
     </div>
-
-
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -181,12 +194,13 @@
     <script src="https://unpkg.com/default-passive-events"></script>
     <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <script src="./assets/js/plugins/chartist.min.js"></script>
     <script src="./assets/js/plugins/bootstrap-notify.js"></script>
     <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
     <script src="./assets/demo/demo.js"></script>
-    <script>(function () {
+    <script>
+        $(document).ready(function () {
+            $().ready(function () {
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -198,7 +212,6 @@
                 window_width = $(window).width();
 
                 $('.fixed-plugin a').click(function (event) {
-                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                     if ($(this).hasClass('switch-trigger')) {
                         if (event.stopPropagation) {
                             event.stopPropagation();
@@ -332,12 +345,10 @@
                         }, 300);
                     }
 
-                    // we simulate the window Resize so the charts will get updated in realtime.
                     var simulateWindowResize = setInterval(function () {
                         window.dispatchEvent(new Event('resize'));
                     }, 180);
 
-                    // we stop the simulation of Window Resize after the animations are completed
                     setTimeout(function () {
                         clearInterval(simulateWindowResize);
                     }, 1000);

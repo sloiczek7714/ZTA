@@ -39,23 +39,10 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                    <%--<li class="nav-item active ">
-                        <a class="nav-link" href="./AdminPage.aspx">
-                            <i class="material-icons">list</i>
-                            <p>Lista użytkowników</p>
-                        </a>
-                    </li>--%>
-                    <li class="nav-item active ">
-                        <a class="nav-link" href="./ReportPage.aspx">
-                            <i class="material-icons">description</i>
-                            <p>Raport</p>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
@@ -67,9 +54,12 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                    <form runat="server">
+                        <div class="nav-item">
+                            <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
+                        </div>
                 </div>
             </nav>
-            <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -80,38 +70,37 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <form runat="server">
-                                            <asp:Button runat="server" OnClick="GoToAddUserPage" ID="AddUserButton" Text="Dodaj nowego użytkownika" class="btn btn-primary pull-left" />
-                                            <div class="table-responsive">
-                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT Users.User_ID, Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role,
+                                        <asp:Button runat="server" OnClick="GoToAddUserPage" ID="AddUserButton" Text="Dodaj nowego użytkownika" class="btn btn-primary pull-left" />
+                                        <div class="table-responsive">
+                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT Users.User_ID, Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role,
                                                     Users_Boss.Boss_ID FROM Users  LEFT JOIN Users_Boss ON Users.User_ID = Users_Boss.User_ID"></asp:SqlDataSource>
-                                                <br />
-                                                <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="  ID  " DataField="User_ID" />
-                                                        <asp:BoundField HeaderText="  Imie  " DataField="Name" />
-                                                        <asp:BoundField HeaderText="  Nazwisko  " DataField="Surname" />
-                                                        <asp:BoundField HeaderText="  adres e-mail  " DataField="Email" />
-                                                        <asp:BoundField HeaderText="  Stanowisko  " DataField="Position" />
-                                                        <asp:BoundField HeaderText="  Miejsce pracy  " DataField="WorkPlace" />
-                                                        <asp:BoundField HeaderText="  Rola  " DataField="Role" />
-                                                        <asp:BoundField HeaderText="  Kierownik  " DataField="Boss_ID" />
-                                                        <asp:TemplateField HeaderText="Funkcje">
-                                                            <ItemTemplate>
-                                                                <asp:Button runat="server" ID="DeleteButton" Text="Wybierz" class="btn btn-primary pull-right" CommandName="Select" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                </asp:GridView>
-                                                <br />
-                                                <asp:Button runat="server" ID="DeleteButton" Text="Usuń" class="btn btn-primary pull-left" OnClick="DeteleUser" />
-                                                <asp:Button runat="server" ID="EditButton" Text="Edytuj" class="btn btn-primary pull-left" OnClick="EditUser" />
-                                            </div>
+                                            <br />
+                                            <asp:GridView ID="GridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="False">
+                                                <Columns>
+                                                    <asp:BoundField HeaderText="  ID  " DataField="User_ID" />
+                                                    <asp:BoundField HeaderText="  Imie  " DataField="Name" />
+                                                    <asp:BoundField HeaderText="  Nazwisko  " DataField="Surname" />
+                                                    <asp:BoundField HeaderText="  adres e-mail  " DataField="Email" />
+                                                    <asp:BoundField HeaderText="  Stanowisko  " DataField="Position" />
+                                                    <asp:BoundField HeaderText="  Miejsce pracy  " DataField="WorkPlace" />
+                                                    <asp:BoundField HeaderText="  Rola  " DataField="Role" />
+                                                    <asp:BoundField HeaderText="  Kierownik  " DataField="Boss_ID" />
+                                                    <asp:TemplateField HeaderText="Funkcje">
+                                                        <ItemTemplate>
+                                                            <asp:Button runat="server" ID="DeleteButton" Text="Wybierz" class="btn btn-primary pull-right" CommandName="Select" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                            <br />
+                                            <asp:Button runat="server" ID="DeleteButton" Text="Usuń" class="btn btn-primary pull-left" OnClick="DeteleUser" />
+                                            <asp:Button runat="server" ID="EditButton" Text="Edytuj" class="btn btn-primary pull-left" OnClick="EditUser" />
+                                        </div>
                                         </form>
                                     </div>
                                 </div>
-                           <%-- </div>
-                        </div>--%>
+                            </div>
+                        </div>
                     </div>
                     <footer class="footer">
                         <div class="container-fluid">
@@ -176,7 +165,6 @@
         <script src="https://unpkg.com/default-passive-events"></script>
         <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
         <script src="./assets/js/plugins/chartist.min.js"></script>
         <script src="./assets/js/plugins/bootstrap-notify.js"></script>
         <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
@@ -195,7 +183,6 @@
                     window_width = $(window).width();
 
                     $('.fixed-plugin a').click(function (event) {
-                        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                         if ($(this).hasClass('switch-trigger')) {
                             if (event.stopPropagation) {
                                 event.stopPropagation();
@@ -328,13 +315,10 @@
                                 md.misc.sidebar_mini_active = true;
                             }, 300);
                         }
-
-                        // we simulate the window Resize so the charts will get updated in realtime.
                         var simulateWindowResize = setInterval(function () {
                             window.dispatchEvent(new Event('resize'));
                         }, 180);
 
-                        // we stop the simulation of Window Resize after the animations are completed
                         setTimeout(function () {
                             clearInterval(simulateWindowResize);
                         }, 1000);
@@ -343,6 +327,7 @@
                 });
             });
         </script>
+    </div>
 </body>
 </html>
 

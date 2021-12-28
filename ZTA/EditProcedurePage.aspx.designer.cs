@@ -11,17 +11,17 @@ namespace ZTA
 {
 
 
-    public partial class NewProcedure
+    public partial class EditProcedure
     {
 
         /// <summary>
-        /// SystemName control.
+        /// SystemNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SystemName;
+        protected global::System.Web.UI.WebControls.Label SystemNameLabel;
 
         /// <summary>
         /// ZTA control.
@@ -42,13 +42,13 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.GridView procedureGridView;
 
         /// <summary>
-        /// overallComment control.
+        /// editOverallComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox overallComment;
+        protected global::System.Web.UI.WebControls.TextBox editOverallComment;
 
         /// <summary>
         /// saveButton control.

@@ -1,30 +1,27 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="ZTA.LoginPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditProcedurePage.aspx.cs" Inherits="ZTA.EditProcedure" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head runat="server">
+    <title>ZTA Migration App</title>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Panel logowania</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
-    <link href="assets/demo/demo.css" rel="stylesheet" />
-
+    <!-- Material Kit CSS -->
+    <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
     <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+        <div class="sidebar" data-color="purple" data-background-color="black" data-image="./assets/img/sidebar-2.jpg">
             <div class="logo">
-                <a class="simple-text logo-normal">ZTA Migration App</a>
+                <a class="simple-text logo-normal">Menu</a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item  ">
+                    <li class="nav-item active  ">
                         <a class="nav-link" href="./StartPage.aspx">
                             <i class="material-icons">dashboard</i>
                             <p>Strona główna</p>
@@ -33,19 +30,25 @@
                     <li class="nav-item active ">
                         <a class="nav-link" href="./LoginPage.aspx">
                             <i class="material-icons">person</i>
-                            <p>Logowanie</p>
+                            <p>Profil Uzytkownika</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link" href="./ListOfProceduresPage.aspx">
+                            <i class="material-icons">content_paste</i>
+                            <p>Procedura</p>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="main-panel">
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                         <a class="navbar-brand" href="javascript:void(0)">ZTA Migration App</a>
                     </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
@@ -56,34 +59,44 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <h4 class="card-title">Zaloguj się</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form runat="server">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">adres e-mail</label>
-                                                    <asp:TextBox ID="emailTextBox" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
+                       <form class="navbar-form" runat="server">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title ">Lista czynności</h4>
+                                        <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <div class="table-responsive">
+                                                <asp:Label ID="SystemNameLabel" placeholder="Wpisz nazwę systemu"  runat="server" class="form-control" ></asp:Label><br /> <br />
+                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>"  OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Numer" DataField="Numer_czynnosci"/>
+                                                        <asp:BoundField HeaderText="Czynność" DataField="Czynnosc" />
+                                                        <asp:TemplateField HeaderText="Komentarz">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Data i godzina zakończenia">
+                                                            <ItemTemplate>
+                                                                 <asp:TextBox ID="dateTextBox" placeholder="mm/dd/yyyy hh:mm" runat="server" class="form-control" ></asp:TextBox>
+                                                            </ItemTemplate>                                                                                                                                 
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                                <br />
+                                                <asp:TextBox runat="server" ID="editOverallComment" placeholder="Komentarz do całej procedury" CssClass="form-control" /> <br />
+                                                <asp:Button runat="server" ID="saveButton" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveProcedure" />
+                                                <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Hasło</label>
-                                                    <asp:TextBox ID="passwordTextBox" runat="server" OnTextChanged="showPassword" type="password" class="form-control"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <asp:Button ID="LoginButton" runat="server" OnClick="Login" Text="Zaloguj" class="btn btn-primary pull-right" />
-                                    </form>
+                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -143,19 +156,17 @@
             </ul>
         </div>
     </div>
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="./assets/js/core/jquery.min.js"></script>
+    <script src="./assets/js/core/popper.min.js"></script>
+    <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
     <script src="https://unpkg.com/default-passive-events"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="../assets/js/plugins/chartist.min.js"></script>
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-    <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
-    <script src="../assets/demo/demo.js"></script>
-    <script>
-        $(document).ready(function () {
-            $().ready(function () {
+    <script src="./assets/js/plugins/chartist.min.js"></script>
+    <script src="./assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
+    <script src="./assets/demo/demo.js"></script>
+    <script>(function () {
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -313,18 +324,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportPage.aspx.cs" Inherits="ZTA.ReportPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportPage.aspx.cs" Inherits="ZTA.ReportPage" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -6,24 +6,16 @@
 <head runat="server">
 
     <title>ZTA Migration App</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- Material Kit CSS -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="black" data-image="./assets/img/sidebar-2.jpg">
-            <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
             <div class="logo">
                 <a class="simple-text logo-normal">Menu
                 </a>
@@ -37,7 +29,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./LoginPage.aspx">
+                        <a class="nav-link" href="./UserPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Profil Uzytkownika</p>
                         </a>
@@ -48,25 +40,16 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                    <%--<li class="nav-item active ">
-                        <a class="nav-link" href="./AdminPage.aspx">
-                            <i class="material-icons">list</i>
-                            <p>Lista użytkowników</p>
-                        </a>
-                    </li>--%>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./ReportPage.aspx">
                             <i class="material-icons">description</i>
-                            <p>
-                                Raport<p>
+                            <p>Raport</p>
                         </a>
                     </li>
-                    <!-- your sidebar here -->
                 </ul>
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
@@ -78,83 +61,202 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                    <form class="navbar-form" runat="server">
+                        <div class="nav-item">
+                            <asp:ImageButton ID="ImageButton1" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
+                        </div>
                 </div>
             </nav>
-
-            <!-- End Navbar -->
             <div class="content">
-                <div class="container-fluid">
-                    Miejsce na pobranie procedury w pdfie?
+                <div class="col-md-6">
+                    <asp:Button ID="generateRaportButton" runat="server" OnClick="pdrCreate" Text="Generuj raport" class="btn btn-primary pull-left" />
                 </div>
-            </div>
-            <footer class="footer">
+                <br />
+                <br />
+                <br />
                 <div class="container-fluid">
-                    <div class="copyright float-right">
-                        &copy;
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Podgląd raportu</h4>
+                                </div>
+                                <div class="card-body" id="report">
+                                    <div class="table-responsive">
+                                        <asp:Label ID="systemNamelabel" runat="server" CssClass="navbar-brand"></asp:Label>
+                                        <asp:Label ID="beginDatelabel" runat="server" CssClass="navbar-brand"></asp:Label>
+                                        <asp:Label ID="endDatelabel" runat="server" CssClass="navbar-brand"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="bosslabel" runat="server" CssClass="navbar-brand"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="employelabel" runat="server" CssClass="navbar-brand"></asp:Label>
+                                        <asp:Label ID="commentlabel" runat="server" CssClass="navbar-brand"></asp:Label>
+                                        <br />
+                                        <div id="piechart" style="width: 700px; height: 400px;"></div>
+                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                        <script type="text/javascript">
+                                            google.charts.load('current', { 'packages': ['corechart'] });
+                                            google.charts.setOnLoadCallback(drawChart);
+
+                                            function drawChart() {
+
+                                                var data = google.visualization.arrayToDataTable([
+                                                    ['Czynności', 'Liczba czynności'],
+                                                    ['Pozostałe', <%=restActivities  %>],
+                                                    ['Ukończone czynności', <%=endedActivities  %>]
+                                                ]);
+
+                                                var options = {
+                                                    title: 'Postęp',
+                                                    backgroundColor: { fill: 'transparent' },
+                                                    legendTextStyle: { color: 'black', fontSize: '18' },
+                                                    titleTextStyle: { color: 'black', fontSize: '18' }
+                                                };
+                                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                                                chart.draw(data, options);
+                                            }
+                                        </script>
+
+
+                                        <p id="demo" onclick="fun()">Click me to change my text color.</p>
+                                        <script type="text/javascript">
+                                            function fun() {
+                                                var element = document.getElementById('report');
+                                                //var opt = {
+                                                //        margin: 1,
+                                                //        filename: data,
+                                                //        image: { type: 'jpeg', quality: 1 },
+                                                //        html2canvas: { scale: 5 },
+                                                //        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                                //};
+                                                //    html2pdf().set(opt).from(element).save();                                            
+                                                //html2pdf().set(opt).from(element).save();
+                                                html2pdf(element, {
+                                                    margin: 10,
+                                                    filename: 'myfile.pdf',
+                                                    image: { type: 'jpeg', quality: 1 },
+                                                    html2canvas: { scale: 5, logging: true, dpi: 192, letterRendering: true },
+                                                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                                });
+                                            }
+                                        </script>
+                                        <script src="es6-promise.auto.min.js"></script>
+                                        <script src="jspdf.min.js"></script>
+                                        <script src="html2canvas.min.js"></script>
+                                        <script src="html2pdf.min.js"></script>
+
+                                        <button onclick="fun()">Click me</button>
+                                        <script>                                       
+                                            $('#download').click(function () {
+                                                var obj = $(this);
+                                                Utils.disableButton(obj);
+                                                $.get("/MineFace/GetPrintoutFileName")
+                                                    .done(function (data) {
+                                                        var opt = {
+                                                            margin: 1,
+                                                            filename: data,
+                                                            image: { type: 'jpeg', quality: 1 },
+                                                            html2canvas: { scale: 5 },
+                                                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                                        };
+                                                        html2pdf().set(opt).from(document.getElementById('report')).save();
+                                                    })
+                                                    .fail(function (data) {
+                                                        console.log(data);
+                                                        Utils.showErrorModal(data);
+                                                    }).always(function () {
+                                                        Utils.enableButton(obj);
+                                                        $('#download-button-spinner').attr('hidden', true);
+                                                    });
+                                            });</script>
+
+                                        <div class="table-responsive">
+                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>"></asp:SqlDataSource>
+                                            <br />
+                                            <asp:GridView ID="reportGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
+                                                <Columns>
+                                                    <asp:BoundField HeaderText="Numer" DataField="Numer_czynnosci" />
+                                                    <asp:BoundField HeaderText="Czynność" DataField="Czynnosc" />
+                                                    <asp:BoundField HeaderText="Komenatrz" DataField="Komentarz" />
+                                                    <asp:BoundField HeaderText="Data zakończenia" DataField="AData" />
+                                                </Columns>
+                                            </asp:GridView>
+                                            <br />
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="footer">
+                        <div class="container-fluid">
+                            <div class="copyright float-right">
+                                &copy;
                         <script>
                             document.write(new Date().getFullYear())            </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-
-    <div class="fixed-plugin">
-        <div class="dropdown show-dropdown">
-            <a href="#" data-toggle="dropdown">
-                <i class="fa fa-cog fa-2x"></i>
-            </a>
-            <ul class="dropdown-menu">
-                <li class="header-title">Sidebar Filters</li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger active-color">
-                        <div class="badge-colors ml-auto mr-auto">
-                            <span class="badge filter badge-purple active" data-color="purple"></span>
-                            <span class="badge filter badge-azure" data-color="azure"></span>
-                            <span class="badge filter badge-green" data-color="green"></span>
-                            <span class="badge filter badge-warning" data-color="orange"></span>
-                            <span class="badge filter badge-danger" data-color="danger"></span>
+                                Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
+                            </div>
                         </div>
-                        <div class="clearfix"></div>
-                    </a>
-                </li>
-                <li class="header-title">Images</li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="">
-                    </a>
-                </li>
-                <li class="active">
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="">
-                    </a>
-                </li>
-            </ul>
+                    </footer>
+                </div>
+            </div>
         </div>
+        <div class="fixed-plugin">
+            <div class="dropdown show-dropdown">
+                <a href="#" data-toggle="dropdown">
+                    <i class="fa fa-cog fa-2x"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="header-title">Sidebar Filters</li>
+                    <li class="adjustments-line">
+                        <a href="javascript:void(0)" class="switch-trigger active-color">
+                            <div class="badge-colors ml-auto mr-auto">
+                                <span class="badge filter badge-purple active" data-color="purple"></span>
+                                <span class="badge filter badge-azure" data-color="azure"></span>
+                                <span class="badge filter badge-green" data-color="green"></span>
+                                <span class="badge filter badge-warning" data-color="orange"></span>
+                                <span class="badge filter badge-danger" data-color="danger"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                    <li class="header-title">Images</li>
+                    <li>
+                        <a class="img-holder switch-trigger" href="javascript:void(0)">
+                            <img src="../assets/img/sidebar-1.jpg" alt="" />
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="img-holder switch-trigger" href="javascript:void(0)">
+                            <img src="../assets/img/sidebar-2.jpg" alt="" />
+                        </a>
+                    </li>
+                    <li>
+                        <a class="img-holder switch-trigger" href="javascript:void(0)">
+                            <img src="../assets/img/sidebar-3.jpg" alt="" />
+                        </a>
+                    </li>
+                    <li>
+                        <a class="img-holder switch-trigger" href="javascript:void(0)">
+                            <img src="../assets/img/sidebar-4.jpg" alt="" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
         <script src="./assets/js/core/jquery.min.js"></script>
+        <script>alert(google.script.sandbox.mode);</script>
         <script src="./assets/js/core/popper.min.js"></script>
         <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
         <script src="https://unpkg.com/default-passive-events"></script>
         <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
         <script src="./assets/js/plugins/chartist.min.js"></script>
         <script src="./assets/js/plugins/bootstrap-notify.js"></script>
         <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
         <script src="./assets/demo/demo.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
             $(document).ready(function () {
                 $().ready(function () {
@@ -169,7 +271,6 @@
                     window_width = $(window).width();
 
                     $('.fixed-plugin a').click(function (event) {
-                        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                         if ($(this).hasClass('switch-trigger')) {
                             if (event.stopPropagation) {
                                 event.stopPropagation();
@@ -302,13 +403,10 @@
                                 md.misc.sidebar_mini_active = true;
                             }, 300);
                         }
-
-                        // we simulate the window Resize so the charts will get updated in realtime.
                         var simulateWindowResize = setInterval(function () {
                             window.dispatchEvent(new Event('resize'));
                         }, 180);
 
-                        // we stop the simulation of Window Resize after the animations are completed
                         setTimeout(function () {
                             clearInterval(simulateWindowResize);
                         }, 1000);
@@ -317,5 +415,6 @@
                 });
             });
         </script>
+    </div>
 </body>
 </html>

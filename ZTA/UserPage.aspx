@@ -1,10 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserPage.aspx.cs" Inherits="ZTA.UserPage" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-
     <title>ZTA Migration App</title>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
@@ -40,24 +38,10 @@
                             <p>Procedura</p>
                         </a>
                     </li>
-                   <%-- <li class="nav-item active ">
-                        <a class="nav-link" href="./AdminPage.aspx">
-                            <i class="material-icons">list</i>
-                            <p>Lista użytkowników</p>
-                        </a>
-                    </li>--%>
-                    <li class="nav-item active ">
-                        <a class="nav-link" href="./ReportPage.aspx">
-                            <i class="material-icons">description</i>
-                            <p>Raport<p>
-                        </a>
-                    </li>
-                    <!-- your sidebar here -->
                 </ul>
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
@@ -72,17 +56,16 @@
                     <div class="collapse navbar-collapse justify-content-end">
                         <form class="navbar-form" runat="server">
                             <div class="nav-item">
-                                <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" ImageUrl="~/assets/img/logout.png" />
-                            </div>
-                            <%--</form>--%>
-                            <div class="nav-item">
-                                <asp:Button ID="userButton" Visible="true" runat="server" OnClick="GoToAdminPage" Text="Pokaż listę uzytkowników" class="btn btn-primary pull-right" Style="background-image:url('~/assets/img/list.png');" />
+                                <asp:ImageButton ID="logoutButton" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
                             </div>
                     </div>
                 </div>
             </nav>
-            <!-- End Navbar -->
             <div class="content">
+                <asp:Button ID="userButton" Visible="true" runat="server" OnClick="GoToAdminPage" Text="Pokaż listę uzytkowników" class="btn btn-primary pull-left" Style="background-image: url('~/assets/img/list.png');" />
+                <br />
+                <br />
+                <br />
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
@@ -91,7 +74,6 @@
                                     <h4 class="card-title">Dane użytkownika</h4>
                                 </div>
                                 <div class="card-body">
-                                    <%--<form runat="server"--%>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -238,7 +220,6 @@
                 window_width = $(window).width();
 
                 $('.fixed-plugin a').click(function (event) {
-                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                     if ($(this).hasClass('switch-trigger')) {
                         if (event.stopPropagation) {
                             event.stopPropagation();
@@ -373,12 +354,10 @@
                         }, 300);
                     }
 
-                    // we simulate the window Resize so the charts will get updated in realtime.
                     var simulateWindowResize = setInterval(function () {
                         window.dispatchEvent(new Event('resize'));
                     }, 180);
 
-                    // we stop the simulation of Window Resize after the animations are completed
                     setTimeout(function () {
                         clearInterval(simulateWindowResize);
                     }, 1000);

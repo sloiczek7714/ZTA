@@ -47,8 +47,7 @@ namespace ZTA
                     Encoding.ASCII.GetBytes(username))
             );
         }
-
-       
+             
 
         public static bool DoesUserHasPermission(string Id, string role)
         {
