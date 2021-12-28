@@ -22,8 +22,10 @@ namespace ZTA
         public int a;
         public int b;
         string bossID;
+        public string r;
         public int restActivities { get { return a; } set { } }
         public int endedActivities { get { return b; } set { } }
+        public string raport { get { return r; } set { } }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,7 +38,6 @@ namespace ZTA
                 
                 ZTA.SelectParameters.Add("formID", formID);
                 SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
-
                 try
                 {
                     ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', Format(Answer.Answer_Date ,'MM/dd/yyyy hh:mm') as 'AData' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID left join Users on Users.User_ID = Form.User_ID WHERE Form.Form_ID = @formID";
@@ -55,9 +56,10 @@ namespace ZTA
                     while (reader.Read())
                     {
                         systemNamelabel.Text = "Nazwa systemu: " + reader[0].ToString();
+                        r = "raport"+ systemNamelabel.Text.TrimEnd(' ') + ".pdf";
                         beginDatelabel.Text = "Data rozpoczęcia: " + reader[1].ToString();
                         endDatelabel.Text = "Data zakończenia: " + reader[2].ToString();
-                        employelabel.Text = "Imię i nazwisko pracownika: " + reader[4].ToString() + reader[5].ToString() + "ID:" + reader[6].ToString();
+                        employelabel.Text = "Imię i nazwisko pracownika: " + reader[4].ToString() + reader[5].ToString() + "ID: " + reader[6].ToString();
                         bossID = reader[7].ToString();
                        
                         commentlabel.Text = "Komentarz: " + reader[3].ToString();

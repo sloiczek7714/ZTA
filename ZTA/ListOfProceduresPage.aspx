@@ -28,7 +28,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./LoginPage.aspx">
+                        <a class="nav-link" href="./UserPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Profil Uzytkownika</p>
                         </a>
@@ -61,6 +61,9 @@
                 </div>
             </nav>
             <div class="content">
+                <div class="col-md-5">
+                    <asp:Button runat="server" ID="newProcedureButton" Text="Nowa procedura" class="btn btn-primary pull-left" OnClick="goToNewProcedure" />
+                </div> <br/> <br /><br />
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
@@ -68,10 +71,7 @@
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title ">Lista procedur użytkownika</h4>
                                 </div>
-                                <div class="col-md-5">
-                                    <asp:Button runat="server" ID="newProcedureButton" Text="Nowa procedura" class="btn btn-primary pull-left" OnClick="goToNewProcedure" />
-                                </div>
-                                <div id="piechart" style="width: 700px; height: 400px;"></div>
+                                <div id="piechart" style="width: 900px; height: 500px;"></div>
                                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                                 <script type="text/javascript">
                                     google.charts.load('current', { 'packages': ['corechart'] });
@@ -80,16 +80,16 @@
                                     function drawChart() {
 
                                         var data = google.visualization.arrayToDataTable([
-                                            
+                                            ['Procedury', 'Ilość procedur'],
                                             ['Pozostałe procedury', <%=restProcedures  %>],
                                             ['Ukończone procedury', <%=endedProcedures  %>]
                                         ]);
 
                                         var options = {
                                             title: 'Zstawienie ukończonych i trwających procedur',
-                                            backgroundColor: { fill: 'transparent' }
-
-
+                                            backgroundColor: { fill: 'transparent' },
+                                            legendTextStyle: { color: 'white' },
+                                            titleTextStyle: { color: 'white' }
                                         };
 
                                         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -120,9 +120,9 @@
                                                 </Columns>
                                             </asp:GridView>
                                             <br />
-                                            <asp:Button runat="server" ID="raportButton" Text="Pokaż raport" class="btn btn-primary pull-right" OnClick="showRaport" />
-                                            <asp:Button runat="server" ID="editButton" Text="Edytuj" class="btn btn-primary pull-right" OnClick="editProcedure" />
-                                            <asp:Button runat="server" ID="deleteButton" Text="Usuń" class="btn btn-primary pull-right" OnClick="deleteProcedure" />
+                                            <asp:Button runat="server" ID="raportButton" Text="Pokaż raport" class="btn btn-primary pull-left" OnClick="showRaport" />
+                                            <asp:Button runat="server" ID="editButton" Text="Edytuj" class="btn btn-primary pull-left" OnClick="editProcedure" />
+                                            <asp:Button runat="server" ID="deleteButton" Text="Usuń" class="btn btn-primary pull-left" OnClick="deleteProcedure" />
                                         </div>
                                     </div>
                                 </div>

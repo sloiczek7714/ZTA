@@ -53,53 +53,50 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
-                    <form class="navbar-form" runat="server">
-                        <div class="nav-item">
-                            <asp:ImageButton ID="ImageButton1" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
-                        </div>
                 </div>
             </nav>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <h4 class="card-title ">Lista czynności</h4>
-                                    <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
+                        <form class="navbar-form" runat="server">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title ">Lista czynności</h4>
+                                        <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
+                                    </div>
+                                    <div class="card-body">
                                         <div class="table-responsive">
-                                            <asp:TextBox ID="SystemName" placeholder="Wpisz nazwę systemu" runat="server" class="form-control"></asp:TextBox><br />
-                                            <br />
-                                            <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                            <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
-                                                <Columns>
-                                                    <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
-                                                    <asp:BoundField HeaderText="Czynność" DataField="Activity" />
-                                                    <asp:TemplateField HeaderText="Komentarz">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Data i godzina zakończenia">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="dateTextBox" placeholder="mm/dd/yyyy hh:mm" runat="server" class="form-control"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
-                                            <br />
-                                            <asp:TextBox runat="server" ID="overallComment" placeholder="Komentarz do całej procedury" CssClass="form-control" />
-                                            <br />
-                                            <asp:Button runat="server" ID="saveButton" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveProcedure" />
-                                            <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
+                                            <div class="table-responsive">
+                                                <asp:TextBox ID="SystemName" placeholder="Wpisz nazwę systemu" runat="server" class="form-control"></asp:TextBox><br />
+                                                <br />
+                                                <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
+                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
+                                                        <asp:BoundField HeaderText="Czynność" DataField="Activity" />
+                                                        <asp:TemplateField HeaderText="Komentarz">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Data i godzina zakończenia">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="dateTextBox" placeholder="mm/dd/yyyy hh:mm" runat="server" class="form-control"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                                <br />
+                                                <asp:TextBox runat="server" ID="overallComment" placeholder="Komentarz do całej procedury" CssClass="form-control" />
+                                                <br />
+                                                <asp:Button runat="server" ID="saveButton" Text="Zapisz" class="btn btn-primary pull-left" OnClick="saveProcedure" />
+                                                <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </form>
                     </div>
                 </div>

@@ -49,7 +49,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="main-panel">
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
@@ -69,6 +68,12 @@
                 </div>
             </nav>
             <div class="content">
+                <div class="col-md-6">
+                    <asp:Button ID="generateRaportButton" runat="server" OnClick="pdrCreate" Text="Generuj raport" class="btn btn-primary pull-left" />
+                </div>
+                <br />
+                <br />
+                <br />
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
@@ -76,35 +81,8 @@
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title ">Podgląd raportu</h4>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" id="report">
                                     <div class="table-responsive">
-                                        <div id="piechart" style="width: 700px; height: 400px;"></div>
-                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                                        <script type="text/javascript">
-                                            google.charts.load('current', { 'packages': ['corechart'] });
-                                            google.charts.setOnLoadCallback(drawChart);
-
-                                            function drawChart() {
-
-                                                var data = google.visualization.arrayToDataTable([
-                                                    ['Task', 'Hours per Day'],
-                                                    ['Pozostałe', <%=restActivities  %>],
-                                                    ['Ukończone czynności', <%=endedActivities  %>]
-                                                ]);
-
-                                                var options = {
-                                                    title: 'Postęp',
-                                                    backgroundColor: { fill: 'transparent' }
-                                                };
-
-                                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-                                                chart.draw(data, options);
-                                            }
-                                        </script>
-
-
-
                                         <asp:Label ID="systemNamelabel" runat="server" CssClass="navbar-brand"></asp:Label>
                                         <asp:Label ID="beginDatelabel" runat="server" CssClass="navbar-brand"></asp:Label>
                                         <asp:Label ID="endDatelabel" runat="server" CssClass="navbar-brand"></asp:Label>
@@ -114,15 +92,61 @@
                                         <asp:Label ID="employelabel" runat="server" CssClass="navbar-brand"></asp:Label>
                                         <asp:Label ID="commentlabel" runat="server" CssClass="navbar-brand"></asp:Label>
                                         <br />
+                                        <div id="piechart" style="width: 700px; height: 400px;"></div>
+                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                        <script type="text/javascript">
+                                            google.charts.load('current', { 'packages': ['corechart'] });
+                                            google.charts.setOnLoadCallback(drawChart);
+
+                                            function drawChart() {
+
+                                                var data = google.visualization.arrayToDataTable([
+                                                    ['Czynności', 'Liczba czynności'],
+                                                    ['Pozostałe', <%=restActivities  %>],
+                                                    ['Ukończone czynności', <%=endedActivities  %>]
+                                                ]);
+
+                                                var options = {
+                                                    title: 'Postęp',
+                                                    backgroundColor: { fill: 'transparent' },
+                                                    legendTextStyle: { color: 'black', fontSize: '18' },
+                                                    titleTextStyle: { color: 'black', fontSize: '18' }
+                                                };
+                                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                                                chart.draw(data, options);
+                                            }
+                                        </script>
 
 
+                                        <p id="demo" onclick="fun()">Click me to change my text color.</p>
+                                        <script type="text/javascript">
+                                            function fun() {
+                                                var element = document.getElementById('report');
+                                                //var opt = {
+                                                //        margin: 1,
+                                                //        filename: data,
+                                                //        image: { type: 'jpeg', quality: 1 },
+                                                //        html2canvas: { scale: 5 },
+                                                //        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                                //};
+                                                //    html2pdf().set(opt).from(element).save();                                            
+                                                //html2pdf().set(opt).from(element).save();
+                                                html2pdf(element, {
+                                                    margin: 10,
+                                                    filename: 'myfile.pdf',
+                                                    image: { type: 'jpeg', quality: 1 },
+                                                    html2canvas: { scale: 5, logging: true, dpi: 192, letterRendering: true },
+                                                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                                });
+                                            }
+                                        </script>
+                                        <script src="es6-promise.auto.min.js"></script>
+                                        <script src="jspdf.min.js"></script>
+                                        <script src="html2canvas.min.js"></script>
+                                        <script src="html2pdf.min.js"></script>
 
-
-
-
-
-                                        <script>
-
+                                        <button onclick="fun()">Click me</button>
+                                        <script>                                       
                                             $('#download').click(function () {
                                                 var obj = $(this);
                                                 Utils.disableButton(obj);
@@ -135,7 +159,7 @@
                                                             html2canvas: { scale: 5 },
                                                             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                                                         };
-                                                        html2pdf().set(opt).from(document.getElementById('element-to-print')).save();
+                                                        html2pdf().set(opt).from(document.getElementById('report')).save();
                                                     })
                                                     .fail(function (data) {
                                                         console.log(data);
@@ -145,11 +169,11 @@
                                                         $('#download-button-spinner').attr('hidden', true);
                                                     });
                                             });</script>
-                                        <br />                                        
-                                        <asp:Button ID="generateRaportButton" runat="server" OnClick="pdrCreate" Text="Generuj raport" class="btn btn-primary pull-left" /> <br />
+
                                         <div class="table-responsive">
                                             <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>"></asp:SqlDataSource>
-                                            <br /><asp:GridView ID="reportGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
+                                            <br />
+                                            <asp:GridView ID="reportGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Numer" DataField="Numer_czynnosci" />
                                                     <asp:BoundField HeaderText="Czynność" DataField="Czynnosc" />
@@ -232,6 +256,7 @@
         <script src="./assets/js/plugins/bootstrap-notify.js"></script>
         <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>
         <script src="./assets/demo/demo.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
             $(document).ready(function () {
                 $().ready(function () {

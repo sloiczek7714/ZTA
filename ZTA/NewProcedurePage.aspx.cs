@@ -12,6 +12,7 @@ namespace ZTA
     public partial class NewProcedure : System.Web.UI.Page
     {
         new string ID;
+        string system;
         string form_ID;
         string flag;
         protected void Page_Load(object sender, EventArgs e)
@@ -38,6 +39,7 @@ namespace ZTA
         }
         protected void saveProcedure(object sender, EventArgs e)
         {
+            
             save();
         }
         
@@ -111,7 +113,6 @@ namespace ZTA
                 }
             }
         }
-
         
         protected void endProcedure(object sender, EventArgs e)
         {

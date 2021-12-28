@@ -19,14 +19,17 @@ namespace ZTA
                 ID = Session["ID"].ToString();
                 if (Session["formID"].ToString() != null)
                 {
-                    formID = Session["formID"].ToString();
                     string UserID = Session["ID"].ToString();
+                    formID = Session["formID"].ToString();
                     if (!Page.IsPostBack)
                     {
-                        ZTA.SelectParameters.Add("formID", formID);
-                        ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', FORMAT(Answer.Answer_Date,'MM/dd/yyyy hh:mm') as 'Data' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID WHERE Form.Form_ID = @formID";
-                        if (Helper.DoesUserHasPermission(UserID, "Administrator"))
+                        formID = Session["formID"].ToString();
+                        if (Session["endDate"].ToString() == "0" || Helper.DoesUserHasPermission(UserID, "Administrator"))
                         {
+                            ZTA.SelectParameters.Add("formID", formID);
+                            ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', FORMAT(Answer.Answer_Date,'MM/dd/yyyy hh:mm') as 'Data' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID WHERE Form.Form_ID = @formID";
+                            //if (Helper.DoesUserHasPermission(UserID, "Administrator"))
+                            //{
                             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                             connection.Open();
                             string select = "SELECT System_Name, Comment FROM Form WHERE Form_Id=@formID";
@@ -63,12 +66,19 @@ namespace ZTA
                                 i++;
                             }
                             connection.Close();
+                            //}
                         }
+
+                        else
+                        {
+                            Response.Redirect("ErrorPage.aspx");
+                        }
+
                     }
                 }
-                else
-                    Response.Redirect("ErrorPage.aspx ");
             }
+
+
             else
             {
                 Response.Redirect("LoginPage.aspx");

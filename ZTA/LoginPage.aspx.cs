@@ -49,9 +49,8 @@ namespace ZTA
                 try
                 {
                     int id = (int)command.ExecuteScalar();
-                    Session["ID"] = id;
-                                           
-                        Response.Redirect("UserPage.aspx");
+                    Session["ID"] = id;                                           
+                    Response.Redirect("UserPage.aspx");
                         //Session.RemoveAll();
                     
                 }

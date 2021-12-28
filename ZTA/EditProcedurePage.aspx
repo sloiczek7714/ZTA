@@ -54,16 +54,12 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
-                    <form class="navbar-form" runat="server">
-                            <div class="nav-item">
-                                <asp:ImageButton ID="ImageButton1" runat="server" OnClick="logout" CssClass="pull-right" ImageUrl="~/assets/img/logout.png" />
-                            </div>
                 </div>
             </nav>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                       
+                       <form class="navbar-form" runat="server">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header card-header-primary">

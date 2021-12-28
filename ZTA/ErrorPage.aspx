@@ -23,7 +23,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item active  ">
-                        <a class="nav-link" href="javascript:void(0)">
+                        <a class="nav-link" href="./StartPage.aspx">
                             <i class="material-icons">dashboard</i>
                             <p>Strona główna</p>
                         </a>
@@ -54,8 +54,9 @@
 
             <div class="content">
                 <div class="container-fluid">
-                    <h1>Ups! coś poszło nie tak! Spróuj ponownie <br/> Być może nie posiadasz odpowiednich uprawnień aby wykonać tę czynność.
+                    <h1>Ups! coś poszło nie tak! Spróbuj ponownie!
                     </h1>
+                    <h4> Być może nie posiadasz odpowiednich uprawnień aby wykonać tę czynność.</h4>
                 </div>
             </div>
             <footer class="footer">
