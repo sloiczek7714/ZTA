@@ -7,21 +7,20 @@ using System.Web.UI.WebControls;
 
 namespace ZTA
 {
-    public partial class StartPage : System.Web.UI.Page
+    public partial class StartPageEnglish : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
+        protected void polishVersion(object sender, EventArgs e)
+        {
+            Response.Redirect("StartPage.aspx");
+        }
         protected void GoToLoginPage(object sender, EventArgs e)
         {
             Response.Redirect("LoginPage.aspx");
-        }
-
-        protected void englishVersion(object sender, EventArgs e)
-        {
-            Response.Redirect("StartPageEnglish.aspx");
         }
     }
 }

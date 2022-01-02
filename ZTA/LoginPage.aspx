@@ -94,7 +94,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
+                        Wojskowa Akademia Techniczna <i class="material-icons">desktop_windows</i> Weronika Buras         
                     </div>
                 </div>
             </footer>

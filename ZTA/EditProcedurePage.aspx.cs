@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace ZTA
 {
@@ -28,8 +29,6 @@ namespace ZTA
                         {
                             ZTA.SelectParameters.Add("formID", formID);
                             ZTA.SelectCommand = "SELECT Activity.Activity_ID as 'Numer_czynnosci', Activity.Activity as 'Czynnosc', Answer.Comment as 'Komentarz', FORMAT(Answer.Answer_Date,'MM/dd/yyyy hh:mm') as 'Data' FROM Activity left join Answer on Answer.Activity_ID = Activity.Activity_ID left join Form on Answer.Form_ID = Form.Form_ID WHERE Form.Form_ID = @formID";
-                            //if (Helper.DoesUserHasPermission(UserID, "Administrator"))
-                            //{
                             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                             connection.Open();
                             string select = "SELECT System_Name, Comment FROM Form WHERE Form_Id=@formID";
@@ -40,7 +39,6 @@ namespace ZTA
                             {
                                 editOverallComment.Text = reader[1].ToString();
                                 SystemNameLabel.Text = reader[0].ToString();
-
                             }
                             reader.Close();
                             int i = 1;
@@ -65,8 +63,14 @@ namespace ZTA
                                 }
                                 i++;
                             }
+                            GridView gridView = (GridView)this.Page.FindControl("procedureGridView");
+                            foreach (GridViewRow row in gridView.Rows)
+                            {
+                                row.Cells[1].Text = row.Cells[1].Text.Replace("\n", "<br/>");
+                            }
+
                             connection.Close();
-                            //}
+                           
                         }
 
                         else
@@ -141,6 +145,29 @@ namespace ZTA
         {
 
         }
+        protected void procedureGridView_RowCommand(Object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow selectedRow = procedureGridView.Rows[index];
 
+                if (index == 12)
+                {
+                    ClientScript.RegisterStartupScript(this.Page.GetType(), "", "window.open('TablePage.aspx');", true);
+                }
+                else
+                {
+                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("Select Tips from Activity WHERE Activity_ID=@index", connection);
+                    command.Parameters.AddWithValue("index", (1 + index));
+                    string tip = (string)command.ExecuteScalar();
+                    string title = "Pomoc";
+                    MessageBox.Show(tip, title);
+
+                }
+            }
+        }
     }
 }

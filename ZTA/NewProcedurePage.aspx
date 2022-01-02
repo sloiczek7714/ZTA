@@ -71,10 +71,14 @@
                                                 <asp:TextBox ID="SystemName" placeholder="Wpisz nazwę systemu" runat="server" class="form-control"></asp:TextBox><br />
                                                 <br />
                                                 <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
+                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" OnRowCommand="procedureGridView_RowCommand">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
                                                         <asp:BoundField HeaderText="Czynność" DataField="Activity" />
+                                                        <asp:ButtonField ButtonType="Image"
+                                                            CommandName="Select"
+                                                            HeaderText="Pomoc"
+                                                            ImageUrl="~/assets/img/questionMark.png" />
                                                         <asp:TemplateField HeaderText="Komentarz">
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
@@ -94,6 +98,9 @@
                                                 <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
                                             </div>
                                         </div>
+                                        <li>
+                                            <a class="nav-link" href="https://www.gov.pl/attachment/8659d8de-6a83-4860-bcd1-d0648fbe9ead">
+                                                <p>Wskazówki zaczerpnięto dzięki dokumentowi NSC 800-207 opracowanym przez Narodowe Standardy Cyberbezpieczeństwa </p></li>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +115,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
+                        Wojskowa Akademia Techniczna <i class="material-icons">desktop_windows</i> Weronika Buras         
                     </div>
                 </div>
             </footer>

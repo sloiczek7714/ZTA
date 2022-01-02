@@ -23,7 +23,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item active  ">
-                        <a class="nav-link" href="javascript:void(0)">
+                        <a class="nav-link" href="./StartPage.aspx">
                             <i class="material-icons">dashboard</i>
                             <p>Strona główna</p>
                         </a>
@@ -69,13 +69,26 @@
             </nav>
             <div class="content">
                 <div class="col-md-6">
-                    <asp:Button ID="generateRaportButton" runat="server" OnClick="pdrCreate" Text="Generuj raport" class="btn btn-primary pull-left" />
+                    <p id="demo" onclick="fun()" class="btn btn-primary pull-left">Generuj raport</p>
+                    <script type="text/javascript">
+                        function fun() {
+                            var element = document.getElementById('report');
+                            html2pdf(element, {
+                                margin: 10,
+                                filename: 'raport.pdf',
+                                image: { type: 'jpeg', quality: 1 },
+                                html2canvas: { scale: 5, logging: true, dpi: 192, letterRendering: true },
+                                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                            });
+                        }
+                    </script>
                 </div>
                 <br />
                 <br />
                 <br />
                 <div class="container-fluid">
                     <div class="row">
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-primary">
@@ -116,60 +129,10 @@
                                                 chart.draw(data, options);
                                             }
                                         </script>
-
-
-                                        <p id="demo" onclick="fun()">Click me to change my text color.</p>
-                                        <script type="text/javascript">
-                                            function fun() {
-                                                var element = document.getElementById('report');
-                                                //var opt = {
-                                                //        margin: 1,
-                                                //        filename: data,
-                                                //        image: { type: 'jpeg', quality: 1 },
-                                                //        html2canvas: { scale: 5 },
-                                                //        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                                                //};
-                                                //    html2pdf().set(opt).from(element).save();                                            
-                                                //html2pdf().set(opt).from(element).save();
-                                                html2pdf(element, {
-                                                    margin: 10,
-                                                    filename: 'myfile.pdf',
-                                                    image: { type: 'jpeg', quality: 1 },
-                                                    html2canvas: { scale: 5, logging: true, dpi: 192, letterRendering: true },
-                                                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                                                });
-                                            }
-                                        </script>
                                         <script src="es6-promise.auto.min.js"></script>
                                         <script src="jspdf.min.js"></script>
                                         <script src="html2canvas.min.js"></script>
                                         <script src="html2pdf.min.js"></script>
-
-                                        <button onclick="fun()">Click me</button>
-                                        <script>                                       
-                                            $('#download').click(function () {
-                                                var obj = $(this);
-                                                Utils.disableButton(obj);
-                                                $.get("/MineFace/GetPrintoutFileName")
-                                                    .done(function (data) {
-                                                        var opt = {
-                                                            margin: 1,
-                                                            filename: data,
-                                                            image: { type: 'jpeg', quality: 1 },
-                                                            html2canvas: { scale: 5 },
-                                                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                                                        };
-                                                        html2pdf().set(opt).from(document.getElementById('report')).save();
-                                                    })
-                                                    .fail(function (data) {
-                                                        console.log(data);
-                                                        Utils.showErrorModal(data);
-                                                    }).always(function () {
-                                                        Utils.enableButton(obj);
-                                                        $('#download-button-spinner').attr('hidden', true);
-                                                    });
-                                            });</script>
-
                                         <div class="table-responsive">
                                             <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>"></asp:SqlDataSource>
                                             <br />
@@ -195,7 +158,7 @@
                                 &copy;
                         <script>
                             document.write(new Date().getFullYear())            </script>
-                                Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras
+                                Wojskowa Akademia Techniczna <i class="material-icons">desktop_windows</i> Weronika Buras
                             </div>
                         </div>
                     </footer>
@@ -203,7 +166,7 @@
             </div>
         </div>
         <div class="fixed-plugin">
-            <div class="dropdown show-dropdown">
+            <div class="down sdropdown">
                 <a href="#" data-toggle="dropdown">
                     <i class="fa fa-cog fa-2x"></i>
                 </a>

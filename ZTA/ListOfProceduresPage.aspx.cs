@@ -113,7 +113,7 @@ namespace ZTA
                 GridViewRow selectedRow = gridView.SelectedRow;
                 string formID = selectedRow.Cells[0].Text;
                 Session["formID"] = formID;
-                Server.Transfer("~/ReportPage.aspx");
+                Server.Transfer("ReportPage.aspx");
             }
             else
             {
