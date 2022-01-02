@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StartPage.aspx.cs" Inherits="ZTA.StartPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StartPageEnglish.aspx.cs" Inherits="ZTA.StartPageEnglish" %>
 
 <!DOCTYPE html>
 
@@ -26,13 +26,13 @@
                     <li class="nav-item active  ">
                         <a class="nav-link" href="./StartPage.aspx">
                             <i class="material-icons">dashboard</i>
-                            <p>Strona główna</p>
+                            <p>Home page</p>
                         </a>
                     </li>
                     <li class="nav-item active ">
                         <a class="nav-link" href="./LoginPage.aspx">
                             <i class="material-icons">person</i>
-                            <p>Logowanie<p>
+                            <p>Login<p>
                         </a>
                     </li>
                 </ul>
@@ -52,33 +52,30 @@
                     </button>
                     <form class="navbar-form" runat="server">
                         <div class="nav-item">
-                            <asp:ImageButton ID="languageButton" runat="server" OnClick="englishVersion" CssClass="pull-right" ImageUrl="~/assets/img/language.png" />
+                            <asp:ImageButton ID="languagePButton" runat="server" OnClick="polishVersion" CssClass="pull-right" ImageUrl="~/assets/img/language.png" />
                         </div>
                    </form>
                 </div>
             </nav>
-
             <div class="content">
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Niniejsza strona stanowi część pracy dyplomowej. Jej celem jest wspomaganie migracji systemów informatycznych do 
-                    architektury ZTA. </h4>
+                            <h4 class="card-title "> This page is a part of Engineering Thesis: A tool for supporting an information systems migration to „Zero Trust Architecture” .</h4>
                         </div>
                         <br />
                         <div class="card-body">
-                       <h4>Opis aplikacji:</h4> 
-                            Umożliwia wykonywanie procedury migracji systemów zgodnie z NIST SP 800-207 przez użytkownika, a także dostarczyć informacji w przypadku trudności. 
-                            Umożliwia również monitorowanie postępów użytkownika poprzez zapisywanie dat wykonania każdej czynności. 
-                            ZTA Migration App zapewnia monitorowanie działań użytkownika wykonującego  
-                            procedurę poprzez innego użytkownika posiadającego odpowiednie uprawienia. 
+                       <h4>App description:</h4> 
+                            App was created to support user while migration of information systems to ZTA Architecture based on NIST SP 800-207.  
+                            It gives posibility to monitor the progress by saving detes and comment by employee to each acitivity. 
+                            ZTA Migration App also supprot users when any problem appears.   
                         <br /><br />
-                        Dyplomantka: Weronika Buras <br />
-                        Promotor: dr inż. Krzysztof Jerzy Liderman<br />
-                        Uczelnia: Wojskowa Akademia Techniczna <br />
-                        Wydział: WCY/ITA<br />
-                        Kierunek: Kryptologia i Cyberbezpieczeństwo <br />
-                        Kontakt: weronika.buras77@gmail.com
+                        Student: Weronika Buras <br />
+                        Yhesis supervisor: dr inż. Krzysztof Jerzy Liderman<br />
+                        University: Military University of Technology <br />
+                        Branch of study: WCY/ITA<br />
+                        Speciality: Cryptology and Cybersecurity <br />
+                        Contact: weronika.buras77@gmail.com
                         </div>
                     </div>
 
@@ -89,7 +86,7 @@
                     <nav class="float-left">
                         <ul>
                             <li>
-                                <a href="https://www.creative-tim.com/product/material-dashboard-dark">Szablon strony zaczerpnięty z Creative Tim</a>
+                                <a href="https://www.creative-tim.com/product/material-dashboard-dark">Made with Creative Tim</a>
                             </li>
                         </ul>
                     </nav>
@@ -97,7 +94,7 @@
                         &copy;           
                         <script>
                             document.write(new Date().getFullYear())</script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">desktop_windows</i> Weronika Buras         
+                        Military University of Technology <i class="material-icons">desktop_windows</i> Weronika Buras         
                     </div>
                 </div>
             </footer>
@@ -154,7 +151,6 @@
     <script src="https://unpkg.com/default-passive-events"></script>
     <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <script src="./assets/js/plugins/chartist.min.js"></script>
     <script src="./assets/js/plugins/bootstrap-notify.js"></script>
     <script src="./assets/js/material-dashboard.js?v=2.1.0"></script>

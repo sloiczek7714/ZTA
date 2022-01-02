@@ -255,6 +255,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -281,12 +282,14 @@
     <Content Include="assets\img\faces\avatar.jpg" />
     <Content Include="assets\img\faces\card-profile1-square.jpg" />
     <Content Include="assets\img\faces\card-profile2-square.jpg" />
+    <Content Include="assets\img\language.png" />
     <Content Include="assets\img\list.png" />
     <Content Include="assets\img\faces\marc.jpg" />
     <Content Include="assets\img\favicon.png" />
     <Content Include="assets\img\logout.png" />
     <Content Include="assets\img\mask.png" />
     <Content Include="assets\img\new_logo.png" />
+    <Content Include="assets\img\questionMark.png" />
     <Content Include="assets\img\sidebar-1.jpg" />
     <Content Include="assets\img\sidebar-2.jpg" />
     <Content Include="assets\img\sidebar-3.jpg" />
@@ -302,10 +305,12 @@
     <Content Include="ListOfProceduresPage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="EditProcedurePage.aspx" />
+    <Content Include="TablePage.aspx" />
     <Content Include="ReportPage.aspx" />
     <Content Include="EditUserPage.aspx" />
     <Content Include="AddUserPage.aspx" />
     <Content Include="ErrorPage.aspx" />
+    <Content Include="StartPageEnglish.aspx" />
     <Content Include="UserPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="NewProcedurePage.aspx" />
@@ -341,6 +346,13 @@
     <Compile Include="EditProcedurePage.aspx.designer.cs">
       <DependentUpon>EditProcedurePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TablePage.aspx.cs">
+      <DependentUpon>TablePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TablePage.aspx.designer.cs">
+      <DependentUpon>TablePage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NewProcedurePage.aspx.cs">
       <DependentUpon>NewProcedurePage.aspx</DependentUpon>
@@ -369,6 +381,13 @@
     </Compile>
     <Compile Include="ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StartPageEnglish.aspx.cs">
+      <DependentUpon>StartPageEnglish.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StartPageEnglish.aspx.designer.cs">
+      <DependentUpon>StartPageEnglish.aspx</DependentUpon>
     </Compile>
     <Compile Include="StartPage.aspx.cs">
       <DependentUpon>StartPage.aspx</DependentUpon>

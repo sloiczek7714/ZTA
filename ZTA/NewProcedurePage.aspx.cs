@@ -6,13 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace ZTA
 {
     public partial class NewProcedure : System.Web.UI.Page
     {
         new string ID;
-        string system;
         string form_ID;
         string flag;
         protected void Page_Load(object sender, EventArgs e)
@@ -21,7 +21,11 @@ namespace ZTA
             if (Session["ID"] != null)
             {
                 ID = Session["ID"].ToString();
-
+                GridView gridView = (GridView)this.Page.FindControl("procedureGridView");
+                foreach (GridViewRow row in gridView.Rows)
+                {
+                    row.Cells[1].Text = row.Cells[1].Text.Replace("\n", "<br/>");
+                }
             }
 
             else
@@ -39,7 +43,6 @@ namespace ZTA
         }
         protected void saveProcedure(object sender, EventArgs e)
         {
-            
             save();
         }
         
@@ -129,8 +132,33 @@ namespace ZTA
         }
         protected void ZTA_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
-
+            
         }
 
+        protected void procedureGridView_RowCommand(Object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow selectedRow = procedureGridView.Rows[index];
+
+                if (index == 12)
+                {
+                    ClientScript.RegisterStartupScript(this.Page.GetType(), "", "window.open('TablePage.aspx');", true);
+                }
+                else
+                {
+                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("Select Tips from Activity WHERE Activity_ID=@index", connection);
+                    command.Parameters.AddWithValue("index", (1 + index));
+                    string tip = (string)command.ExecuteScalar();
+                    string title = "Pomoc";                    
+                    MessageBox.Show(tip, title);
+
+                }
+            }
+        }
+       
     }
 }

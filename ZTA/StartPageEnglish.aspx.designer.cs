@@ -11,16 +11,16 @@ namespace ZTA
 {
 
 
-    public partial class StartPage
+    public partial class StartPageEnglish
     {
 
         /// <summary>
-        /// languageButton control.
+        /// languagePButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton languageButton;
+        protected global::System.Web.UI.WebControls.ImageButton languagePButton;
     }
 }

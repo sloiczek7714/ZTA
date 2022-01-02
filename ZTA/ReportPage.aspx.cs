@@ -50,6 +50,11 @@ namespace ZTA
                 try
                 {                   
                     connection.Open();
+                    //GridView gridView = (GridView)this.Page.FindControl("reportGridView");
+                    //foreach (GridViewRow row in gridView.Rows)
+                    //{
+                    //    row.Cells[1].Text = row.Cells[1].Text.Replace("\n", "<br/>");
+                    //}
                     SqlCommand select = new SqlCommand("SELECT Form.System_Name,FORMAT(Form.Begin_Date ,'MM/dd/yyyy hh:mm')as 'Begin_Date' ,FORMAT(Form.End_Date ,'MM/dd/yyyy hh:mm') as 'End_Date', Form.Comment, Users.Name as 'Name', Users.Surname as 'Surname', Form.User_ID, Users_Boss.Boss_ID FROM Form join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID=Users.User_ID WHERE Form.Form_ID = @formID", connection);
                     select.Parameters.AddWithValue("formID", formID);
                     var reader = select.ExecuteReader();
@@ -61,7 +66,6 @@ namespace ZTA
                         endDatelabel.Text = "Data zakończenia: " + reader[2].ToString();
                         employelabel.Text = "Imię i nazwisko pracownika: " + reader[4].ToString() + reader[5].ToString() + "ID: " + reader[6].ToString();
                         bossID = reader[7].ToString();
-                       
                         commentlabel.Text = "Komentarz: " + reader[3].ToString();
                     }
                     reader.Close();
@@ -76,6 +80,7 @@ namespace ZTA
                             DataReader.Close();
                         }
                     }
+                    
 
                 }
                 catch
@@ -117,12 +122,6 @@ namespace ZTA
             Response.Redirect("LoginPage.aspx");
         }
 
-
-        public override void VerifyRenderingInServerForm(Control control)
-        {
-        }
-
-
         protected void pdrCreate(object sender, EventArgs e)
         {
             ExportGridToPDF();
@@ -156,13 +155,12 @@ namespace ZTA
                     reportGridView.AllowPaging = false;
                     reportGridView.RenderControl(hw);
                     StringReader sr = new StringReader(sw.ToString());
-                    Document pdfDoc = new Document(PageSize.A2, 10f, 10f, 10f, 0f);
+                    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
                     HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
                     PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
                     pdfDoc.Open();
                     htmlparser.Parse(sr);
                     pdfDoc.Close();
-
                     Response.ContentType = "application/pdf";
                     Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.pdf");
                     Response.Cache.SetCacheability(HttpCacheability.NoCache);

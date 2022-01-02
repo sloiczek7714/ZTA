@@ -24,15 +24,6 @@ namespace ZTA
         protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
 
         /// <summary>
-        /// generateRaportButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button generateRaportButton;
-
-        /// <summary>
         /// systemNamelabel control.
         /// </summary>
         /// <remarks>

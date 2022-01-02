@@ -10,7 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- Material Kit CSS -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
@@ -71,10 +70,14 @@
                                             <div class="table-responsive">
                                                 <asp:Label ID="SystemNameLabel" placeholder="Wpisz nazwę systemu"  runat="server" class="form-control" ></asp:Label><br /> <br />
                                                 <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>"  OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" >
+                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" OnRowCommand="procedureGridView_RowCommand">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Numer" DataField="Numer_czynnosci"/>
                                                         <asp:BoundField HeaderText="Czynność" DataField="Czynnosc" />
+                                                        <asp:ButtonField ButtonType="Image"
+                                                            CommandName="Select"
+                                                            HeaderText="Pomoc"
+                                                            ImageUrl="~/assets/img/questionMark.png" />
                                                         <asp:TemplateField HeaderText="Komentarz">
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
@@ -93,6 +96,10 @@
                                                 <asp:Button runat="server" ID="endButton" Text="Zakończ" class="btn btn-primary pull-left" OnClick="endProcedure" />
                                             </div>
                                         </div>
+                                        <li>
+                                            <a class="nav-link" href="https://www.gov.pl/attachment/8659d8de-6a83-4860-bcd1-d0648fbe9ead">
+                                                <p>Wskazówki zaczerpnięto dzięki dokumentowi NSC 800-207 opracowanym przez Narodowe Standardy Cyberbezpieczeństwa </p></li>
+                                   
                                      </div>
                                 </div>
                             </div>
@@ -107,7 +114,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
-                        Wojskowa Akademia Techniczna <i class="material-icons">favorite</i> Weronika Buras         
+                        Wojskowa Akademia Techniczna <i class="material-icons">desktop_windows</i> Weronika Buras         
                     </div>
                 </div>
             </footer>
