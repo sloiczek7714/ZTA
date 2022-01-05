@@ -71,7 +71,7 @@
                                                 <asp:TextBox ID="SystemName" placeholder="Wpisz nazwę systemu" runat="server" class="form-control"></asp:TextBox><br />
                                                 <br />
                                                 <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" OnRowCommand="procedureGridView_RowCommand">
+                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" OnRowCommand="showHint">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
                                                         <asp:BoundField HeaderText="Czynność" DataField="Activity" />

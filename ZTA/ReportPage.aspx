@@ -77,7 +77,7 @@
                                 margin: 10,
                                 filename: 'raport.pdf',
                                 image: { type: 'jpeg', quality: 1 },
-                                html2canvas: { scale: 5, logging: true, dpi: 192, letterRendering: true },
+                               html2canvas: { scale: 1, logging: true, dpi: 192, letterRendering: true },
                                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                             });
                         }

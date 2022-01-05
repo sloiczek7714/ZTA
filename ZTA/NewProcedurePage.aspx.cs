@@ -135,7 +135,7 @@ namespace ZTA
             
         }
 
-        protected void procedureGridView_RowCommand(Object sender, GridViewCommandEventArgs e)
+        protected void showHint(Object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
             {
