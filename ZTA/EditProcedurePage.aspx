@@ -70,7 +70,7 @@
                                             <div class="table-responsive">
                                                 <asp:Label ID="SystemNameLabel" placeholder="Wpisz nazwę systemu"  runat="server" class="form-control" ></asp:Label><br /> <br />
                                                 <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>"  OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
-                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" OnRowCommand="procedureGridView_RowCommand">
+                                                <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" OnRowCommand="showHint">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="Numer" DataField="Numer_czynnosci"/>
                                                         <asp:BoundField HeaderText="Czynność" DataField="Czynnosc" />
