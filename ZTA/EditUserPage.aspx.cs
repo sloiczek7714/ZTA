@@ -38,27 +38,26 @@ namespace ZTA
                     string ID = Session["IDEditUser"].ToString();
 
                     if (Helper.DoesUserHasPermission(UserID, "Administrator"))
-                    { 
-                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
-                    connection.Open();
-                    string insert = "SELECT Users.User_ID,  Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role, Users_Boss.Boss_ID, Users.Password FROM Users  LEFT JOIN Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID = @ID";
-                    SqlCommand command = new SqlCommand(insert, connection);
-                    command.Parameters.AddWithValue("ID", ID);
-                    SqlDataReader DataReader = command.ExecuteReader();
-                    
-                    if (DataReader.Read())
                     {
-                        editNameTextBox.Text = DataReader.GetValue(1).ToString();
-                        editPasswordTextBox.Text = DataReader.GetValue(8).ToString();
-                        editSurnameTextBox.Text = DataReader.GetValue(2).ToString();
-                        editPositionTextBox.Text = DataReader.GetValue(3).ToString();
-                        editWorkPlaceTextBox.Text = DataReader.GetValue(4).ToString();
-                        editEmailTextBox.Text = DataReader.GetValue(5).ToString();
-                        RoleList.SelectedValue = DataReader.GetValue(6).ToString();
-                        Session["tempBoss"] = DataReader.GetValue(7).ToString();
-                        DataReader.Close();
+                        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                        connection.Open();
+                        string insert = "SELECT Users.User_ID,  Users.Name, Users.Surname, Users.Position, Users.WorkPlace, Users.Email, Users.Role, Users_Boss.Boss_ID, Users.Password FROM Users  LEFT JOIN Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID = @ID";
+                        SqlCommand command = new SqlCommand(insert, connection);
+                        command.Parameters.AddWithValue("ID", ID);
+                        SqlDataReader DataReader = command.ExecuteReader();
 
-                     }
+                        if (DataReader.Read())
+                        {
+                            editNameTextBox.Text = DataReader.GetValue(1).ToString();
+                            editSurnameTextBox.Text = DataReader.GetValue(2).ToString();
+                            editPositionTextBox.Text = DataReader.GetValue(3).ToString();
+                            editWorkPlaceTextBox.Text = DataReader.GetValue(4).ToString();
+                            editEmailTextBox.Text = DataReader.GetValue(5).ToString();
+                            RoleList.SelectedValue = DataReader.GetValue(6).ToString();
+                            Session["tempBoss"] = DataReader.GetValue(7).ToString();
+                            DataReader.Close();
+
+                        }
                         SqlCommand com = new SqlCommand("SELECT * from Users  WHERE Role='Kierownik'", connection);
                         SqlDataAdapter da = new SqlDataAdapter(com);
                         DataSet ds = new DataSet();
@@ -66,7 +65,7 @@ namespace ZTA
                         EditDropDownBossList.DataTextField = ds.Tables[0].Columns["Email"].ToString();
                         EditDropDownBossList.DataSource = ds.Tables[0];
                         EditDropDownBossList.DataBind();
-                         
+
                     }
                 }
             }
@@ -93,72 +92,81 @@ namespace ZTA
             string workPlace = editWorkPlaceTextBox.Text;
             string bossEmail = EditDropDownBossList.Text;
             string password = Helper.HashPassword(editPasswordTextBox.Text, email);
-            string updateBoss="";
+            string updateBoss = "";
             role = RoleList.Text;
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
-            connection.Open();
-            string update = "Update Users SET Users.Email=@email, Users.Name=@name, Users.Password=@password, Users.Surname=@surname, Users.Position=@position,  Users.WorkPlace=@workPlace, Users.Role=@role From Users LEFT join Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID=@ID";
-            SqlCommand command = new SqlCommand(update, connection);
-            
-        ;
-            if (String.IsNullOrEmpty(Session["tempBoss"].ToString()))
+
+            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(name) || String.IsNullOrEmpty(surname) || String.IsNullOrEmpty(position) || String.IsNullOrEmpty(workPlace))
             {
-                updateBoss = "Insert into Users_Boss (User_ID, Boss_ID) values(@ID, @bossID)";
-                string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
-                SqlCommand commandSelectBoss = new SqlCommand(selectBossID, connection);
-                commandSelectBoss.Parameters.AddWithValue("bossEmail", bossEmail);
-                int user_ID = (int)commandSelectBoss.ExecuteScalar();
-                SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
-                commandBoss.Parameters.AddWithValue("bossID", user_ID);
-                commandBoss.Parameters.AddWithValue("ID", ID);
-                commandBoss.ExecuteScalar();
+                string msg = "Uzupełnij wszystkie pola!";
+                Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
+            }
+            else
+            {
+                try
+                {
+                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                    connection.Open();
+                    string update = "Update Users SET Users.Email=@email, Users.Name=@name, Users.Surname=@surname, Users.Position=@position,  Users.WorkPlace=@workPlace, Users.Role=@role From Users LEFT join Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID=@ID";
+                    
+                    if (!String.IsNullOrEmpty(editPasswordTextBox.Text))
+                    {
+                        update = "Update Users SET Users.Email=@email, Users.Name=@name, Users.Password=@password, Users.Surname=@surname, Users.Position=@position,  Users.WorkPlace=@workPlace, Users.Role=@role From Users LEFT join Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID=@ID";
+                    }
+                    SqlCommand command = new SqlCommand(update, connection);
+                    if (String.IsNullOrEmpty(Session["tempBoss"].ToString()))
+                    {
+                        updateBoss = "Insert into Users_Boss (User_ID, Boss_ID) values(@ID, @bossID)";
+                        string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
+                        SqlCommand commandSelectBoss = new SqlCommand(selectBossID, connection);
+                        commandSelectBoss.Parameters.AddWithValue("bossEmail", bossEmail);
+                        int user_ID = (int)commandSelectBoss.ExecuteScalar();
+                        SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
+                        commandBoss.Parameters.AddWithValue("bossID", user_ID);
+                        commandBoss.Parameters.AddWithValue("ID", ID);
+                        commandBoss.ExecuteScalar();
+
+                    }
+                    else if (String.IsNullOrEmpty(bossEmail) || (role != "Pracownik"))
+                    {
+                        updateBoss = "Delete Users_Boss WHERE User_ID = @ID";
+                        SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
+                        commandBoss.Parameters.AddWithValue("ID", ID);
+                        commandBoss.ExecuteScalar();
+                    }
+                    else if (!String.IsNullOrEmpty(bossEmail))
+                    {
+                        updateBoss = "Update Users_Boss Set Users_Boss.Boss_ID = @bossID WHERE Users_Boss.User_ID=@ID ";
+                        string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
+                        SqlCommand commandSelectBoss = new SqlCommand(selectBossID, connection);
+                        commandSelectBoss.Parameters.AddWithValue("bossEmail", bossEmail);
+                        int user_ID = (int)commandSelectBoss.ExecuteScalar();
+                        SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
+                        commandBoss.Parameters.AddWithValue("bossID", user_ID);
+                        commandBoss.Parameters.AddWithValue("ID", ID);
+                        commandBoss.ExecuteScalar();
+                    }
+                    command.Parameters.AddWithValue("email", email);
+                    command.Parameters.AddWithValue("ID", ID);
+                    command.Parameters.AddWithValue("password", password);
+
+                    command.Parameters.AddWithValue("name", name);
+                    command.Parameters.AddWithValue("surname", surname);
+                    command.Parameters.AddWithValue("position", position);
+                    command.Parameters.AddWithValue("workPlace", workPlace);
+                    command.Parameters.AddWithValue("role", role);
+                    command.ExecuteScalar();
+                    Response.Redirect("AdminPage.aspx");
+                    connection.Close();
+
+                }
+                catch (NullReferenceException)
+                {
+
+                    string msg = "Error";
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
+                }
 
             }
-            else if (String.IsNullOrEmpty(bossEmail) || (role != "Pracownik"))
-            {
-                updateBoss = "Delete Users_Boss WHERE User_ID = @ID";
-                SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
-                commandBoss.Parameters.AddWithValue("ID", ID);
-                commandBoss.ExecuteScalar();
-            }
-            else if (!String.IsNullOrEmpty(bossEmail))
-            {
-                updateBoss = "Update Users_Boss Set Users_Boss.Boss_ID = @bossID WHERE Users_Boss.User_ID=@ID ";
-                string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
-                SqlCommand commandSelectBoss = new SqlCommand(selectBossID, connection);
-                commandSelectBoss.Parameters.AddWithValue("bossEmail", bossEmail);
-                int user_ID = (int)commandSelectBoss.ExecuteScalar();
-                SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
-                commandBoss.Parameters.AddWithValue("bossID", user_ID);
-                commandBoss.Parameters.AddWithValue("ID", ID);
-                commandBoss.ExecuteScalar();
-            }
-            
-
-            command.Parameters.AddWithValue("email", email);
-            command.Parameters.AddWithValue("ID", ID);
-            command.Parameters.AddWithValue("name", name);
-            command.Parameters.AddWithValue("surname", surname);
-            command.Parameters.AddWithValue("position", position);
-            command.Parameters.AddWithValue("workPlace", workPlace);
-            command.Parameters.AddWithValue("role", role);            
-            command.Parameters.AddWithValue("password", password);            
-            command.ExecuteScalar();
-            
-            try
-            {
-
-                Response.Redirect("AdminPage.aspx");
-                connection.Close();
-
-            }
-            catch (NullReferenceException)
-            {
-
-                MessageBox.Show("Error");
-            }
-
-            connection.Close();
         }
         protected void GoToUserPage(object sender, EventArgs e)
         {

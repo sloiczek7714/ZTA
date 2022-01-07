@@ -59,10 +59,10 @@ namespace ZTA
             Session.Abandon();
             Response.Redirect("LoginPage.aspx");
         }
-        protected void Edit(object sender, EventArgs e)
-        {
+        //protected void Edit(object sender, EventArgs e)
+        //{
 
-        }
+        //}
         protected void GoToCheckListPage(object sender, EventArgs e)
         {
             Session["ID"] = ID;

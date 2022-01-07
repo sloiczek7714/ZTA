@@ -163,8 +163,9 @@ namespace ZTA
                     SqlCommand command = new SqlCommand("Select Tips from Activity WHERE Activity_ID=@index", connection);
                     command.Parameters.AddWithValue("index", (1 + index));
                     string tip = (string)command.ExecuteScalar();
-                    string title = "Pomoc";
-                    MessageBox.Show(tip, title);
+                    //string title = "Jednym z kluczowych wymagan ZTA jest zdolnosc do identyfikacji zasobów i zarzadzania nimi.ZTA wymaga równiez zdolnosci do identyfikowania i monitorowania urzadzen niebedacych wlasnoscia organizacji, które moga znajdowac sie w jej infrastrukturze sieciowej lub miec dostep do jej zasobów. Zdolnosc do zarzadzania zasobami organizacji jest kluczem do pomyslnego wdrozenia ZTA.Obejmuje to komponenty sprzetowe(np.laptopy, telefony, urzadzenia IoT) oraz cyfrowe artefakty(np.kontauzytkowników, aplikacje, certyfikaty cyfrowe).Przeprowadzenie pelnego spisu wszystkich aktywów organizacji moze nie byc mozliwe, dlatego organizacja powinna rozwazyc stworzenie mozliwosci szybkiej identyfikacji, kategoryzacji i oceny nowo odkrytych aktywów, które znajduja sie w jej infrastrukturze. Wykracza to poza zwykle katalogowanie i prowadzenie bazy danych zasobów. Obejmuje to równiez zarzadzanie konfiguracja i monitorowanie.Zdolnosc do obserwowania biezacego stanu zasobów jest czescia procesu";
+                    //Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + title.Replace("'", "\\'") + "') </script>"));
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + tip.Replace("'", "\\'") + "') </script>"));
 
                 }
             }

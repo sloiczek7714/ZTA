@@ -63,32 +63,39 @@ namespace ZTA
             }
             if (String.IsNullOrEmpty(flag))
             {
-                SqlCommand insertForm = new SqlCommand("Insert into Form(System_Name, Begin_Date, Comment, User_ID) values (@systemName, @begin_date, @comment, @user_ID);" + "SELECT SCOPE_IDENTITY()", connection);
-                insertForm.Parameters.AddWithValue("systemName", SystemName.Text);
-                insertForm.Parameters.AddWithValue("user_ID", ID);
-                insertForm.Parameters.AddWithValue("begin_date", Session["beginDate"].ToString());
-                insertForm.Parameters.AddWithValue("comment", overallComment.Text);
-                string form_ID = insertForm.ExecuteScalar().ToString();
-                GridView gridView = (GridView)this.Page.FindControl("procedureGridView");
-                foreach (GridViewRow row in gridView.Rows)
+                if ( String.IsNullOrEmpty(SystemName.Text))
                 {
-                    SqlCommand insertAnswer = new SqlCommand("Insert into Answer(Answer_Date, Comment, Form_ID, Activity_ID) values (@answerDate, @comment, @form_ID, @activity_ID)", connection);
-                    TextBox dateTextBox = (TextBox)row.FindControl("dateTextBox");
-                    TextBox commentTextBox = (TextBox)row.FindControl("commentTextBox");
-                    string comment = commentTextBox.Text;
-                    string date = dateTextBox.Text;
-                    if (String.IsNullOrEmpty(date))
-                    {
-                        insertAnswer = new SqlCommand("Insert into Answer(Comment, Form_ID, Activity_ID) values (@comment, @form_ID, @activity_ID)", connection);
-                    }
-                    var activity_ID = row.Cells[0].Text;
-                    insertAnswer.Parameters.AddWithValue("comment", comment);
-                    insertAnswer.Parameters.AddWithValue("answerDate", date);
-                    insertAnswer.Parameters.AddWithValue("form_ID", form_ID);
-                    insertAnswer.Parameters.AddWithValue("activity_ID", activity_ID);
-                    insertAnswer.ExecuteScalar();
+                    string msg = "Wpisz nazwę systemu!";
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
                 }
-                Session["formID"] = form_ID;
+                    else {
+                            SqlCommand insertForm = new SqlCommand("Insert into Form(System_Name, Begin_Date, Comment, User_ID) values (@systemName, @begin_date, @comment, @user_ID);" + "SELECT SCOPE_IDENTITY()", connection);
+                            insertForm.Parameters.AddWithValue("systemName", SystemName.Text);
+                            insertForm.Parameters.AddWithValue("user_ID", ID);
+                            insertForm.Parameters.AddWithValue("begin_date", Session["beginDate"].ToString());
+                            insertForm.Parameters.AddWithValue("comment", overallComment.Text);
+                            string form_ID = insertForm.ExecuteScalar().ToString();
+                            GridView gridView = (GridView)this.Page.FindControl("procedureGridView");
+                            foreach (GridViewRow row in gridView.Rows)
+                            {
+                                SqlCommand insertAnswer = new SqlCommand("Insert into Answer(Answer_Date, Comment, Form_ID, Activity_ID) values (@answerDate, @comment, @form_ID, @activity_ID)", connection);
+                                TextBox dateTextBox = (TextBox)row.FindControl("dateTextBox");
+                                TextBox commentTextBox = (TextBox)row.FindControl("commentTextBox");
+                                string comment = commentTextBox.Text;
+                                string date = dateTextBox.Text;
+                                if (String.IsNullOrEmpty(date))
+                                {
+                                    insertAnswer = new SqlCommand("Insert into Answer(Comment, Form_ID, Activity_ID) values (@comment, @form_ID, @activity_ID)", connection);
+                                }
+                                var activity_ID = row.Cells[0].Text;
+                                insertAnswer.Parameters.AddWithValue("comment", comment);
+                                insertAnswer.Parameters.AddWithValue("answerDate", date);
+                                insertAnswer.Parameters.AddWithValue("form_ID", form_ID);
+                                insertAnswer.Parameters.AddWithValue("activity_ID", activity_ID);
+                                insertAnswer.ExecuteScalar();
+                            }
+                            Session["formID"] = form_ID;
+                        }
              }
             else 
             {
@@ -153,8 +160,8 @@ namespace ZTA
                     SqlCommand command = new SqlCommand("Select Tips from Activity WHERE Activity_ID=@index", connection);
                     command.Parameters.AddWithValue("index", (1 + index));
                     string tip = (string)command.ExecuteScalar();
-                    string title = "Pomoc";                    
-                    MessageBox.Show(tip, title);
+                    string title = "Pomoc";
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + tip.Replace("'", "\\'") + "') </script>"));
 
                 }
             }

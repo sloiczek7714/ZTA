@@ -54,7 +54,8 @@ namespace ZTA
             }
             else
             {
-                MessageBox.Show("Error");
+                string msg = "Error";
+                Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
             }
                        
         }
@@ -81,7 +82,8 @@ namespace ZTA
             catch (NullReferenceException)
             {
 
-                MessageBox.Show("Error");
+                string msg = "Error";
+                Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
             }
 
             connection.Close();

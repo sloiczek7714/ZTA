@@ -117,7 +117,8 @@ namespace ZTA
             }
             else
             {
-                MessageBox.Show("Error");
+                string msg = "Error";
+                Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
             }
         }
         protected void deleteProcedure(object semder, EventArgs e)
@@ -138,7 +139,8 @@ namespace ZTA
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Error");
+                string msg = "Error";
+                Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
             }
 
             connection.Close();
@@ -162,11 +164,11 @@ namespace ZTA
                     Session["endDate"] = 0;
                 }
                 Server.Transfer("EditProcedurePage.aspx");
-                //Response.Redirect("EditProcedurePage.aspx");
             }
             else
             {
-                MessageBox.Show("Error");
+                string msg = "Error";
+                Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
             }
         }
 

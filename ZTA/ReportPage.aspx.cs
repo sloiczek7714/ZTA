@@ -8,10 +8,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.html;
-using iTextSharp.text.html.simpleparser;
+//using iTextSharp.text;
+//using iTextSharp.text.pdf;
+//using iTextSharp.text.html;
+//using iTextSharp.text.html.simpleparser;
 using System.Data.SqlClient;
 using System.Configuration;
 
@@ -50,11 +50,11 @@ namespace ZTA
                 try
                 {                   
                     connection.Open();
-                    //GridView gridView = (GridView)this.Page.FindControl("reportGridView");
-                    //foreach (GridViewRow row in gridView.Rows)
-                    //{
-                    //    row.Cells[1].Text = row.Cells[1].Text.Replace("\n", "<br/>");
-                    //}
+                    GridView gridView = (GridView)this.Page.FindControl("reportGridView");
+                    foreach (GridViewRow row in gridView.Rows)
+                    {
+                        row.Cells[1].Text = row.Cells[1].Text.Replace("\n", "<br/>");
+                    }
                     SqlCommand select = new SqlCommand("SELECT Form.System_Name,FORMAT(Form.Begin_Date ,'MM/dd/yyyy hh:mm')as 'Begin_Date' ,FORMAT(Form.End_Date ,'MM/dd/yyyy hh:mm') as 'End_Date', Form.Comment, Users.Name as 'Name', Users.Surname as 'Surname', Form.User_ID, Users_Boss.Boss_ID FROM Form join Users on Users.User_ID = Form.User_ID left join Users_Boss on Users_Boss.User_ID=Users.User_ID WHERE Form.Form_ID = @formID", connection);
                     select.Parameters.AddWithValue("formID", formID);
                     var reader = select.ExecuteReader();
@@ -109,67 +109,13 @@ namespace ZTA
             {
                 Response.Redirect("LoginPage.aspx");
             }
-            //var uri = new Uri("http://localhost:44341/ReportPage.aspx");
-            //var urlToPdf = new ChromePdfRenderer();
-            //var pdf = urlToPdf.RenderUrlAsPdf(uri);
-            //pdf.SaveAs(Path.Combine(Directory.GetCurrentDirectory(), "UrlToPdfExample1.Pdf"));
-
         }
         protected void logout(object sender, EventArgs e)
         {
             Session.RemoveAll();
             Session.Abandon();
             Response.Redirect("LoginPage.aspx");
-        }
-
-        protected void pdrCreate(object sender, EventArgs e)
-        {
-            ExportGridToPDF();
-            //try
-            //{
-            //    Document pdfDoc = new Document(PageSize.A4, 25, 10, 25, 10);
-            //    PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-            //    pdfDoc.Open();
-            //    Paragraph Text = new Paragraph("This is test file");
-            //    pdfDoc.Add(Text);
-            //    pdfWriter.CloseStream = false;
-            //    pdfDoc.Close();
-            //    Response.Buffer = true;
-            //    Response.ContentType = "application/pdf";
-            //    Response.AddHeader("content-disposition", "attachment;filename=Example.pdf");
-            //    Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            //    Response.Write(pdfDoc);
-            //    Response.End();
-            //}
-            //catch (Exception ex)
-            //{ Response.Write(ex.Message); }
-        }
-        private void ExportGridToPDF()
-        {
-
-            using (StringWriter sw = new StringWriter())
-            {
-                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
-                {
-                    //To Export all pages
-                    reportGridView.AllowPaging = false;
-                    reportGridView.RenderControl(hw);
-                    StringReader sr = new StringReader(sw.ToString());
-                    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-                    HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-                    PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-                    pdfDoc.Open();
-                    htmlparser.Parse(sr);
-                    pdfDoc.Close();
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.pdf");
-                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                    Response.Write(pdfDoc);
-                    Response.End();
-                }
-            }
-
-        }
+        }      
 
     }
 }

@@ -16,7 +16,7 @@ namespace ZTA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void showPassword(object sender, EventArgs e)
@@ -30,37 +30,40 @@ namespace ZTA
             string password = passwordTextBox.Text;
             if (email.Equals(""))
             {
-                MessageBox.Show("Prosze wprowadzić adres e-mail!");
+                string msg ="Prosze wprowadzić adres e-mail!";
+                Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
 
             }
             else if (password.Equals(""))
             {
-                MessageBox.Show("Prosze wprowadzić hasło!");
+                string msg = "Prosze wprowadzić hasło!";
+                Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
             }
             else
             {
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                 
-                SqlCommand command = new SqlCommand("SELECT User_ID FROM Users WHERE Password = @password and Email  = @email", connection);
-                password = Helper.HashPassword(password, email);
-                command.Parameters.AddWithValue("password", password);
-                command.Parameters.AddWithValue("email", email);
-                connection.Open();
+                    SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                    SqlCommand command = new SqlCommand("SELECT User_ID FROM Users WHERE Password = @password and Email  = @email", connection);
+                    password = Helper.HashPassword(password, email);
+                    command.Parameters.AddWithValue("password", password);
+                    command.Parameters.AddWithValue("email", email);
+                    connection.Open();
                 try
                 {
                     int id = (int)command.ExecuteScalar();
-                    Session["ID"] = id;                                           
+                    Session["ID"] = id;
                     Response.Redirect("UserPage.aspx");
-                        //Session.RemoveAll();
-                    
+                    connection.Close();
+
                 }
                 catch (NullReferenceException)
                 {
-
-                    MessageBox.Show("Błędny email lub hasło");
+                    
+                    string msg = "błędny email lub hasło";
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
                 }
 
-                connection.Close();
+                
             }
         }
     }
