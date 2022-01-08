@@ -59,7 +59,14 @@ namespace ZTA
                                 Datareader.Close();
                                 if (!String.IsNullOrEmpty(dateTextBox.Text))
                                 {
-                                    dateTextBox.Enabled = false;
+                                    if (Helper.DoesUserHasPermission(UserID, "Administrator"))
+                                    {
+                                        dateTextBox.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        dateTextBox.Enabled = false;
+                                    }
                                 }
                                 i++;
                             }
@@ -69,8 +76,7 @@ namespace ZTA
                                 row.Cells[1].Text = row.Cells[1].Text.Replace("\n", "<br/>");
                             }
 
-                            connection.Close();
-                           
+                            connection.Close();                           
                         }
 
                         else
@@ -105,9 +111,11 @@ namespace ZTA
         {
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
             connection.Open();
-            SqlCommand insertForm = new SqlCommand("Update Form SET Comment=@comment where From_ID=@formID)", connection);
+            string commentOverall = editOverallComment.Text;
+            SqlCommand insertForm = new SqlCommand("Update Form SET Comment=@commentOverall where Form_ID=@formID", connection);
             insertForm.Parameters.AddWithValue("formID", formID);
-            insertForm.Parameters.AddWithValue("comment", editOverallComment.Text);
+            insertForm.Parameters.AddWithValue("commentOverall", commentOverall);
+            insertForm.ExecuteScalar();
             GridView gridView = (GridView)this.Page.FindControl("procedureGridView");
             foreach (GridViewRow row in gridView.Rows)
             {

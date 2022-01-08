@@ -79,8 +79,7 @@ namespace ZTA
                             bosslabel.Text = "Imię i nazwisko kierownika: " + DataReader[0].ToString()+ DataReader[1].ToString() + "ID: " + bossID;
                             DataReader.Close();
                         }
-                    }
-                    
+                    }                   
 
                 }
                 catch

@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="./LoginPage.aspx">
+                        <a class="nav-link" href="./UserPage.aspx">
                             <i class="material-icons">person</i>
                             <p>Profil Uzytkownika</p>
                         </a>

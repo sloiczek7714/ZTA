@@ -62,8 +62,9 @@
                 </div>
             </nav>
             <div class="content">
+                <div class="col-md-5">
                 <asp:Button ID="userButton" Visible="true" runat="server" OnClick="GoToAdminPage" Text="Pokaż listę uzytkowników" class="btn btn-primary pull-left" Style="background-image: url('~/assets/img/list.png');" />
-                <br />
+                </div><br />
                 <br />
                 <br />
                 <div class="container-fluid">

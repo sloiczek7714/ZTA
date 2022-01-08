@@ -71,14 +71,20 @@ namespace ZTA
                     try
                     {
                         SqlCommand select = new SqlCommand("SELECT sum(case when Form.End_Date is null then 1 else 0 end) nieskonczone, count (Form.End_Date) skonczone FROM[dbo].[Form] left join Users_Boss on Users_Boss.User_ID = Form.User_ID  where Form.User_ID = @UserID or Users_Boss.Boss_ID = @UserID", connection);
+                        if (Helper.DoesUserHasPermission(ID, "Administrator"))
+                        {
+                            select = new SqlCommand("SELECT sum(case when Form.End_Date is null then 1 else 0 end) nieskonczone, count (Form.End_Date) skonczone FROM[dbo].[Form] left join Users_Boss on Users_Boss.User_ID = Form.User_ID", connection);
+                        }
+
                         select.Parameters.AddWithValue("UserID", ID);
                         var reader = select.ExecuteReader();
                         reader.Read();
                         b = Int32.Parse(reader[1].ToString());
                         a = Int32.Parse(reader[0].ToString());
                     }
-                    catch {
-                       
+                    catch
+                    {
+
                     }
                 }
                 catch
@@ -123,17 +129,18 @@ namespace ZTA
         }
         protected void deleteProcedure(object semder, EventArgs e)
         {
-            GridView gridView = (GridView)this.Page.FindControl("GridView1");
-            GridViewRow selectedRow = gridView.SelectedRow;
-            string formID = selectedRow.Cells[0].Text;
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
-            connection.Open();
-            string delete = "Delete from Form where Form_ID = @formID";
-            SqlCommand command = new SqlCommand(delete, connection);
-            command.Parameters.AddWithValue("formID", formID);
-            command.ExecuteScalar();
             try
             {
+                GridView gridView = (GridView)this.Page.FindControl("GridView1");
+                GridViewRow selectedRow = gridView.SelectedRow;
+                string formID = selectedRow.Cells[0].Text;
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
+                connection.Open();
+                string delete = "Delete from Form where Form_ID = @formID";
+                SqlCommand command = new SqlCommand(delete, connection);
+                command.Parameters.AddWithValue("formID", formID);
+                command.ExecuteScalar();
+
                 Response.Redirect("ListOfProceduresPage.aspx");
                 connection.Close();
             }
@@ -142,8 +149,6 @@ namespace ZTA
                 string msg = "Error";
                 Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
             }
-
-            connection.Close();
         }
         protected void editProcedure(object semder, EventArgs e)
         {
@@ -154,10 +159,11 @@ namespace ZTA
                 string formID = selectedRow.Cells[0].Text;
                 string endDate = selectedRow.Cells[3].Text;
                 Session["formID"] = formID;
-                if (selectedRow.Cells[3].Text !="&nbsp;")
+                if (selectedRow.Cells[3].Text != "&nbsp;")
                 {
                     Console.WriteLine(selectedRow.Cells[3].Text);
-                    Session["endDate"] = selectedRow.Cells[3].Text;}
+                    Session["endDate"] = selectedRow.Cells[3].Text;
+                }
                 else
                 {
                     Console.WriteLine(selectedRow.Cells[3].Text);

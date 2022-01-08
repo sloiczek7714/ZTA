@@ -27,12 +27,10 @@ namespace ZTA
                     row.Cells[1].Text = row.Cells[1].Text.Replace("\n", "<br/>");
                 }
             }
-
             else
             {
                 Response.Redirect("LoginPage.aspx");
             }
-
         }
 
         protected void logout(object sender, EventArgs e)
