@@ -55,9 +55,9 @@ namespace ZTA
                             RoleList.SelectedValue = DataReader.GetValue(6).ToString();
                             Session["tempBoss"] = DataReader.GetValue(7).ToString();
                             DataReader.Close();
-                        }
-                        
-                        SqlCommand com = new SqlCommand("SELECT * from Users  WHERE Role='Kierownik'", connection);
+                        }                        
+                        SqlCommand com = new SqlCommand("SELECT * from Users  WHERE Role='Kierownik' and Users.Email!=@email", connection);
+                        com.Parameters.AddWithValue("email",editEmailTextBox.Text);
                         SqlDataAdapter da = new SqlDataAdapter(com);
                         DataSet ds = new DataSet();
                         da.Fill(ds);
@@ -116,7 +116,7 @@ namespace ZTA
                         update = "Update Users SET Users.Email=@email, Users.Name=@name, Users.Password=@password, Users.Surname=@surname, Users.Position=@position,  Users.WorkPlace=@workPlace, Users.Role=@role From Users LEFT join Users_Boss ON Users.User_ID = Users_Boss.User_ID where Users.User_ID=@ID";
                     }
                     SqlCommand command = new SqlCommand(update, connection);
-                    if (String.IsNullOrEmpty(Session["tempBoss"].ToString()))
+                    if (String.IsNullOrEmpty(Session["tempBoss"].ToString()) && role != "Kierownik" && role !="Administrator")
                     {
                         updateBoss = "Insert into Users_Boss (User_ID, Boss_ID) values(@ID, @bossID)";
                         string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
@@ -129,14 +129,14 @@ namespace ZTA
                         commandBoss.ExecuteScalar();
 
                     }
-                    else if (String.IsNullOrEmpty(bossEmail) || (role != "Pracownik"))
+                    else if (String.IsNullOrEmpty(bossEmail) || role != "Pracownik")
                     {
                         updateBoss = "Delete Users_Boss WHERE User_ID = @ID";
                         SqlCommand commandBoss = new SqlCommand(updateBoss, connection);
                         commandBoss.Parameters.AddWithValue("ID", ID);
                         commandBoss.ExecuteScalar();
                     }
-                    else if (!String.IsNullOrEmpty(bossEmail))
+                    else if (!String.IsNullOrEmpty(bossEmail) || role =="Pracownik")
                     {
                         updateBoss = "Update Users_Boss Set Users_Boss.Boss_ID = @bossID WHERE Users_Boss.User_ID=@ID ";
                         string selectBossID = "Select User_ID From Users WHERE Email=@bossEmail";
