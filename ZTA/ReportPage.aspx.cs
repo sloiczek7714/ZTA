@@ -64,7 +64,7 @@ namespace ZTA
                         r = "raport"+ systemNamelabel.Text.TrimEnd(' ') + ".pdf";
                         beginDatelabel.Text = "Data rozpoczęcia: " + reader[1].ToString();
                         endDatelabel.Text = "Data zakończenia: " + reader[2].ToString();
-                        employelabel.Text = "Imię i nazwisko pracownika: " + reader[4].ToString() + reader[5].ToString() + "ID: " + reader[6].ToString();
+                        employelabel.Text = "Imię i nazwisko pracownika: " + reader[4].ToString() + " " + reader[5].ToString() + " ID: " + reader[6].ToString();
                         bossID = reader[7].ToString();
                         commentlabel.Text = "Komentarz: " + reader[3].ToString();
                     }
@@ -76,7 +76,7 @@ namespace ZTA
                         var DataReader = selectBoss.ExecuteReader();
                         while (DataReader.Read())
                         {
-                            bosslabel.Text = "Imię i nazwisko kierownika: " + DataReader[0].ToString()+ DataReader[1].ToString() + "ID: " + bossID;
+                            bosslabel.Text = "Imię i nazwisko kierownika: " + DataReader[0].ToString()+ " " + DataReader[1].ToString() + " ID: " + bossID;
                             DataReader.Close();
                         }
                     }                   

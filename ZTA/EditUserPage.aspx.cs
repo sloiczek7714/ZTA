@@ -45,7 +45,6 @@ namespace ZTA
                         SqlCommand command = new SqlCommand(insert, connection);
                         command.Parameters.AddWithValue("ID", ID);
                         SqlDataReader DataReader = command.ExecuteReader();
-
                         if (DataReader.Read())
                         {
                             editNameTextBox.Text = DataReader.GetValue(1).ToString();
@@ -56,8 +55,8 @@ namespace ZTA
                             RoleList.SelectedValue = DataReader.GetValue(6).ToString();
                             Session["tempBoss"] = DataReader.GetValue(7).ToString();
                             DataReader.Close();
-
                         }
+                        
                         SqlCommand com = new SqlCommand("SELECT * from Users  WHERE Role='Kierownik'", connection);
                         SqlDataAdapter da = new SqlDataAdapter(com);
                         DataSet ds = new DataSet();
@@ -65,7 +64,11 @@ namespace ZTA
                         EditDropDownBossList.DataTextField = ds.Tables[0].Columns["Email"].ToString();
                         EditDropDownBossList.DataSource = ds.Tables[0];
                         EditDropDownBossList.DataBind();
-
+                        if (!Helper.DoesUserHasPermission(ID, "Pracownik"))
+                        {
+                            EditDropDownBossList.Visible = false;
+                            editBossLabel.Visible = false;
+                        }
                     }
                 }
             }

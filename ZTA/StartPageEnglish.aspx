@@ -71,7 +71,7 @@
                             ZTA Migration App also supprot users when any problem appears.   
                         <br /><br />
                         Student: Weronika Buras <br />
-                        Yhesis supervisor: dr inż. Krzysztof Jerzy Liderman<br />
+                        Thesis supervisor: dr inż. Krzysztof Jerzy Liderman<br />
                         University: Military University of Technology <br />
                         Branch of study: WCY/ITA<br />
                         Speciality: Cryptology and Cybersecurity <br />

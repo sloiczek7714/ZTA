@@ -84,7 +84,8 @@ namespace ZTA
                     }
                     catch
                     {
-
+                        string msg = "Error";
+                        Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
                     }
                 }
                 catch

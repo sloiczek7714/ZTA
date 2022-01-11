@@ -40,8 +40,7 @@ namespace ZTA
                 Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
             }
             else
-            {
-                
+            {                
                     SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ZTADBConnectionString"].ConnectionString);
                     SqlCommand command = new SqlCommand("SELECT User_ID FROM Users WHERE Password = @password and Email  = @email", connection);
                     password = Helper.HashPassword(password, email);
@@ -58,7 +57,6 @@ namespace ZTA
                 }
                 catch (NullReferenceException)
                 {
-                    
                     string msg = "błędny email lub hasło";
                     Page.Controls.Add(new LiteralControl("<script language='javascript'>window.alert('" + msg.Replace("'", "\\'") + "') </script>"));
                 }
