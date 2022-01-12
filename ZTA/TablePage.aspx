@@ -42,23 +42,23 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Wysoki</td>
-                                            <td>Jeśli wartości koncepcji wskaźników ryzyka mieszczą się w określonym wczesnej przedziale</td>
+                                            <td>WYSOKI</td>
+                                            <td>Jeśli wartości koncepcji wskaźników ryzyka mieszczą się w określonym wcześnej przedziale</td>
                                         </tr>
                                         <tr>
-                                            <td>Alert</td>
+                                            <td>ALERT</td>
                                             <td>Jeśli przynajmniej jeden z kluczowych wskaźników ryzyka znajdzie się poza określonym wcześniej przedziałem i nie osiągnął wartości kwalifikującej go jako incydent oraz istnieją procedury przywracania tej wartości do właściwego przedziału</td>
                                         </tr>
                                         <tr>
-                                            <td>Incydent</td>
+                                            <td>INCYDENT</td>
                                             <td>Jeśli przynajmniej jeden z kluczowych wskaźników ryzyka znajdzie się poza określonym wcześniej przedziałem i osiągnął wartości kwalifikującą go jako incydent oraz istnieją procedury przywracania tej wartości do właściwego przedziału</td>
                                         </tr>
                                         <tr>
-                                            <td>Kryzys</td>
+                                            <td>KRYZYS</td>
                                             <td>Jeśli przynajmniej jednej wartości z kluczowych wskaźników ryzyka nie udało się sprowadzić do właściwego przedziału w wymaganym czasie lub jeśli nie istnieją procedury odpowiadające temu zdarzeniu</td>
                                         </tr>
                                         <tr>
-                                            <td>Wymagana analiza ryzyka</td>
+                                            <td>WYMAGANA ANALIZA RYZYKA</td>
                                             <td>Jeśli wartość kluczowej wartości ryzyka zmian organizacyjnych i/lub zmian technicznych przekroczą dopuszczalne przedziały; dopóki nie zostaną zakończona ponowna analiza ryzyka, operacyjny stan bezpieczeństwa ma wartość alert</td>
                                         </tr>
                                     </tbody>

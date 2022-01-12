@@ -63,7 +63,8 @@
                                 <div class="card">
                                     <div class="card-header card-header-primary">
                                         <h4 class="card-title ">Lista czynności</h4>
-                                        <p class="card-category">W celu spełnienia założeń NIST SP 800-207 proszę postępowac zgodnie z procedurą.</p>
+                                        <p class="card-category">Zalecane jest wykonywanie procedury w kolejności wypisanych czynności. Zaleca się również aby czynność „Wprowadź zmiany określone w dokumencie polityki” została wprowadzona natychmiast, ponieważ kolejne czynności procedury mogą nawiązywać do danego dokumentu polityki. Na przykład, bez wyznaczenia zasobów w punkcie 1 procedury możliwe jest jedynie wykonanie czynności opisanej w punkcie 3. Należy przyjąć zasadę, że odnosząc się do istniejącego już dokumentu polityki np. listy czy spisu, konieczne jest rozpatrywanie go w już zaktualizowanej formie.</p>
+                             
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -73,18 +74,18 @@
                                                 <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" SelectCommand="SELECT * FROM [Activity]" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
                                                 <asp:GridView ID="procedureGridView" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false" OnRowCommand="showHint">
                                                     <Columns>
-                                                        <asp:BoundField HeaderText="Numer" DataField="Activity_ID" />
-                                                        <asp:BoundField HeaderText="Czynność" DataField="Activity" />
+                                                        <asp:BoundField HeaderText=" Numer " DataField="Activity_ID" />
+                                                        <asp:BoundField HeaderText=" Czynność " DataField="Activity" />
                                                         <asp:ButtonField ButtonType="Image"
                                                             CommandName="Select"
                                                             HeaderText="Pomoc"
                                                             ImageUrl="~/assets/img/questionMark.png" />
-                                                        <asp:TemplateField HeaderText="Komentarz">
+                                                        <asp:TemplateField HeaderText=" Komentarz ">
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="commentTextBox" HeaderText="Komentarz" runat="server" class="form-control"></asp:TextBox>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Data i godzina zakończenia">
+                                                        <asp:TemplateField HeaderText=" Data i godzina zakończenia ">
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="dateTextBox" placeholder="mm/dd/yyyy hh:mm" runat="server" class="form-control"></asp:TextBox>
                                                             </ItemTemplate>

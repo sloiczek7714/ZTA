@@ -118,7 +118,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="bmd-label-floating">Kierownik</label>
+                                                <asp:Label  ID="labelBoss" class="bmd-label-floating" runat="server" text="Kierownik"></asp:Label>
                                                 <asp:Label ID="BossIDLabel" runat="server" class="form-control"></asp:Label>
                                             </div>
                                         </div>

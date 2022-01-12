@@ -64,7 +64,7 @@ namespace ZTA
                         r = "raport"+ systemNamelabel.Text.TrimEnd(' ') + ".pdf";
                         beginDatelabel.Text = "Data rozpoczęcia: " + reader[1].ToString();
                         endDatelabel.Text = "Data zakończenia: " + reader[2].ToString();
-                        employelabel.Text = "Imię i nazwisko pracownika: " + reader[4].ToString() + " " + reader[5].ToString() + " ID: " + reader[6].ToString();
+                        employelabel.Text = "Imię i nazwisko wypełniającego: " + reader[4].ToString() + " " + reader[5].ToString() + " ID: " + reader[6].ToString();
                         bossID = reader[7].ToString();
                         commentlabel.Text = "Komentarz: " + reader[3].ToString();
                     }

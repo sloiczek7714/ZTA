@@ -104,15 +104,15 @@
                                             <asp:SqlDataSource ID="ZTA" runat="server" ConnectionString="<%$ ConnectionStrings:ZTADBConnectionString %>" OnSelecting="ZTA_Selecting"></asp:SqlDataSource>
                                             <asp:GridView ID="GridView1" runat="server" DataSourceID="ZTA" AutoGenerateColumns="false">
                                                 <Columns>
-                                                    <asp:BoundField HeaderText="Numer" DataField="Form_ID" />
-                                                    <asp:BoundField HeaderText="Nazwa systemu" DataField="System_Name" />
-                                                    <asp:BoundField HeaderText="Data rozpoczecia" DataField="Begin_Date" />
-                                                    <asp:BoundField HeaderText="Data zakończenia" DataField="End_Date" />
-                                                    <asp:BoundField HeaderText="Komentarz" DataField="Comment" />
-                                                    <asp:BoundField HeaderText="Imię pracownika" DataField="Name" />
-                                                    <asp:BoundField HeaderText="Nazwisko pracownika" DataField="Surname" />
-                                                    <asp:BoundField HeaderText="Numer kierownika" DataField="Kierownik" />
-                                                    <asp:TemplateField HeaderText="Funkcje">
+                                                    <asp:BoundField HeaderText=" Numer " DataField="Form_ID" />
+                                                    <asp:BoundField HeaderText=" Nazwa systemu " DataField="System_Name" />
+                                                    <asp:BoundField HeaderText=" Data rozpoczecia " DataField="Begin_Date" />
+                                                    <asp:BoundField HeaderText=" Data zakończenia " DataField="End_Date" />
+                                                    <asp:BoundField HeaderText=" Komentarz " DataField="Comment" />
+                                                    <asp:BoundField HeaderText=" Imię pracownika wypełniającego " DataField="Name" />
+                                                    <asp:BoundField HeaderText=" Nazwisko pracownika wypełniającego " DataField="Surname" />
+                                                    <asp:BoundField HeaderText=" Numer kierownika " DataField="Kierownik" />
+                                                    <asp:TemplateField HeaderText=" Funkcje ">
                                                         <ItemTemplate>
                                                             <asp:Button runat="server" ID="selectButton" Text="Wybierz" class="btn btn-primary pull-right" CommandName="Select" />
                                                         </ItemTemplate>
