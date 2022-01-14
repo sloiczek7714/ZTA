@@ -78,7 +78,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="bmd-label-floating">aders e-mail</label>
+                                                <label class="bmd-label-floating">adres e-mail</label>
                                                 <asp:Label ID="EmailLabel" runat="server" class="form-control"></asp:Label>
                                             </div>
                                         </div>

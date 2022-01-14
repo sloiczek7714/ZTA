@@ -88,6 +88,8 @@
                                                         <asp:TemplateField HeaderText=" Data i godzina zakończenia ">
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="dateTextBox" placeholder="mm/dd/yyyy hh:mm" runat="server" class="form-control"></asp:TextBox>
+                                                            <asp:RegularExpressionValidator ID ="validateNewDate" runat="server"   ControlToValidate="dateTextBox"
+                                                                    ErrorMessage="Format mm/dd/yyy hh:mm" ValidationExpression="null|^([0]{0,1}[1-9]|1[012])\/([1-9]|([012][0-9])|(3[01]))\/\d\d\d\d\s([0-1]?[0-9]|2?[0-3]):([0-5]\d)$" ></asp:RegularExpressionValidator>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>

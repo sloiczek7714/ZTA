@@ -70,6 +70,10 @@
                             It gives posibility to monitor the progress by saving detes and comment by employee to each acitivity. 
                             ZTA Migration App also supprot users when any problem appears.   
                         <br /><br />
+                            To use a tool creating an account is needed. It can be created by administrator. If you want to create it send an email to weronika.buras77@gmail.com.
+                            Mail should contains name, surname, position, work place, email and role (boss or employee). After verification by administrator email with
+                            refusal or confirmation of creating an account will be send. 
+                        <br /><br />
                         Student: Weronika Buras <br />
                         Thesis supervisor: dr inż. Krzysztof Jerzy Liderman<br />
                         University: Military University of Technology <br />

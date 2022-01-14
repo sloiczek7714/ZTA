@@ -71,8 +71,12 @@
                             Umożliwia wykonywanie procedury migracji systemów zgodnie z NIST SP 800-207 przez użytkownika, a także dostarczyć informacji w przypadku trudności. 
                             Umożliwia również monitorowanie postępów użytkownika poprzez zapisywanie dat wykonania każdej czynności. 
                             ZTA Migration App zapewnia monitorowanie działań użytkownika wykonującego  
-                            procedurę poprzez innego użytkownika posiadającego odpowiednie uprawienia. 
-                        <br /><br />
+                            procedurę poprzez innego użytkownika posiadającego odpowiednie uprawienia.                         
+                            <br /><br /> 
+                            W celu skorzystania z narzędzia musi zostać założone konto przez administratora. W tym celu nalezy wysłac maila na adres 
+                            weronika.buras77@gmail.com oraz podać następujące informacje : imię, nazwisko, stanowisko, adres email, rolę (pracownik bądź kierownik) oraz miejsce pracy.
+                            Po weryfikacji przez administratora zostanie wysłana drogą mailowa informacja o założeniu konta lub o odmowie.
+                             <br /><br />
                         Dyplomantka: Weronika Buras <br />
                         Promotor: dr inż. Krzysztof Jerzy Liderman<br />
                         Uczelnia: Wojskowa Akademia Techniczna <br />
